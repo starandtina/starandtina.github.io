@@ -9,15 +9,18 @@ highlighter: true
 # so be sure to set them if your theme uses them.
 #
 title : Home
-tagline: Site Tagline
+tagline: Some nice things to share with the world.
 author :
-  name : 张新
+  name : Xin Zhang
   email : kandmforever@126.com
   github : starandtina
   twitter : starandtina
   feedburner : starandtina
 
 markdown: kramdown
+
+kramdown:
+  input: GFM
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
@@ -84,7 +87,7 @@ JB :
   comments :
     provider : disqus
     disqus :
-      short_name : jekyllbootstrap
+      short_name : starandtina
     livefyre :
       site_id : 123
     intensedebate :
