@@ -152,10 +152,10 @@ Once the code is done and tested, and we shouldn't push out our raw source files
 ## Data Transport
 
 This section will describe how to communicate between front-end and back-end of portal. Here is the detailed info.
-Also we have defined the standard of data transmission(Sorry, it's Chinese version).
-Architecture
+Also we have defined [the standard of data transmission](http://starandtina.github.io/2014/11/27/json-data-specification/)(Sorry, it's Chinese version).
 
 ![portal_of_front_end_architecture](https://cloud.githubusercontent.com/assets/613990/4113099/4b5bf2d2-3244-11e4-9df6-01aad065bbec.png)
+{: class='image-wrapper'}
 
 We build up the entire DOM in JavaScript, loading the data via calls to RESTful JSON APIs, and handle state changes in the URL via the hash or HTML5 history API provided by framework.
 On our portal, and we could serve the same HTML file for every URL, and that HTML file contains only require.js and a call to load a app.js file. That app.js file maps URLs to controllers, and controllers will know how to hander that.

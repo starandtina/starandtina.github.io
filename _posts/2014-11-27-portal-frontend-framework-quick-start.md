@@ -81,6 +81,8 @@ When it's booted up in production environment:
 By the way, as for the JSON server task, and you could find the JSON data file from [test/mock/db.json](https://github.com/starandtina/portal/blob/master/test/mock/db.json). We wrote one [Grunt task](https://github.com/starandtina/portal/blob/master/tasks/json_server_task.js) which is focus on read data from this file and set up RESTFul API for you automatically. 
 
 Example of db.json:
+
+
 ```JavaScript
 {
   "addressBooks": [
@@ -151,7 +153,7 @@ define([
 });
 ```
 
-Then, we will create one template named `about.html.jade` or `about.html`(we support JADE and HTML) which is located at directory of `src/app/components/about`.
+Then, we will create one template named `about.html.jade` or `about.html`(we support JADE and HTML)which is located at directory of `src/app/components/about`.
 
 
 ```Jade
@@ -255,7 +257,7 @@ grunt serve
 Write Unit Test
 ```
 
-Here is the unit test of `AboutController` located in `src/app/about/about.controller.js` using `Jasmine` and `Karma`.
+Here is the unit test for `AboutController` located in `src/app/about/about.controller.js` using `Jasmine` and `Karma`.
 
 ``` JavaScript
 define([

@@ -547,3 +547,6 @@ img.maruku-png { }
 	color:#FFF;
 }
 
+.image-wrapper img {
+	max-width: 40em;
+}
