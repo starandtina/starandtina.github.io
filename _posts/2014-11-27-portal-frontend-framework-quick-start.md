@@ -19,26 +19,26 @@ Installing the following tools before you continue.
 
 If you are working on Mac platform, recommending install them using brew. 
 
-```
- brew install git node
- gem install gerrit-cli
-```
+{% highlight Bash %}
+brew install git node
+gem install gerrit-cli
+{% endhighlight %}
 
 # Setup Dev Env
 
 ## Step 1: Clone the Repo
 
-```
+{% highlight Bash %}
 git clone https://github.com/starandtina/portal
-```
+{% endhighlight %}
 
 ## Step 2: Install Dependencies
 
-```
+{% highlight Bash %}
 npm install -g grunt-cli
 npm install -g bower
 npm install && bower install
-```
+{% endhighlight %}
 
 If you have encountered **ERR!** like the one below, please run the commands with sudo.
 
@@ -46,10 +46,10 @@ If you have encountered **ERR!** like the one below, please run the commands wit
 
 ## Step 3: Run it
 
-```
+{% highlight Bash %}
 grunt serve        // development
 grunt serve:dist   // production
-```
+{% endhighlight %}
 
 ### Tips:
 
@@ -83,7 +83,7 @@ By the way, as for the JSON server task, and you could find the JSON data file f
 Example of db.json:
 
 
-```
+{% highlight JSON %}
 {
   "addressBooks": [
     {
@@ -102,14 +102,14 @@ Example of db.json:
     }
   ]
 }
-```
+{% endhighlight %}
 
 And then, the JSON server will set up the API interface below for your CRUD operation, so the development of front-end could be separated from web backend and we don't care about the changed of schema or whatever other things you could image.
 
-```
+{% highlight JavaScript %}
 http://localhost:3000/addressBooks
 http://localhost:3000/services
-```
+{% endhighlight %}
 
 # Define UI Layout -simple
 
@@ -119,7 +119,7 @@ Let's say that you wanna create one `About` page in order to give one brief intr
 
 We use the descriptor to define the layout.
 
-```
+{% highlight JavaScript %}
 define({
   'type': 'components/layout/simple',
   'children': {
@@ -128,7 +128,7 @@ define({
     }
   }
 });
-```
+{% endhighlight %}
 
 As for how Descriptor works, please refer to [here](). The type is the path of your component relative to directory of `src/app`.
 
@@ -138,7 +138,7 @@ Here we use the layout of `components/layout/simple`, and it only contains one b
 
 First off, we need to create the Angular controller named `about.controller.js` which is located at directory of  `src/app/components/about`.
 
-```
+{% highlight JavaScript %}
 define([
   'angular',
   'components/about/about.html'
@@ -151,35 +151,35 @@ define([
     }
   ];
 });
-```
+{% endhighlight %}
 
 Then, we will create one template named `about.html.jade` or `about.html`(we support JADE and HTML)which is located at directory of `src/app/components/about`.
 
 
-```
+{% highlight JADE %}
 .about-container
   .page-header 
     h1 About US 
       small DBaaS
-```
+{% endhighlight %}
 or
 
-```HTML
+{% highlight HTML %}
 <div class='about-container'>
   <div class='page-header'>
     <h1>About US <small>DBaaS</small></h1>
   </div>
 </div>
-```
+{% endhighlight %}
 
 Here we support pure HTML and Jade to write your template.
 However, we strongly recommend to use Jade, as it's a clean, whitespace sensitive syntax for writing HTML.
 
 ## Step 3: Run it
 
-```
+{% highlight Bash %}
 grunt serve
-```
+{% endhighlight %}
 
 After local dev environments starts, then navigate to [About](http://localhost:5601/descriptors/about).
 
@@ -195,7 +195,7 @@ Currently we use the `/test/mock/db.json` as the mock data, and the `/tasks/data
 The controller and html are changed to :
 `src/app/components/about/about.controller.js`
 
-```
+{% highlight JavaScript %}
 define([
   'angular',
   'components/about/about.html'
@@ -208,10 +208,10 @@ define([
     }
   ];
 });
-```
+{% endhighlight %}
 `src/app/components/about/about.html`
 
-```HTML
+{% highlight HTML %}
 <div class='about-container'>
   <div class='page-header'>
     <ul>
@@ -219,12 +219,12 @@ define([
     </ul>
   </div>
 </div>
-```
+{% endhighlight %}
  
 ## Step 3: Define The Model
 Define the Model in the factory `app/factories/addressModle.js`:
 
-```
+{% highlight JavaScript %}
 define([
   'angular'
 ], function (angular) {
@@ -235,12 +235,12 @@ define([
       return $resource('/api/addresses/:id');
     });
 });
-```
+{% endhighlight %}
 
 ## Step 4: Make the Mock Data
 Pre insert mock data into `/test/mock/db.json`.
 
-```
+{% highlight JSON %}
 {
   "addresses":[
     {"id":1,"name":"PALO ALTO, CA ,USA "},
@@ -248,18 +248,18 @@ Pre insert mock data into `/test/mock/db.json`.
     {"id":3,"name":"TOKYO, JAPAN"}
   ]
 }
-```
+{% endhighlight %}
 
 ## Step 5: Run it
 
-```
+{% highlight Bash %}
 grunt serve
 Write Unit Test
-```
+{% endhighlight %}
 
 Here is the unit test for `AboutController` located in `src/app/about/about.controller.js` using `Jasmine` and `Karma`.
 
-``` JavaScript
+{% highlight JavaScript %}
 define([
   'base/src/app/components/about/about.controller.js',
   'angular-mocks'
@@ -279,7 +279,7 @@ define([
     });
   });
 });
-```
+{% endhighlight %}
 
 # Build & Release & Deploy
 
@@ -294,19 +294,19 @@ I'd like to build the whole project and optimize it through [Build](https://gith
 * Combines related scripts together into build layers and minifies them via [UglifyJS](https://github.com/mishoo/UglifyJS) (the default) or [Closure Compiler](http://code.google.com/closure/compiler/) (an option when using Java).
 * Optimising CSS by inlining CSS files referenced by @import and removing comments.
 
-```
+{% highlight Bash %}
 grunt build
-```
+{% endhighlight %}
 
 If you want to release it, and you could generate tar and zip file in the tmp directory through `distribute` task.
 
-```
+{% highlight Bash %}
 grunt distribute:release
-```
+{% endhighlight %}
 
 Finally, you could deploy it using the compressed package on your web server, such as nginx, apache or third-party CDN(such as [CloudFront](http://aws.amazon.com/cloudfront/)).
 
-```
+{% highlight JavaScript %}
 server {
   # /usr/share/nginx/www/portal is your root directory
   root /usr/share/nginx/www/portal
@@ -335,5 +335,5 @@ server {
     root /home/ubuntu/portal;
   }
 }
-```
+{% endhighlight %}
  
