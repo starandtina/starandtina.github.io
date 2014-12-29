@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "Introduction to NATS"
-description: ""
-category: 
-tags: []
+description: "Introduction to NATS"
+category: ['Backend', 'dev']
+tags: ['Backend', 'CF', 'NATS']
 ---
 {% include JB/setup %}
 
@@ -28,7 +28,7 @@ tags: []
 
 在CloudFoundry系统中，包含许多内部组件，如CloudController、DEA、Router等等，如果某个组件(如DEA)需要去订阅其它组件的消息，那么DEA需要找到其它每一个组件并在其上注册事件，如果需要在每一个组件上注册多个事件，那么每个事件都需要执行一次上述过程（找到该组件并注册事件），这将增大系统的复杂度，并且使系统更加耦合，从而降低了系统的可扩展性。而NATS则解决了CloudFoundry的内部组件的通讯问题。
 
-NATS是一个轻量级的分布式的消息订阅发布系统，CloudFounery使用NATS作为内部组件的通讯系统，从而进行基于主题的消息订阅和发布。NATS是基于EventMachine，由Ruby实现的，它由NATS客户端和服务端组成。客户端负责向服务端发送指令(订阅主题，发布主题等等)，而服务端则接收并处理来自客户端的指令，并做出响应。目前，NATS客户端同时也支持node.js、Go、Java以及Java-Spring的实现。
+[NATS](https://github.com/derekcollison/nats)是一个轻量级的分布式的消息订阅发布系统，CloudFounery使用NATS作为内部组件的通讯系统，从而进行基于主题的消息订阅和发布。NATS是基于EventMachine，由Ruby实现的，它由NATS客户端和服务端组成。客户端负责向服务端发送指令(订阅主题，发布主题等等)，而服务端则接收并处理来自客户端的指令，并做出响应。目前，NATS客户端同时也支持node.js、Go、Java以及Java-Spring的实现。
 
 ## <a name='nats-protocol'>NATS Application Protocol</a>
 

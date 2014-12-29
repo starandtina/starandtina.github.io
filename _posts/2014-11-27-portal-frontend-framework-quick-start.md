@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "Portal Frontend Framework Quick Start"
-description: ""
+description: "Portal Frontend Framework Quick Start"
 category: ['JavaScript', 'Frontend', 'js-dev']
-tags: ['JavaScript', 'Frontend', 'js-dev']
+tags: ['JavaScript', 'Frontend', 'js-dev', 'portal']
 ---
 {% include JB/setup %}
 
@@ -19,7 +19,7 @@ Installing the following tools before you continue.
 
 If you are working on Mac platform, recommending install them using brew. 
 
-```Shell
+```
  brew install git node
  gem install gerrit-cli
 ```
@@ -28,13 +28,13 @@ If you are working on Mac platform, recommending install them using brew.
 
 ## Step 1: Clone the Repo
 
-```Shell
+```
 git clone https://github.com/starandtina/portal
 ```
 
 ## Step 2: Install Dependencies
 
-```Shell
+```
 npm install -g grunt-cli
 npm install -g bower
 npm install && bower install
@@ -46,7 +46,7 @@ If you have encountered **ERR!** like the one below, please run the commands wit
 
 ## Step 3: Run it
 
-```Shell
+```
 grunt serve        // development
 grunt serve:dist   // production
 ```
@@ -83,7 +83,7 @@ By the way, as for the JSON server task, and you could find the JSON data file f
 Example of db.json:
 
 
-```JavaScript
+```
 {
   "addressBooks": [
     {
@@ -106,7 +106,7 @@ Example of db.json:
 
 And then, the JSON server will set up the API interface below for your CRUD operation, so the development of front-end could be separated from web backend and we don't care about the changed of schema or whatever other things you could image.
 
-```HTML
+```
 http://localhost:3000/addressBooks
 http://localhost:3000/services
 ```
@@ -119,7 +119,7 @@ Let's say that you wanna create one `About` page in order to give one brief intr
 
 We use the descriptor to define the layout.
 
-```JavaScript
+```
 define({
   'type': 'components/layout/simple',
   'children': {
@@ -138,7 +138,7 @@ Here we use the layout of `components/layout/simple`, and it only contains one b
 
 First off, we need to create the Angular controller named `about.controller.js` which is located at directory of  `src/app/components/about`.
 
-```JavaScript
+```
 define([
   'angular',
   'components/about/about.html'
@@ -156,7 +156,7 @@ define([
 Then, we will create one template named `about.html.jade` or `about.html`(we support JADE and HTML)which is located at directory of `src/app/components/about`.
 
 
-```Jade
+```
 .about-container
   .page-header 
     h1 About US 
@@ -177,7 +177,7 @@ However, we strongly recommend to use Jade, as it's a clean, whitespace sensitiv
 
 ## Step 3: Run it
 
-```Shell
+```
 grunt serve
 ```
 
@@ -195,7 +195,7 @@ Currently we use the `/test/mock/db.json` as the mock data, and the `/tasks/data
 The controller and html are changed to :
 `src/app/components/about/about.controller.js`
 
-```JavaScript
+```
 define([
   'angular',
   'components/about/about.html'
@@ -224,7 +224,7 @@ define([
 ## Step 3: Define The Model
 Define the Model in the factory `app/factories/addressModle.js`:
 
-```JavaScript
+```
 define([
   'angular'
 ], function (angular) {
@@ -240,7 +240,7 @@ define([
 ## Step 4: Make the Mock Data
 Pre insert mock data into `/test/mock/db.json`.
 
-```JavaScript
+```
 {
   "addresses":[
     {"id":1,"name":"PALO ALTO, CA ,USA "},
@@ -252,7 +252,7 @@ Pre insert mock data into `/test/mock/db.json`.
 
 ## Step 5: Run it
 
-```Shell
+```
 grunt serve
 Write Unit Test
 ```
@@ -294,13 +294,13 @@ I'd like to build the whole project and optimize it through [Build](https://gith
 * Combines related scripts together into build layers and minifies them via [UglifyJS](https://github.com/mishoo/UglifyJS) (the default) or [Closure Compiler](http://code.google.com/closure/compiler/) (an option when using Java).
 * Optimising CSS by inlining CSS files referenced by @import and removing comments.
 
-```Shell
+```
 grunt build
 ```
 
 If you want to release it, and you could generate tar and zip file in the tmp directory through `distribute` task.
 
-```Shell
+```
 grunt distribute:release
 ```
 

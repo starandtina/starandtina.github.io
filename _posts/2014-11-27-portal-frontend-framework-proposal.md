@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "Portal Frontend Framework Proposal"
-description: ""
+description: "Portal Frontend Framework Proposal"
 category: ['JavaScript', 'Frontend', 'js-dev']
-tags: ['JavaScript', 'Frontend', 'js-dev']
+tags: ['JavaScript', 'Frontend', 'js-dev', 'portal']
 ---
 {% include JB/setup %}
 
@@ -96,7 +96,7 @@ Notes: As we use the async loading with RequireJS, so we could use the **ng-app*
 The most important usage for descriptor is that we could use it to describe the layout of page.
 Take Home page as example, and it looks like the one below:
 
-```JavaScript
+```
 define({
   'type': 'components/layout/default',
   'children': {
@@ -121,7 +121,7 @@ define({
 We will use the components/layout/default as the component defined by keyword of type and we define the layout of page in the children(also you could use other names, but children is the default one we provided in the vm-component directive).
 Here is the Jade template of  components/layout/default. So you could see that if you didn't define your header component and we will use the default one of components/layout/header, it's the same for footer component.
 
-```Jade
+```
 .tmpst-header(role='menubar')
   vm-parser(descriptor='children.header' ng-if='children.header')
   vm-component(type='"components/layout/header"' ng-if='!children.header')

@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "JSON Data Specification"
-description: ""
-category: 
-tags: []
+description: "JSON Data Specification"
+category: ["JavaScript", "js-dev"]
+tags: ["JavaScript", "JSON"]
 ---
 {% include JB/setup %}
 
@@ -266,8 +266,6 @@ data字段可以是除JSON Null之外的任意JSON类型，表示请求返回的
             "selected": true
         }
     ]
-
-
 
 
 ## 树
