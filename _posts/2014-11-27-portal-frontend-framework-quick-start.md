@@ -12,6 +12,7 @@ tags: ['JavaScript', 'Frontend', 'js-dev', 'portal']
 This page describes the guidelines that front-end engineers develop and test the components using the UI framework of Portal and quickly familiar with our basic ideas behind the scene.
 
 # Prerequisites
+
 Installing the following tools before you continue.
 
 * Download and install [Node.js](http://nodejs.org/) and [Ruby](https://www.ruby-lang.org/en/). Following installation, you should be able to invoke **node**, **npm**, **gem** on your command line. If desired, you may optionally use a tool such as **nvm**, **nave** or **rvm** to manage your Node.js installation.
@@ -59,15 +60,15 @@ if you had encountered the error like follows, you need run the command `launchc
 >Running "watch" task
 >Waiting...Warning: EMFILE, too many open files 'tmp'
 
-The development mode is used for local dev environment, and it won't compile source files in order to let you debugging or testing your codes freely.
+The development mode is used for local dev environment, it won't compile source files in order to let you debugging or testing your codes freely.
 
 When it's booted up in development environment:
 
 1. First off, compiling LESS and Jade into CSS and JavaScript AMD module respectively;
 2. Then, [setting up a local web server](https://github.com/starandtina/portal/blob/master/tasks/options/connect.js) which will be in charge of hosting static files, such as JavaScript/HTML/CSS, etc...;
 3. Then, open the default browser and navigate to home page of portal;
-4. Then, [setting up local JSON server](https://github.com/starandtina/portal/blob/master/tasks/options/json-server.js) that mocks web backend server, and at the same time this process will be kept alive;
-5. Finally, setting up the [watch](https://github.com/starandtina/portal/blob/master/tasks/options/watch.js) task, and then whatever any JavaScript or LESS source files changed, the browser will be live reloaded.
+4. Then, [setting up local JSON server](https://github.com/starandtina/portal/blob/master/tasks/options/json-server.js) that mocks web backend server, at the same time this process will be kept alive;
+5. Finally, setting up the [watch](https://github.com/starandtina/portal/blob/master/tasks/options/watch.js) task, then whatever any JavaScript or LESS source files changed, the browser will be live reloaded.
 
 The production mode is used for production environment before deploying on staging or production environments, so you could take a glance for that quickly locally.
 
@@ -75,13 +76,12 @@ When it's booted up in production environment:
 
 1. [Build](https://github.com/starandtina/portal/blob/master/tasks/build_task.js) the whole project, including compile/minify/concat/rev/uglify/... tasks;
 2. Then, open the default browser and navigate to home page of portal;
-3. Then, [setting up local JSON server](https://github.com/starandtina/portal/blob/master/tasks/options/json-server.js) that mocks web backend server, and at the same time this process will be kept alive;
+3. Then, [setting up local JSON server](https://github.com/starandtina/portal/blob/master/tasks/options/json-server.js) that mocks web backend server, at the same time this process will be kept alive;
 4. Finally, [setting up a local web server](https://github.com/starandtina/portal/blob/master/tasks/options/connect.js) which will be in charge of hosting static files, such as JavaScript/HTML/CSS, etc...;
 
-By the way, as for the JSON server task, and you could find the JSON data file from [test/mock/db.json](https://github.com/starandtina/portal/blob/master/test/mock/db.json). We wrote one [Grunt task](https://github.com/starandtina/portal/blob/master/tasks/json_server_task.js) which is focus on read data from this file and set up RESTFul API for you automatically. 
+By the way, as for the JSON server task, you could find the JSON data file from [test/mock/db.json](https://github.com/starandtina/portal/blob/master/test/mock/db.json). We wrote one [Grunt task](https://github.com/starandtina/portal/blob/master/tasks/json_server_task.js) which is focus on read data from this file and set up RESTFul API for you automatically. 
 
 Example of db.json:
-
 
 {% highlight JSON %}
 {
@@ -111,7 +111,7 @@ http://localhost:3000/addressBooks
 http://localhost:3000/services
 {% endhighlight %}
 
-# Define UI Layout -simple
+# Define A Simple UI Layout
 
 Let's say that you wanna create one `About` page in order to give one brief introduction for our product.
 
@@ -130,9 +130,9 @@ define({
 });
 {% endhighlight %}
 
-As for how Descriptor works, please refer to [here](). The type is the path of your component relative to directory of `src/app`.
+As for how Descriptor works, please refer to [here](http://starandtina.github.io/javascript/frontend/js-dev/2014/11/27/portal-frontend-framework-proposal/#ui-abstracted-and-driven-by-json). The type is the path of your component relative to directory of `src/app`.
 
-Here we use the layout of `components/layout/simple`, and it only contains one body named `components/about` that is what we need to create.
+Here we use the layout of `components/layout/simple`, it only contains one body named `components/about` that is what we need to create.
 
 ## Step 2: Create Component
 
@@ -154,7 +154,6 @@ define([
 {% endhighlight %}
 
 Then, we will create one template named `about.html.jade` or `about.html`(we support JADE and HTML)which is located at directory of `src/app/components/about`.
-
 
 {% highlight JADE %}
 .about-container
@@ -183,17 +182,21 @@ grunt serve
 
 After local dev environments starts, then navigate to [About](http://localhost:5601/descriptors/about).
 
-# Define Complex Component
-From simple component Step 1 to 3 got an basic static page by component, but as for the product mode , we always need to get the data from backend , and to generate the dynamic page.
+# Define A Complex Component
 
-In the agile development , the backend and front developer always need coding at same time, so if there is an mock server to emulate the data, it will be more efficiently.  
+From simple component Step 1 to 3 got an basic static page by component, but as for the production environment, we always need to get the data from backend in order to generate the dynamic page.
 
-Currently we use the `/test/mock/db.json` as the mock data, and the `/tasks/data_server_task.js` used to define the web server.
+In the agile development, the backend and front developer always need coding at same time, so if there is an mock server to emulate the data, it will be more efficiently.  
 
-## Step 1 : Create Layout Descriptor ( as simple step1)
-## Step 2 : Create Component
-The controller and html are changed to :
-`src/app/components/about/about.controller.js`
+Currently we use the `/test/mock/db.json` as the mock data, the `/tasks/data_server_task.js` used to define the web server.
+
+## Step 1: Create Layout Descriptor
+
+the same as the Step1 of previous one.
+
+## Step 2: Create Component
+
+Let's modify `src/app/components/about/about.controller.js`.
 
 {% highlight JavaScript %}
 define([
@@ -215,14 +218,15 @@ define([
 <div class='about-container'>
   <div class='page-header'>
     <ul>
-  <li ng-repeat="address in addressList"><span ng-binding="address.name"></li>
+      <li ng-repeat="address in addressList"><span ng-binding="address.name"></li>
     </ul>
   </div>
 </div>
 {% endhighlight %}
  
 ## Step 3: Define The Model
-Define the Model in the factory `app/factories/addressModle.js`:
+
+Define the Model with `factory` located at `app/factories/addressModle.js`:
 
 {% highlight JavaScript %}
 define([
@@ -237,7 +241,8 @@ define([
 });
 {% endhighlight %}
 
-## Step 4: Make the Mock Data
+## Step 4: Mock Data
+
 Pre insert mock data into `/test/mock/db.json`.
 
 {% highlight JSON %}
@@ -254,8 +259,9 @@ Pre insert mock data into `/test/mock/db.json`.
 
 {% highlight Bash %}
 grunt serve
-Write Unit Test
 {% endhighlight %}
+
+## Step 6: Write Unit Test
 
 Here is the unit test for `AboutController` located in `src/app/about/about.controller.js` using `Jasmine` and `Karma`.
 
@@ -284,7 +290,7 @@ define([
 # Build & Release & Deploy
 
 After you finish your coding, next step is to build, release and deploy it on production environments.
-I'd like to build the whole project and optimize it through [Build](https://github.com/starandtina/portal/blob/master/tasks/build_task.js) task, and the build files will be put into dist directory by default.  It include:
+I'd like to build the whole project and optimize it through [Build](https://github.com/starandtina/portal/blob/master/tasks/build_task.js) task, the build files will be put into dist directory by default.  It include:
 
 * Lint JavaScript/CSS files;
 * Clean dist directory;
@@ -298,7 +304,7 @@ I'd like to build the whole project and optimize it through [Build](https://gith
 grunt build
 {% endhighlight %}
 
-If you want to release it, and you could generate tar and zip file in the tmp directory through `distribute` task.
+If you want to release it, you could generate tar and zip file in the tmp directory through `distribute` task.
 
 {% highlight Bash %}
 grunt distribute:release
