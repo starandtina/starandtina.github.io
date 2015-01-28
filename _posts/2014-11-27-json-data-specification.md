@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "JSON Data Specification"
-description: "JSON Data Specification"
-category: ["JavaScript", "js-dev"]
-tags: ["JavaScript", "JSON"]
+title: 'JSON Data Specification'
+description: 'JSON Data Specification'
+category: ['Frontend', 'JavaScript']
+tags: ['JavaScript', 'JSON', 'js-dev']
 ---
 {% include JB/setup %}
 

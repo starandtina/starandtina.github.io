@@ -2,7 +2,7 @@
 layout: post
 title: "Portal Frontend Framework Proposal"
 description: "Portal Frontend Framework Proposal"
-category: ['JavaScript', 'Frontend', 'js-dev']
+category: ['Frontend', 'JavaScript']
 tags: ['JavaScript', 'Frontend', 'js-dev', 'portal']
 ---
 {% include JB/setup %}
