@@ -18,13 +18,14 @@ This is a very exclusive collection of only must-have JavaScript links. I'm only
 * [JavaScript Training Sucks](https://medium.com/javascript-scene/javascript-training-sucks-284b53666245) 99 out of 100 JS developers lack the skills they need to fill hundreds of thousands of jobs. We can change that.
 * [The Two Pillars of JavaScript Part 1: Prototypal OO](https://medium.com/javascript-scene/the-two-pillars-of-javascript-ee6f3281e7f3)
 * [The Two Pillars of JavaScript Part 2: Functional Programming](https://medium.com/javascript-scene/the-two-pillars-of-javascript-pt-2-functional-programming-a63aa53a41a4)
-* [JavaScript Objects](http://davidwalsh.name/javascript-objects) An excellent explanation of inheritance in JavaScript by Kyle Simpson
+* [JavaScript Objects](http://davidwalsh.name/javascript-objects) An excellent explanation of inheritance in JavaScript by Kyle Simpson.
 * [Isomorphic JavaScript](http://isomorphic.net/)
 * [JavaScript Application Architecture on the Road to 2015](https://medium.com/@addyosmani/javascript-application-architecture-on-the-road-to-2015-d8125811101b) - Addy Osmani
 * [Reactive MVC and the Virtual DOM](http://futurice.com/blog/reactive-mvc-and-the-virtual-dom) Great read, even if you're not a React user.
 * [Introduction to Reactive Programming](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754)
 * [The General Theory of Reactivity](https://github.com/kriskowal/gtor) What is all this talk about reactive? Functional? Promises? This is the beginning of a reactive programming bible.
-* [ES6 Generators](http://davidwalsh.name/es6-generators) A series of blog posts by Kyle Simpson
+* [ES6 Promises](http://blog.getify.com/promises-part-1/) This is a multi-part blog post series on the whys and hows and problems of Promises by Kyle Simpson.
+* [ES6 Generators](http://davidwalsh.name/es6-generators) A series of blog posts by Kyle Simpson.
 * [Typed JavaScript](http://www.2ality.com/2014/10/typed-javascript.html) - Excellent post about the state of typed JavaScript by Axel Rauschmayer
 * [Taming the Asynchronous Beast with CSP in JavaScript](http://jlongster.com/Taming-the-Asynchronous-Beast-with-CSP-in-JavaScript) - James Long
 * [ES6 Modules: The Final Syntax](http://www.2ality.com/2014/09/es6-modules-final.html) by @rauschma #AMDisDead
@@ -45,16 +46,21 @@ This is a very exclusive collection of only must-have JavaScript links. I'm only
 
 ## Books
 
+* [Professional JavaScript for Web Developer](http://www.amazon.com/Professional-JavaScript-Developers-Nicholas-Zakas/dp/1118026691/ref=sr_1_1?s=books&ie=UTF8&qid=1422710696&sr=1-1&keywords=Professional+JavaScript+for+Web+Developer&pebp=1422710700389&peasin=1118026691)
 * [JavaScript for Kids](http://www.amazon.com/gp/product/B00QL616QE?ie=UTF8&camp=213733&creative=393177&creativeASIN=B00QL616QE&linkCode=shr&tag=ericleads-20&linkId=6AOODC27L6URY3K2)
+* [Speaking JavaScript](http://speakingjs.com/es5/index.html) An in-depth guide for JavaScript programmer
+* [Human JavaScript](http://read.humanjavascript.com/) This book will help you build native HTML5 apps
 * [Eloquent JavaScript](http://eloquentjavascript.net/)
 * [JavaScript: The Good Parts](http://www.amazon.com/gp/product/0596517742?ie=UTF8&camp=213733&creative=393185&creativeASIN=0596517742&linkCode=shr&tag=ericleads-20&linkId=IJKESYSOTWGC27DR)
-* [Effective JavaScript](http://www.amazon.com/gp/product/0321812182?ie=UTF8&camp=213733&creative=393185&creativeASIN=0321812182&linkCode=shr&tag=ericleads-20&linkId=JIC63I267I6UDQQZ)
+* [Effective JavaScript](http://www.amazon.com/gp/product/0321812182?ie=UTF8&camp=213733&creative=393185&creativeASIN=0321812182&linkCode=shr&tag=ericleads-20&linkId=JIC63I267I6UDQQZ) 68 Specific Ways to Harness the Power of JavaScript
+* [Expert JavaScript](http://www.amazon.com/Expert-JavaScript-Experts-Voice-Development/dp/1430260971/ref=sr_1_1?s=books&ie=UTF8&qid=1422710124&sr=1-1&keywords=Expert+JavaScript) Take a deep dive into JavaScript and build better applications
 * [Programming JavaScript Applications](http://pjabook.com)
 * [JavaScript: The Definitive Guide](http://www.amazon.com/gp/product/0596805527?ie=UTF8&camp=213733&creative=393185&creativeASIN=0596805527&linkCode=shr&tag=ericleads-20&linkId=AENIF5KLRQI3N335)
 * [You Don't Know JS](https://github.com/getify/You-Dont-Know-JS)
 * [Understanding ECMAScript 6](https://leanpub.com/understandinges6/read/) by Nicholas C. Zakas
 * [Node.js in Action](http://www.manning.com/cantelon/)
 * [The Dream Machine: J.C.R. Licklider and the Revolution That Made Computing Personal](http://www.amazon.com/gp/product/0670899763?ie=UTF8&camp=213733&creative=393177&creativeASIN=0670899763&linkCode=shr&tag=ericleads-20&linkId=NDUXYQOCMPC47SQI)
+* Secrets of the JavaScript Ninja(http://www.amazon.com/Secrets-JavaScript-Ninja-John-Resig/dp/193398869X/ref=sr_1_1?s=books&ie=UTF8&qid=1422710614&sr=1-1&keywords=Secrets+of+the+JavaScript+Ninja&pebp=1422710616815&peasin=193398869X) Takes you on a journey towards mastering modern JavaScript development in three phases: design, construction, and maintenance
 
 
 ## Dev tools & collaboration
