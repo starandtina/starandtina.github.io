@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 'Avoid undeclared assignments'
+title: 'JavaScript tricks 1: Avoid undeclared assignments'
 description: ""
-category: ['frontend', 'JavaScript', 'Best Practices']
+category: ['frontend', 'JavaScript', 'tricks']
 tags: ['Frontend', 'JavaScript', 'Tricks', 'Best Practices']
 ---
 {% include JB/setup %}

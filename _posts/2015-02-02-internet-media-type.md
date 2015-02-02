@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Internet Media Type"
+title: "Introducing Internet Media Type"
 description: ""
-category: 
-tags: []
+category: []
+tags: ['Frontend', 'MIME']
 ---
 {% include JB/setup %}
 
