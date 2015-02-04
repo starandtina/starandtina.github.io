@@ -203,10 +203,10 @@ Also as for the APIs, and we could test it separately and rigorously with best t
 We should adopt best practices for speeding up our web sites, and make our servers respond quickly and leverage the web cache , serve minimum number of requests and reduce response time.
 As for JavaScript, we also should be constantly monitoring that to make sure that we are not pushing the browsers to do too much, and don't make JavaScript run so slow at processing data or DOM.
 
-## Style Guide
+## Styleguide
 
 * [HTML/CSS](http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml)
-* [Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml) / [Airbnb JavaScript Style Guide](http://airbnb%20javascript%20style%20guide/)
+* [Google JavaScript Styleguide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml) / [Airbnb JavaScript Styleguide](http://airbnb%20javascript%20style%20guide/)
 * [AMD](http://requirejs.org/docs/whyamd.html)
 * [AngularJS](https://google-styleguide.googlecode.com/svn/trunk/angularjs-google-style.html)
 

@@ -1,15 +1,13 @@
 ---
 layout: post
-title: "My JavaScript Coding Style Guide"
-description: "My JavaScript Coding Style Guide"
-category: ['JavaScript', 'Style Guide']
-tags: ['JavaScript', 'Style Guide']
+title: "My JavaScript Coding Styleguide"
+description: "My JavaScript Coding Styleguide"
+category: ['JavaScript', 'Styleguide']
+tags: ['JavaScript', 'Styleguide']
 ---
 {% include JB/setup %}
 
-# Javascript编码规范
-
-下文中：
+本文定义了个人的JavaScript编码规范。
 
 - *必须*指代*MUST*，拥有强制性
 - *不得*指代*MUST NOT*，拥有强制性
@@ -29,25 +27,29 @@ tags: ['JavaScript', 'Style Guide']
 特别的，对于HTML片段的拼接，通过缩进，保持和HTML相同的结构：
 
 {% highlight JavaScript %}
-    var html = '' // 此处用一个空字符串，以便整个HTML片段都在新行严格对齐
-        + '<article>'
-        +     '<h1>Title here</h1>'
-        +     '<p>This is a paragraph</p>'
-        +     '<footer>Complete</footer>'
-        + '</article>';
+
+var html = '' // 此处用一个空字符串，以便整个HTML片段都在新行严格对齐
+    + '<article>'
+    +     '<h1>Title here</h1>'
+    +     '<p>This is a paragraph</p>'
+    +     '<footer>Complete</footer>'
+    + '</article>';
+
 {% endhighlight %}
 
 也可使用数组来进行拼接，相对`+`运算更容易调整缩进：
 
 {% highlight JavaScript %}
-    var html = [
-        '<article>',
-            '<h1>Title here</h1>',
-            '<p>This is a paragraph</p>',
-            '<footer>Complete</footer>',
-        '</article>';
-    ];
-    html = html.join(''); // 注意需要join
+
+var html = [
+    '<article>',
+        '<h1>Title here</h1>',
+        '<p>This is a paragraph</p>',
+        '<footer>Complete</footer>',
+    '</article>';
+];
+html = html.join(''); // 注意需要join
+
 {% endhighlight %}
 
 ### 函数调用时参数过多
@@ -55,29 +57,33 @@ tags: ['JavaScript', 'Style Guide']
 当参数过多，在一行书写函数调用语句会超过80个字符的限制时，*应当*将每个参数独立写在一行上，并将结束的右括号`)`独立一行，所有参数**增加一个缩进**，以控制每行的长度，如：
 
 {% highlight JavaScript %}
-    // 注意每一个参数的缩进
-    foo(
-        aVeryVeryLongArgument,
-        anotherVeryLongArgument,
-        callback
-    );
+
+// 注意每一个参数的缩进
+foo(
+    aVeryVeryLongArgument,
+    anotherVeryLongArgument,
+    callback
+);
+
 {% endhighlight %}
 
-当参数较多，一行一个书写会导致过长时，*应当*按逻辑对参数进行组合，最经典的是`baidu.format`函数，如：
+当参数较多，一行一个书写会导致过长时，*应当*按逻辑对参数进行组合，最经典的是`jQuery.format`函数，如：
 
 {% highlight JavaScript %}
-    // 将参数分为“模板”和“数据”两块
-    baidu.format(
-        dateFormatTemplate,
-        year, month, date, hour, minute, second
-    );
 
-    // 将参数分为“模板”、“日期”和“时间”
-    baidu.format(
-        dateFormatTemplate,
-        year, month, date, 
-        hour, minute, second
-    );
+// 将参数分为“模板”和“数据”两块
+jQuery.format(
+    dateFormatTemplate,
+    year, month, date, hour, minute, second
+);
+
+// 将参数分为“模板”、“日期”和“时间”
+jQuery.format(
+    dateFormatTemplate,
+    year, month, date, 
+    hour, minute, second
+);
+
 {% endhighlight %}
 
 ### 三元运算符过长
@@ -114,17 +120,19 @@ tags: ['JavaScript', 'Style Guide']
 
 ### 过长的逻辑条件组合
 
-当因为较复杂的逻辑条件组合导致80个字符无法满足需求时，考虑将每个条件独立一行，逻辑运算符**放置在行首**进行分隔，或将部分逻辑按逻辑组合进行分隔，最终将右括号`)`与左大括号`{`放在独立一行，如：
+当因为较复杂的逻辑条件组合导致80个字符无法满足需求时，考虑将每个条件独立一行，逻辑运算符**放置在行尾或行首**进行分隔，或将部分逻辑按逻辑组合进行分隔，最终将右括号`)`与左大括号`{`放在独立一行，如：
 
 {% highlight JavaScript %}
-    // 注意逻辑运算符前的缩进
-    if (user.isAuthenticated()
-        && user.isInRole('admin')
-        && user.hasAuthority('add-admin')
-        || user.hasAuthority('delete-admin')
-    ) {
-        // Code
-    }
+
+// 注意逻辑运算符前的缩进
+if (user.isAuthenticated()
+    && user.isInRole('admin')
+    && user.hasAuthority('add-admin')
+    || user.hasAuthority('delete-admin')
+) {
+    // Code
+}
+
 {% endhighlight %}
 
 ## 空格
@@ -141,13 +149,15 @@ tags: ['JavaScript', 'Style Guide']
 注意，在**函数参数列表**之前*不得*加上空格，以下是一个函数的正确声明方式：
 
 {% highlight JavaScript %}
-    function foo(x, y, z) {
-        // FunctionBody
-    }
 
-    var foo = function(x, y, z) {
-        // FunctionBody
-    }
+function foo(x, y, z) {
+    // FunctionBody
+}
+
+var foo = function(x, y, z) {
+    // FunctionBody
+}
+
 {% endhighlight %}
 
 ## 对齐和缩进
@@ -194,13 +204,15 @@ tags: ['JavaScript', 'Style Guide']
 对于项目较多的数组，也*可以*采用相同的方法，如：
 
 {% highlight JavaScript %}
-    // 数字-英文的映射
-    var mapping = [
-        'one', 'two', 'three', 'four', 'five',
-        'six', 'seven', 'eight', 'nine', 'ten',
-        'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen',
-        'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty'
-    ];
+
+// 数字-英文的映射
+var mapping = [
+    'one', 'two', 'three', 'four', 'five',
+    'six', 'seven', 'eight', 'nine', 'ten',
+    'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen',
+    'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty'
+];
+
 {% endhighlight %}
 
 ### 单行和跨行参数混用
@@ -208,45 +220,51 @@ tags: ['JavaScript', 'Style Guide']
 当函数调用时，传递的参数**大于或等于2个**，且**有一个或以上参数跨越多行**时，要求每一个参数独立一行，这通常出现在匿名函数或者对象初始化等作为参数时，如`setTimeout`函数等：
 
 {% highlight JavaScript %}
-    setTimeout(
-        function() {
-            alert('hello');
-        },
-        200
-    );
 
-    order.data.read(
-        'id=' + me.model.id, 
-        function(data) {
-            me.attchToModel(data.result);
-            callback();
-        }, 
-        300
-    );
+setTimeout(
+    function() {
+        alert('hello');
+    },
+    200
+);
+
+order.data.read(
+    'id=' + me.model.id, 
+    function(data) {
+        me.attchToModel(data.result);
+        callback();
+    }, 
+    300
+);
+
 {% endhighlight %}
 
 如果认为每个参数单独一行占用过多的空间，则*应当*将跨域多行的参数独立出来为一个变量：
 
 {% highlight JavaScript %}
-    function attachDataToModel() {
-        me.attchToModel(data.result);
-        callback();
-    }
-    order.data.read('id=' + me.model.id, attachDataToModel, 300);
+
+function attachDataToModel() {
+    me.attchToModel(data.result);
+    callback();
+}
+order.data.read('id=' + me.model.id, attachDataToModel, 300);
+
 {% endhighlight %}
 
 ### 数组和对象初始化的混用
 
-    严格按照每个对象的起始`{`和结束`}`在独立一行的风格书写，如：
+严格按照每个对象的起始`{`和结束`}`在独立一行的风格书写，如：
+
 {% highlight JavaScript %}
-    var array = [
-        {
-            // ...
-        },
-        {
-            // ...
-        }
-    ];
+var array = [
+    {
+        // ...
+    },
+    {
+        // ...
+    }
+];
+
 {% endhighlight %}
 
 ## 命名
@@ -304,7 +322,7 @@ tags: ['JavaScript', 'Style Guide']
 
 ### 继承
 
-采用`baidu.inherit`或相似机制实现继承，不得随意覆盖`prototype`属性。
+采用`jQuery.inherit`或相似机制实现继承，不得随意覆盖`prototype`属性。
 
 声明类的方法时，采用`MyClass.prototype.foo = function() {}`的形式，不得直接覆盖`prototype`属性。
 

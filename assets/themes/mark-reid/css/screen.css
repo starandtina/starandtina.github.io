@@ -27,12 +27,18 @@ body {
 	background-repeat: repeat-x; 
 }
 
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+}
+
 /* Hack via Joel Spolsky to make image rescaling nicer in IE */
 img { -ms-interpolation-mode:bicubic; }
 
 /* IE6 ignores this and uses default size of 16pt */
 html>body { font-size:16px; }
-p { margin: 0 0 1.5em 0; text-align: justify; }
+p { margin: 0 0 10px 0; text-align: justify; }
 
 a { text-decoration: none; color: #339; }
 a:hover { text-decoration: underline; color: #33f; }
@@ -47,13 +53,51 @@ h1,h2,h3,h4 {
 	clear: left; 	
 	font-family: 'lucida grande', sans-serif; 
 }
-h1 { margin-bottom: 1em; }
+h1 { margin-bottom: 1em; font-size: 30px; }
 h2 {
-	font-size: 100%;
+	font-size: 26px;
 	line-height: 1.5em;
 	margin:1.5em 0 1.5em 0;
 	font-weight:bold;
 }
+
+h3,
+.h3 {
+  font-size: 22px;
+}
+h4,
+.h4 {
+  font-size: 18px;
+}
+h5,
+.h5 {
+  font-size: 14px;
+}
+h6,
+.h6 {
+  font-size: 12px;
+}
+
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
 
 hr { 
 	border-top: 1px solid silver;
@@ -65,7 +109,7 @@ hr {
 sup { line-height: 1ex; }
 
 #site {
-	max-width: 46em;
+	max-width: 50em;
 	margin: 1.5em auto 3em auto;
 	line-height:1.5em;
 }
@@ -98,7 +142,7 @@ sup { line-height: 1ex; }
 
 /* @group FancyFirst */
 .emphnext + p:first-letter, p.emphfirst:first-letter {
-	font-size: 48px;
+	font-size: 30px;
 	padding: 0 0.15em 0 0;
 	margin:  0.05em 0 -0.15em 0;
 	line-height: 1em;
@@ -109,6 +153,20 @@ sup { line-height: 1ex; }
 	font-variant: small-caps;
 	font-size: larger;
 }
+
+.tag_box + p:first-letter, p.emphfirst:first-letter {
+	font-size: 30px;
+	padding: 0 0.15em 0 0;
+	margin:  0.05em 0 -0.15em 0;
+	line-height: 1em;
+	float: left;
+}
+
+.tag_box + p:first-line, p.emphfirst:first-line {
+	font-variant: small-caps;
+	font-size: larger;
+}
+
 /* @end */
 
 .right { float: right; clear: left; }
