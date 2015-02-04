@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "JavaScript Common Code & Snippets"
+title: "JavaScript Common Codes & Snippets"
 description: ""
 category: 
 tags: []
 ---
 {% include JB/setup %}
 
-本文主要收集平常使用到的一些JavaScript code和snippets。
+本文主要收集平常使用到的一些JavaScript Codes和Snippets。
 
 ## Table of Contents
 
@@ -26,15 +26,14 @@ tags: []
 1. [强制浏览器Layout/Reflow](#13)
 1. [在JavaScript中获取内联CSS样式](#14)
 1. [DOM/HTML: 属性那是相当有用的](#15)
-1. [简单的动画
-1. [简单的淡入/淡出效果
-1. [禁止某个资源的caching
-1. [DOM/HTML:常用的方法
-1. [节点属性
-1. [从DOM树中移除当前的node
-1. [在另外一个节点前插入一个节点
-1. [克隆一个节点（浅/深克隆）
-1. [使用另外一个节点替换一个子节点
+1. [简单的动画](#16)
+1. [简单的淡入/淡出效果](#17)
+1. [禁止某个资源的caching](#18)
+1. [DOM/HTML:常用的方法](#19)
+1. [从DOM树中移除当前的node](#20)
+1. [在另外一个节点前插入一个节点](#21)
+1. [克隆一个节点（浅/深克隆）](#22)
+1. [使用另外一个节点替换一个子节点](#23)
 
 
 ## <a name='1'>通过闭包构造私有成员</a>
@@ -483,194 +482,264 @@ var bWidth = elementB.offsetWidth;
 
 {% highlight JavaScript %}
 
-$('#DIV').style.color = 'red';
+element.style.color
 
 {% endhighlight %}
 
+`color` 只在下列两种情况下是有效的：
 
-
-`foo` 只在下列两种情况下是有效的：
-
-1. 它是在`x`的内联样式定义上设置的
-2. 它已经在JavaScript中赋过值
+1. 它是在`element`的内联样式定义上设置的
+2. 它已经通过JavaScript中赋过值，如下所示：
 
 {% highlight JavaScript %}
 
-$('x').style.foo = 4
+element.style.color ＝ 'red';
 
 {% endhighlight %}
 
-否则，`foo` 都是无效的。
+否则，`color` 都是无效的。
 
-## DOM/HTML: 属性那是相当有用的
+## <a name='15'>DOM/HTML: 属性那是相当有用的</a>
 
+{% highlight JavaScript %}
 
-  {% highlight JavaScript %}
-  <a href="javascript:showImg()">
-    <img title="my image" name='sunset'>
-  </a>
-  {% endhighlight %}
+<a href='javascript:showImg()'>
+  <img title='my image' name='sunset'>
+</a>
+
+{% endhighlight %}
 
 比如，在一个简单的slide展示中，鼠标滑过一个链接时，需要根据一些信息在图片显示区域展示相应的一张图片。那么img标签的title和name属性就可以帮你很容易的达到目的。
 当然，其它一些自定义的属性也可以使用的。
 
-
 另外一个例子是：
 
+{% highlight HTML %}
 
-  {% highlight HTML %}
-  <input type=text pattern="^\w+$" required=true>
-  {% endhighlight %}
+<input type=text pattern='^\w+$' required=true />
+
+{% endhighlight %}
 
 页面加载时，JS代码可以遍历所有的表单字段，并且如果pattern和required属性存在的话，那么就添加一个validate函数，该函数主要负责在表单提交前，根据正则表达式来验证文本框中的内容。
 
+## <a name='16'>简单的动画</a>
 
-## 简单的动画
+{% highlight JavaScript %}
 
-  {% highlight JavaScript %}
-      ---| 
-          -----| 
-          --------| 
-          -----------|
+---| 
+-----| 
+--------| 
+-----------|
 
-  {% endhighlight %}
+{% endhighlight %}
 
-一个进度条的简单动画实现：我们可以通过逐渐增加div或img的宽度来实现。
+一个进度条的简单动画实现：我们可以通过逐渐增加`div`或`img`的宽度来实现。
 
-  {% highlight JavaScript %}
-  function progress() { 
-  var img = ..the img..
-  if (img.width < 200) {
-      img.width += 5;
-      //to not autosize height along with width
-      img.height = 5; 
+{% highlight JavaScript %}
+
+function progress() {
+  var img = $('img');
+  if(img.width < 200) {
+    img.width += 5;
+    // Don't autosize height along with width
+    img.height = 5;
+  } else {
+    img.width = origwidth;
   }
-  else
-      img.width = origwidth;
-  }
+}
 
-  setInterval('progress()', 500);
-  {% endhighlight %}
+setInterval('progress()', 500);
 
-## 简单的淡入/淡出效果
+{% endhighlight %}
 
-淡入/淡出效果一般用于从页面中添加/删除某个item时。
+## <a name='17'>简单的淡入/淡出效果</a>
 
-  {% highlight JavaScript %}
-  function yellowFade(el) {
-    var b = 155;
-    function f() {
-    el.style.background = 'rgb(255,255,'+ (b+=4) +')';
+淡入/淡出效果一般用于从页面中添加/删除某个元素时。
+
+{% highlight JavaScript %}
+
+function fade(el) {
+  var b = 155;
+  var el = $('div');
+
+  function f() {
+    el.style.background = 'rgb(255,255,' + (b += 4) + ')';
     if (b < 255) {
       setTimeout(f, 40);
     }
-    };
-    f();
-  }
-  {% endhighlight %}
+  };
+  f();
+}
 
-可以参考这个[post](http://peter.michaux.ca/articles/javascript-animations-from-scratch "JavaScript Animations from Scratch")
+fade();
 
+{% endhighlight %}
 
-## 禁止某个资源的caching
+更多的可以参考[这里](http://peter.michaux.ca/articles/javascript-animations-from-scratch "JavaScript Animations from Scratch")。
 
-  {% highlight JavaScript %}
-  document.write("< img src='foo.jpg?" + Math.random() + "' />"); 
-  {% endhighlight %}
+## <a name='18'>禁止某个资源的Caching</a>
 
-我们修改了URL，添加了一个随机数，这是一种常用的手段，常常用于禁止图片的浏览器缓存。
+{% highlight JavaScript %}
 
+document.write("< img src='foo.jpg?" + Math.random() + "' />"); 
 
-## DOM/HTML:常用的方法
+{% endhighlight %}
 
-参见[quirksmode](http://quirksmode.org/ "http://www.quirksmode.org/dom/w3c_core.html#gettingelements")。
+我们可以修改**URL**，添加了一个伪随机数，这是一种常用的手段，常常用于禁止浏览器缓存图片。
 
-  document.createElement('div')
-    Creates a element node (div in this example)
-  document.createTextNode()
-    Creates a text node
-  document.createDocumentFragment()
-    Creates an empty DOM tree (useful for appending/creating elements too, and then transferring the entire tree to the actual document in one go)
-      
-  document.getElementById()
-  document.getElementsByTagName("h1")
-    Gets all tags of the specified type (h1 in this example). getElementsByTagName("*") gets all child elements of the specified elements/document. 
-  element.getElementsByTagName("h1")
-    Gets all tags of the specified type (h1 in this example) that are descendents of that element
-  document.getElementsByClassName("myclass")
-    Gets all elements that have the specified class name. This is not standard across browsers as far as I know.
+## <a name='19'>DOM/HTML:常用的方法</a>
 
-    JS libraries like prototype, jquery etc., implement a full CSS2/CSS3 selector mechanism, so not only can we get elements by classname but many more CSS3 ways as well. 
+更多的信息请参考[quirksmode](http://quirksmode.org/ "http://www.quirksmode.org/dom/w3c_core.html#gettingelements")。
+
+* document.createElement('div'): 创建一个`DIV`元素节点
+* document.createTextNode(): 创建一个文本节点
+* document.createDocumentFragment()：创建一个空的DOM文档碎片。我们可以利用这个API，先创建一个DOM文档碎片，然后在它上面添加新的元素节点，之后将它作为一个整体插入DOM中，以减少[Layout/Reflow](#13).
+ 
+* document.getElementById()
+* document.getElementsByTagName('h1')：返回文档中带有指定标签名的元素对象的集合。如果把特殊字符串*****传递给 `getElementsByTagName()` 方法，它将返回包含文档中所有子元素的集合，元素排列的顺序就是它们在文档中的顺序
+* element.getElementsByTagName('h1')：返回指定元素`element`中带有指定标签名的元素对象的集合
+* document.getElementsByClassName('class')：返回包含指定**class**的元素集合。目前[IE8不支持它](http://caniuse.com/#search=getElementsByClassName)。
+
+我们常用的一些JavaScript库，如[jQuery](http://api.jquery.com/category/selectors/), [Prototype](http://prototypejs.org/doc/latest/dom/dollar-dollar/)等等，已经实现了通过CSS2/CSS3选择器返回元素集合，所以除了这些原生的方法外，我们还可以有更多的选择。
 
 ### 节点属性
 
-#### node.nodeType
+#### [node.nodeType](http://www.w3.org/TR/DOM-Level-2-Core/core.html#ID-1950641247)
+
+`nodeType'包含一个表示元素类型的数字。我们经常用到的如下所示：
 
 1. Node.ELEMENT_NODE == 1
-2. Node.ATTRIBUTE_NODE == 2
-3. Node.TEXT_NODE == 3
-4. Node.ENTITY_NODE == 6
-5. Node.DOCUMENT_NODE == 9
-6. Node.DOCUMENT_FRAGMENT_NODE == 11
+1. Node.ATTRIBUTE_NODE == 2
+1. Node.TEXT_NODE == 3
+1. Node.CDATA_SECTION_NODE == 3
+1. Node.ENTITY_NODE == 6
+1. Node.DOCUMENT_NODE == 9
+1. Node.DOCUMENT_FRAGMENT_NODE == 11
 
 #### node.nodeValue
 
-value of text for a Text node (useful for #text). Null for most other nodes (including element nodes) devedge link 
+对文本节点来说，`nodeValue`表示真正的文本。value of text for a Text node (useful for #text). Null for most other nodes (including element nodes) devedge link 
+
+{% highlight HTML %}
+
+<p>I am a JavaScript hacker.</p> 
+
+{% endhighlight %}
+
+{% highlight JavaScript %}
+
+var x = [the paragraph];
+var text = x.firstChild.nodeValue;
+
+{% endhighlight %}
+
+而对于属性节点来说，`nodeValue`则表示的是属性值。
+除此之外，对于`document`和其它元素节点来说，[它会返回null](https://developer.mozilla.org/en-US/docs/Web/API/Node.nodeValue)。
 
 #### node.nodeName
 
-mainly useful for the element tag name or "#text" for text nodes.
+`nodeName`是最有用的一个属性。与它的名字一样，它包含了节点的名字。元素节点的名字始终与标签名相同，属性节点的名字始终与属性名字相同，文本节点的名字始终是`#text`，而文档节点的名字始终是`#document`。
 
-1. Element ==> Element.tagName ("DIV", "H1", etc, UPPERCASE)
-2. Text => "#text"
+只是有一点我们需要注意：对于HTML元素节点来说，不管你在HTML中写的是大写或是小写，`nodeName`都会返回大写的标签名。
 
-#### node.getAttribute()
+#### node.getAttribute(name)
 
-Gets an attribute for a node, such as getAttribute("href") 
+返回节点上你需要查询的属性的值。
 
-####　node.setAttribute()
+####　node.setAttribute(name, value)
 
-Sets an attribute for a node, such as node.setAttribute("href", "http://bar.com");
+设置节点上某个指定的属性的新的值。
 
-### 节点方法
+{% highlight HTML %}
 
-#### Finding nodes
+<img src='sample.png' id='test' />
+
+{% endhighlight %}
+
+{% highlight JavaScript %}
+
+var imgEl = document.getElementById('test'); 
+alert(imgEl.getAttribute('src'));
+imgEl.setAttribute('src', 'sample.png');
+
+{% endhighlight %}
+
+### 节点上的操作
+
+#### 搜索节点
 
 1. Children: firstChild, lastChild, childNodes
 2. Siblings: nextSibling, previousSibling
 3. Parents: parentNode
 
-#### Adding/Removing nodes
+#### 添加/删除 nodes
 
-1. removeChild(), appendChild()
-2. insertBefo#re(newnode, someOtherChild)
+1. removeChild(node), appendChild(node)
+2. insertBefore(newNode, referenceNode)
+3. replaceChild(replacingNode, replacedNode)
 
-## 从DOM树中移除当前的node
+## <a name='20'>从DOM树中移除当前的node</a>
 
-  {% highlight JavaScript %}
-  var node = ..some_element..
-  node.parentNode.removeChild(node);
-  {% endhighlight %}
+{% highlight JavaScript %}
 
-## 在另外一个节点前插入一个节点
+var node = ..some_element..
+node.parentNode.removeChild(node);
 
-  {% highlight JavaScript %}
-  var list; 
-  var newnode;
-  list.insertBefore(newnode, list.firstChild);
-  {% endhighlight %}
+{% endhighlight %}
 
-## 克隆一个节点（浅/深克隆）
+## <a name='21'>在另外一个节点前插入一个节点</a>
 
-  {% highlight JavaScript %}
-  var node = ...
-  var newnode = node.cloneNode(true|false); true=deep copy, else shallow
-  {% endhighlight %}
+{% highlight JavaScript %}
 
-## 使用另外一个节点替换一个子节点
+var x = document.getElementsByTagName('p')[0]; 
+var y = document.getElementsByTagName('h1')[0]; 
+x.parentNode.insertBefore(x,y);
 
-  {% highlight JavaScript %}
-  var list;
-  var newnode;
-  list.replaceChild(newnode, list.oldchild)
-  {% endhighlight %}
+{% endhighlight %}
+
+### 返回值
+
+`insertBefore()`返回的是被插入节点的一个引用。
+
+{% highlight JavaScript %}
+
+var x = y.insertBefore(z, a);
+
+{% endhighlight %}
+
+那么现在`x`就包含对`z`的一个引用。
+
+## <a name='22'>克隆一个节点（浅/深克隆）</a>
+
+{% highlight JavaScript %}
+
+var node = ...
+var newNode = node.cloneNode(true|false); // true=deep copy, else shallow
+
+{% endhighlight %}
+
+需要注意的是，克隆节点时，并不会同时克隆事件处理函数。
+
+## <a name='23'>使用另外一个节点替换一个子节点</a>
+
+`replaceChild()`方法可以允许你将一个节点替换为另外一个节点。如果被插入的节点已经在DOM中了，那么它首先会从当前的DOM中位置移除掉。并且插入的节点和被替换的节点都会保持它们的所有子节点不变。
+
+{% highlight JavaScript %}
+
+var x = document.getElementsByTagName('h1')[0];
+var y = document.getElementsByTagName('p')[1];
+x.parentNode.replaceChild(x, y);
+
+{% endhighlight %}
+
+### 返回值
+
+`replaceChild()`返回的是被替换的节点的一个引用。
+
+{% highlight JavaScript %}
+
+var x = y.replaceChild(z, a);
+
+{% endhighlight %}
+
+那么现在`x`就包含对`a`的一个引用。
