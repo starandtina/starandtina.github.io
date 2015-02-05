@@ -1,14 +1,13 @@
 ---
 layout: post
-title: "JavaScript Tricks"
+title: "JavaScript Tips"
 description: ""
 category: 
 tags: []
 ---
 {% include JB/setup %}
 
-本文是关于JavaScript的一些Tips。
-
+本文是关于JavaScript的一些常用Tips。
 
 ## 结构
 
@@ -16,27 +15,28 @@ tags: []
 
 适当的空白字符可以让代码更容易被阅读。
 
-  
-  :::javascript
-  var me = this;
+{% highlight JavaScript %}
+
+var that = this;
+
+{% endhighlight %}
               
 
-上面的代码中，等号两端的空白字符是可以去掉的，但我们需要保留它们，不至于让"me=this"看起来像一个token。
+上面的代码中，等号两端的空白字符是可以去掉的，但我们需要保留它们，不至于让**that=this**看起来像一个token。
 
 基本代码空白规则：
 
-
 1. 左括号的左边需要有空白。
-2. 右括号的右边需要有空白。
-3. 双目或三目运算符的两边需要有空白。
-4. 逗号或分号的右边需要有空白。
-5. 如果有多个空白符时合并成一个。
-6. function声明中，形参左括号的左边不需要空白，保持和调用的形式一致。
+1. 右括号的右边需要有空白。
+1. 双目或三目运算符的两边需要有空白。
+1. 逗号或分号的右边需要有空白。
+1. 如果有多个空白符时合并成一个。
+1. function声明中，形参左括号的左边不需要空白，保持和调用的形式一致。
 
 #### 代码空白示例
 
-  
-  :::javascript
+{% highlight JavaScript %}
+
   if (num > 0) {
   }
   
@@ -45,228 +45,228 @@ tags: []
   
   function setStyle(dom, name, value) {
   }
-                  
+
+{% endhighlight %}          
 
 ### 缩进
 
-使用4个空格字符作为代码缩进，避免使用tab空白字符。tab空白字符在不同编辑器下可能会有不同的表现，使用空格字符作为缩进能很好的避免这种情况。
-
-主流编辑器都能够设置自动对tab进行替换，以方便代码编写。
-
+使用2个空格字符作为代码缩进，避免使用tab空白字符。tab空白字符在不同编辑器下可能会有不同的表现，使用空格字符作为缩进能很好的避免这种情况。主流编辑器都能够设置自动对tab进行替换，以方便代码编写。
 
 ### 行字符限制
 
-每行的字符数建议不超过100个字符。
+每行的字符数建议不超过80个字符。
 
 过长的程序行应在适当的地方断行，并保持断行后的代码整齐。断行不要破坏表达式本身的意义。
 
-
 1. 在逗号后面断行
-  
-  
-    :::javascript
-    // 断行示例：逗号后面断行
-  
-    callFunction(
-        expression1,
-        expression2,
-        expression3,
-        expression4
-    );
-                            
-  
-  
-2. 在逻辑运算符前面断行
-  
-  
-    :::javascript
-    // 断行示例：逻辑运算符前面断行
-    
-    if (condition1
-        && condition2
-        && condition3
-    ) {
-        callFunction();       
-    }
 
+{% highlight JavaScript %}
+
+// 断行示例：逗号后面断行
+callFunction(
+    expression1,
+    expression2,
+    expression3,
+    expression4
+);
+
+{% endhighlight %}      
+
+2. 在逻辑运算符前面断行
+
+{% highlight JavaScript %}
+
+// 断行示例：逻辑运算符前面断行
+if (condition1
+    && condition2
+    && condition3
+) {
+    callFunction();       
+}
+
+{% endhighlight %} 
 
 3. 在+号前面断行
   
-  
-    :::javascript
-    // 断行示例：+号前面断行
-      
-    var str = 'hello world'
-              + 'hello world2'
-              + 'hello world3';
-                            
+{% highlight JavaScript %}
+
+// 断行示例：+号前面断行
+var str = 'hello world'
+          + 'hello world2'
+          + 'hello world3';
+                          
+{% endhighlight %} 
 
 ### 不要省略if、while、for、do的块
 
-对于if、while、for、do，应用{}将执行体包围，避免产生理解障碍。
+对于if、while、for、do，应用`{}`将执行体包围，避免产生理解障碍。
 
 主流的编辑器，以回车新起一行时，输入光标通常保留在上一行的缩进位置，所以编写时容易造成这样的情况：
 
-
 #### 容易造成理解歧义的块省略
 
-  
-  :::javascript
-  if (condition)
-      callFunction1();
-      callFunction2();
-                  
+{% highlight JavaScript %}
 
+if (condition)
+    callFunction1();
+    callFunction2();
+
+{% endhighlight %} 
 
 
 ## 命名
 
-
 ### 常用命名法
 
-
-1. camel命名法： 第一个单词首字母小写，其余每个单词首字母大写。
-2. pascal命名法：每个单词首字母大写。
-
-
+* Camel命名法，形如`thisIsAnApple`
+* Pascal命名法，形如`ThisIsAnApple`
+* 下划线命名法，形如`this_is_an_apple`
+* 中划线命名法，形如`this-is-an-apple`
 
 ### 常量命名
 
-javascript中无法使用const声明常量。如果要声明一个在程序运行阶段不会更改的变量（如配置项），命名规则为：每个字母大写，单词间以下划线分割。
-
+**JavaScript**中无法使用`const`（[ES6已经支持const](https://people.mozilla.org/~jorendorff/es6-draft.html#sec-let-and-const-declarations)）声明常量。如果要声明一个在程序运行阶段不会更改的变量（如配置项），命名规则为：每个字母大写，单词间以下划线分割。
 
 #### 常量命名示例
 
+{% highlight JavaScript %}
 
-  :::javascript
-  var URL_CONFIG = 'http://www.baidu.com/';
-                  
+var IS_DEBUG_ENABLED = true; 
 
-
-
+{% endhighlight %}
 
 ### 变量命名
 
-局部变量与全局变量的命名均使用camel命名法。
-
+局部变量与全局变量的命名均使用**Camel**命名法。
 
 #### 变量命名示例
 
+{% highlight JavaScript %}
 
-  :::javascript
-  var listLen = list.length;
-                  
+var foo = 'foo';
 
-
-
+{% endhighlight %} 
 
 ### 函数命名
 
-javascript中，函数可以用来实例化对象，也可以被调用。为了增加代码可读性，需要在命名上进行区分。
+**JavaScript**中，函数可以作为构造器用来实例化对象，也可以被调用。为了增加代码可读性，需要在命名上进行区分。
 
+1. 对于被调用的函数，使用**Camel**命名法
+  
+{% highlight JavaScript %} 
 
-1. 对于被调用的函数，使用camel命名法。
-  
-  
-        :::javascript 
-    // 函数命名示例：调用函数
-  
-    function setStyle(dom, name, value) {
-        // ...
-    }
-                            
-  
-  
-2. 用于new来实例化对象的函数，使用pascal命名法。
-  
-        :::javascript 
-    // 函数命名示例：构造器
-  
-    function Dog(name) {
-        this.name = name;
-    }                           
+// 函数命名示例：调用函数  
+function foo() {
+  // ...
+}
 
+{% endhighlight %}                            
+
+2. 对于通过`new`来实例化对象的函数构造器，使用**Pascal**命名法
+  
+{% highlight JavaScript %}
+
+// 函数命名示例：函数构造器
+function Dog(name) {
+  this.name = name;
+}                           
+
+{% endhighlight %}
+
+**JavaScript**已经提供了许多内置的函数构造器，如`Object`, `RegExp`等等。
 
 ### 对象命名
 
 对象的命名规则依赖与对象本身的职责。
 
-
-1. 如果对象是用于数据保存的，则使用camel命名法。
-2. 如果对象是作为静态类的，则使用pascal命名法。
-
-
-
-
+1. 如果对象是用于数据保存的，则使用**Camel**命名法。
+2. 如果对象是作为静态类的，则使用**Pascal**命名法。
 
 ## 注释
 
 注释是一种意识，注释是一种责任。
 
-
 ### 文件描述
 
-在javascript文件顶部需要有文件描述的注释，其中包括项目名、作者、修改日期等信息。
-
+在**JavaScript**文件顶部需要有文件描述的注释，其中包括项目名、作者、修改日期等信息。
 
 #### 注释示例：文件描述
 
-  
-  /*
-   * Tangram
-   * Copyright 2009 Baidu Inc. All rights reserved.
-   * 
-   * path: baidu.js
-   * author: allstar, erik
-   * date: 2009/12/2
-   */
-                  
+{% highlight JavaScript %}
 
+/*
+ * Tangram
+ * Copyright 2009 Baidu Inc. All rights reserved.
+ * 
+ * path: baidu.js
+ * author: allstar, erik
+ * date: 2009/12/2
+ */
 
-[note]:
-文件描述通常不用于生成api文档。
+{% endhighlight %}
 
-
-~~~~
-
-
+但是有一点需要注意，文件描述通常不用于生成api文档。
 
 ### 函数与方法描述
 
 函数和方法必须用注释描述其功能。
 
-
 #### 注释示例：函数与方法描述
-
   
-  /**
-   * 发送get请求的简单外观接口
-   * 
-   * @param {string}   url                需要发送请求的地址
-   * @param {Function} onsuccess optional 请求成功之后调用的函数
-   * @return {XMLHttpRequest} 发送请求的xhr对象
-   */
-  baidu.ajax.get = function (url, onsuccess) {
-  } 
-                  
+{% highlight JavaScript %}
 
+/**
+ * 发送一个ajax post请求
+ *
+ * @param {string} url 发送请求的url
+ * @param {Object} jsonData 需要发送的数据
+ * @param {Function} successFn 请求成功时触发，function(data, status)
+ * @param {Function} failedFn 请求失败时触发，function(msg)
+ */
+function jsonPost(url, jsonData, successFn, failedFn) {
+  $.ajax({
+    type: 'POST',
+    url: url,
+    data: jsonData,
+    dataType: 'json',
+    success: function (data, textStatus, jqXHR) {
+      var ret = data;
 
-[note]:
+      //状态为0或者大于2，表示成功
+      if (ret.status === 0 || ret.status > 2) {
+          //调用成功函数，传递数据，同时传递状态码
+          successFn(ret.data, ret.status, ret.msg);
+      }
+      //状态为1，表示失败
+      else if (ret.status === 1) {
+          if (failedFn) {
+              failedFn(ret.msg);
+          }
+      }
+      //状态为2，表示重定向至某个地址
+      else if (ret.status === 2) {
+          window.location = ret.data;
+      }
+    }
+  }).fail(function(jqXHR, textStatus, errorThrown) {
+    if (failedFn) {
+      failedFn(errorThrown.message);
+    }
+  });
+},
+
+{% endhighlight %}
+
 我们描述一个函数的时候，只描述做什么，不描述具体怎么做。
-
-
-~~~~
-
-
 
 ### 注释标签
 
-常用的注释标签包括param、return、private、extend等。下表是jsdoc-toolkit支持的部分标签：
-
+常用的注释标签包括`param`、`return`、`private`、`extend`等。下表是**[JSDoc](http://usejsdoc.org/)**支持的部分标签.
 
 ### jsdoc-toolkit支持标签
 
-|* 标签 *|* 说明 *|
+| 标签 | 说明 |
+| :-------------: | :------------- :|
 | @augments  |  指明类的基类，同@extends。建议使用@extends |
 | @author  |  作者名 |
 | @class  |  用来给一个类提供描述（不描述构造函数） |
@@ -430,9 +430,9 @@ javascript中，函数可以用来实例化对象，也可以被调用。为了�
 
 ## 数据类型
 
-javascript有6种数据类型：undefined、null、string、number、boolean、object。
+**JavaScript**有6种数据类型：undefined、null、string、number、boolean、object。
 
-javascript原生的object包括：Object、Function、Array、String、Boolean、Number、Math、Date、RegExp、Error。
+**JavaScript**原生的object包括：Object、Function、Array、String、Boolean、Number、Math、Date、RegExp、Error。
 
 
 ### 简单类型与包装类型
@@ -442,14 +442,14 @@ javascript原生的object包括：Object、Function、Array、String、Boolean�
 
 #### 简单类型与包装类型的差异
 
-  :::javascript
+{% highlight JavaScript %}
   var str = '1',
   var str2 = new String('1');
   
   typeof str;  // string
   typeof str2; // object
                   
-
+{% endhighlight %}
 
 [info]:
 对于布尔、数值与字符串来说，应针对简单类型进行编程，通过隐式装箱调用包装类型的方法。
@@ -459,11 +459,11 @@ javascript原生的object包括：Object、Function、Array、String、Boolean�
 
 #### 使用简单类型
 
-  :::javascript
+{% highlight JavaScript %}
     var str = 'Hello world!';
   str.substr(0, 5);
                   
-
+{% endhighlight %}
 
 
 
@@ -473,14 +473,14 @@ javascript原生的object包括：Object、Function、Array、String、Boolean�
 1. number to string的转换，建议使用 “1 + ''”或String(1)，不使用“new String(1)”或“1.toString()”的方式。
 2. string to number的转换，建议使用parseInt，必须显式指定第二个参数的进制。下面的例子展示了不指定进制的风险：
   
-    :::javascript
+  {% highlight JavaScript %}
     // 类型转换：parseInt的风险
     
     parseInt('08'); // 0
     parseInt('08', 10); //8
                             
   
-  
+  {% endhighlight %}
 3. float to integer的转换，建议使用Math.floor/Math.round/Math.ceil方法，不使用parseInt。
 
 
@@ -497,22 +497,22 @@ javascript原生的object包括：Object、Function、Array、String、Boolean�
 
 #### typeof检测普通类型
 
-  :::javascript
+{% highlight JavaScript %}
   typeof 1;     // number
   typeof '';    // string
   typeof false; // boolean
   typeof void(0); // undefined
                   
-
+{% endhighlight %}
 但是，typeof对Object的检测有时会给我们带来麻烦。它能区分Function，无法区分null。
 
 
 #### typeof检测对象
 
-  :::javascript
+{% highlight JavaScript %}
   typeof null; // object
   typeof new Function(); // function
-                  
+    {% endhighlight %}              
 
 
 [info]:
@@ -534,7 +534,7 @@ instanceof会沿着原型链遍历。比如b instanceof A，将会判断b的原�
 
 #### instanceof的风险
 
-    :::javascript 
+  {% highlight JavaScript %} 
     function A(){
         this.testA = new Function();
     }
@@ -547,7 +547,7 @@ instanceof会沿着原型链遍历。比如b instanceof A，将会判断b的原�
   
   a instanceof A; // false
                   
-
+{% endhighlight %}
 上面的例子中，instanceof认为a不是A的实例，因为A的prototype已经被更改。
 
 
@@ -567,27 +567,27 @@ instanceof会沿着原型链遍历。比如b instanceof A，将会判断b的原�
 
 最简单的：
 
-  :::javascript
+{% highlight JavaScript %}
   typeof a == 'string'
-              
+  {% endhighlight %}            
 
 可能a是字符串的包装类型，于是：
 
-  :::javascript
+{% highlight JavaScript %}
   a.constructor == String
-              
+  {% endhighlight %}            
 
 可是a为null或undefined时会报运行时错误，于是：
 
-  :::javascript
+{% highlight JavaScript %}
   typeof a == 'string' || a instanceof String
-              
+ {% endhighlight %}             
 
 如果js把String重写了，如function String(){}，会判断出错，于是：
 
-  :::javascript
+{% highlight JavaScript %}
   Object.prototype.toString.call(a) == '[object String]'
-              
+  {% endhighlight %}            
 
 如果Object.prototype.toString再被重写了......这个时候，我们就没办法了
 
@@ -617,12 +617,12 @@ instanceof会沿着原型链遍历。比如b instanceof A，将会判断b的原�
 
 #### 对象初始化
 
-  :::javascript
+{% highlight JavaScript %}
   var obj = {
         num: 1,
         str: 'hello'
     };
-                  
+ {% endhighlight %}                 
 
 
 [alert]:
@@ -636,11 +636,11 @@ instanceof会沿着原型链遍历。比如b instanceof A，将会判断b的原�
 #### Array与RegExp初始化
 
 
-  :::javascript
+{% highlight JavaScript %}
     var arr = [1, 2, 3, 4, 5, 6];
   var regex = /^[a-z]+$/i;
                   
-
+{% endhighlight %}
 
 [note]:
 RegExp直接量声明比new RegExp性能要高。但是如果是页面内使用ctpl，并且带$时，需要使用new RegExp('\x24')。因为ctpl会把$以及后续的字符识别为模板变量。
@@ -657,7 +657,7 @@ RegExp直接量声明比new RegExp性能要高。但是如果是页面内使用c
 
 1. obj.identifier
 2. obj[expression]
-成员名称为javascript保留字，或者通过表达式访问时，通过obj[expression]方式访问。其他时候，通过obj.identifier访问。该方式增加可读性，并且减少字符数。
+成员名称为**JavaScript**保留字，或者通过表达式访问时，通过obj[expression]方式访问。其他时候，通过obj.identifier访问。该方式增加可读性，并且减少字符数。
 
 
 
@@ -669,7 +669,7 @@ delete关键字可以删除对象的成员。
 
 #### 使用delete删除对象成员
 
-  :::javascript
+{% highlight JavaScript %}
   var obj = {
         num: 1;
     };
@@ -678,7 +678,7 @@ delete关键字可以删除对象的成员。
       
   delete obj.num;
   typeof obj.num; // undefined
-                  
+  {% endhighlight %}                
 
 
 [info]:
@@ -706,11 +706,11 @@ delete不能删除变量的值和引用。删除变量值或引用的方式为�
 
 #### 原生对象进行扩展的bad case
 
-  :::javascript
+{% highlight JavaScript %}
     String.prototype.format = function () {
   };
                   
-
+{% endhighlight %}
 
 
 
@@ -726,11 +726,11 @@ delete不能删除变量的值和引用。删除变量值或引用的方式为�
 
 #### 函数也是对象
 
-  :::javascript
+{% highlight JavaScript %}
   function myFunc() {}
   myFunc instanceof Object; // true
                   
-
+{% endhighlight %}
 
 
 
@@ -741,39 +741,39 @@ delete不能删除变量的值和引用。删除变量值或引用的方式为�
 
 1. 直接调用
   
-    :::javascript
+  {% highlight JavaScript %}
     // 函数调用示例：直接调用
     
     write('Hello world!');
-                            
+   {% endhighlight %}                         
   
   
 2. 方法调用
   
-    :::javascript
+  {% highlight JavaScript %}
     // 函数调用示例：方法调用
     
     document.write('Hello world!');
-                            
+   {% endhighlight %}                         
 
 3. 构造器调用
   
   
-    :::javascript 
+  {% highlight JavaScript %} 
       // 函数调用示例：构造器调用
     
     new Person('erik');
-                            
+  {% endhighlight %}                          
   
 4. apply或call
   
-    :::javascript
+  {% highlight JavaScript %}
     // 函数调用示例：apply或call
     
     Array.apply(this, [1, 2, 3]);
     Array.call(this, 1, 2, 3);
                         
-
+{% endhighlight %}
 
 ### this指针
 
@@ -789,12 +789,12 @@ delete不能删除变量的值和引用。删除变量值或引用的方式为�
 
 ### 作用域（scope）
 
-与熟知的绝大多数高级语言（c、c++、java...）不同，javascript变量的作用域是function域，不是块域。
+与熟知的绝大多数高级语言（c、c++、java...）不同，**JavaScript**变量的作用域是function域，不是块域。
 
 
 #### 变量的函数作用域
 
-  :::javascript
+{% highlight JavaScript %}
     function myFunc() {
       for (var i = 0; i < 10; i++) {
           var num = i; // 生命周期是function的生命周期
@@ -803,9 +803,9 @@ delete不能删除变量的值和引用。删除变量值或引用的方式为�
       num; // 9
   }
   myFunc();
-                  
+ {% endhighlight %}                 
 
-函数在被调用的时候，会创建一个作用域。作用域可以看做是一个javascript对象，其中包括arguments属性，以及与形参同名的属性
+函数在被调用的时候，会创建一个作用域。作用域可以看做是一个**JavaScript**对象，其中包括arguments属性，以及与形参同名的属性
 
 
 
@@ -817,7 +817,7 @@ delete不能删除变量的值和引用。删除变量值或引用的方式为�
 
 #### 简单的闭包
 
-  :::javascript
+{% highlight JavaScript %}
   var myFunc = (function (num) {
       var me = this;
       
@@ -827,7 +827,7 @@ delete不能删除变量的值和引用。删除变量值或引用的方式为�
       };
   })(2);
   myFunc();
-                  
+ {% endhighlight %}                 
 
 
 
@@ -839,7 +839,7 @@ delete不能删除变量的值和引用。删除变量值或引用的方式为�
 
 #### 作用域泛滥
 
-  :::javascript
+{% highlight JavaScript %}
   function init() {
       var lis = ul.getElementsByTagName('li');
       baidu.array.each(lis, function (item) {
@@ -850,7 +850,7 @@ delete不能删除变量的值和引用。删除变量值或引用的方式为�
       }
   }
   init();
-                  
+ {% endhighlight %}                 
 
 
 
@@ -871,14 +871,14 @@ delete不能删除变量的值和引用。删除变量值或引用的方式为�
 #### 闭包函数中使用dom元素
 
   
-  :::javascript
+{% highlight JavaScript %}
     function getHandler() {
       var domId = 'dom';
       return function () {
           var dom = document.getElementById(domId); // 获取dom元素
       };
   }
-                  
+ {% endhighlight %}                 
 
 
 [note]:
@@ -907,36 +907,36 @@ delete不能删除变量的值和引用。删除变量值或引用的方式为�
 
 #### 字符串拼接：不好的拼接方式，+=
 
-  :::javascript
+{% highlight JavaScript %}
   var str = '';
   for (var i = 0, len = list.length; i < len; i++) {
       str += '<div>' + list[i] + '</div>';
   }
   dom.innerHTML = str;
-                  
+ {% endhighlight %}                 
 
 
 #### 字符串拼接：正确拼接方式，Array的push+join
 
-  :::javascript
+{% highlight JavaScript %}
   var str = [];
   for (var i = 0, len = list.length; i < len; i++) {
       str.puzh('<div>' + list[i] + '</div>');
   }
   dom.innerHTML = str.join('');
                   
-
+{% endhighlight %}
 
 #### 字符串拼接：更好的拼接方式，Array，使用临时变量存储数组长度
 
-  :::javascript
+{% highlight JavaScript %}
   var str = [], strLen = 0;
   for (var i = 0, len = list.length; i < len; i++) {
       str[strLen++] = '<div>' + list[i] + '</div>';
   }
   dom.innerHTML = str.join('');
                   
-
+{% endhighlight %}
 
 
 
@@ -947,7 +947,7 @@ delete不能删除变量的值和引用。删除变量值或引用的方式为�
 
 #### 字符串格式化
 
-  :::javascript
+{% highlight JavaScript %}
   // 让人难以理解的拼接：    
   var str = '<div id="' + id + '" class="' + className + '">' + html + '</div>';
       
@@ -956,7 +956,7 @@ delete不能删除变量的值和引用。删除变量值或引用的方式为�
   var str = baidu.format( tpl,
                           id, className, html
     );
-                  
+ {% endhighlight %}                 
 
 
 
@@ -971,9 +971,9 @@ charAt方法返回字符串处于position位置的字符。如果position为负�
 
 ##### string.charAt
 
-  :::javascript
+{% highlight JavaScript %}
   'erik'.charAt(0); // e
-                      
+ {% endhighlight %}                     
 
 
 
@@ -985,10 +985,10 @@ charCodeAt方法返回字符串处于position位置字符的unicode码。如果p
 
 ##### string.charCodeAt
 
-  :::javascript
+{% highlight JavaScript %}
   'erik'.charCodeAt(0); // 101，e的unicode码，也就是ascii码。
                       
-
+{% endhighlight %}
 
 
 
@@ -999,9 +999,9 @@ indexOf方法在字符串内查找子字符串searchString的第一个匹配的�
 
 ##### string.indexOf
 
-  :::javascript
+{% highlight JavaScript %}
   var index = 'Hello World'.indexOf('l'); // 2
-                      
+{% endhighlight %}                      
 
 
 
@@ -1013,9 +1013,9 @@ lastIndexOf方法与indexOf方法类似，但是lastIndexOf方法是从尾部向
 
 ##### string.lastIndexOf
 
-  :::javascript
+{% highlight JavaScript %}
   var index = 'Hello World'.lastIndexOf('l'); // 9
-                      
+ {% endhighlight %}                     
 
 
 
@@ -1033,10 +1033,10 @@ localeCompare用于比较两个字符串，该方法与本机环境相关。如�
 
 ##### string.localeCompare
 
-  :::javascript
+{% highlight JavaScript %}
   ['张学友', '刘德华', '郭富城', '黎明'].sort(function (a, b) {return a.localeCompare(b);}); // ["郭富城", "黎明", "刘德华", "张学友"]
                       
-
+{% endhighlight %}
 
 
 
@@ -1049,12 +1049,12 @@ match方法对字符串匹配一个正则表达式，返回一个匹配数组。
 
 ##### string.match
 
-  :::javascript
+{% highlight JavaScript %}
   var html = '<html><head><title>title</title></head><body><p>p</p></body></html>';
   html.match(/<[a-z0-9]+(\s+[a-z0-9='"]+)?>/g); // ['<html>', '<head>', '<title>', '<body>', '<p>']
                       
 
-
+{% endhighlight %}
 
 
 #### replace(search, replaceValue)
@@ -1070,22 +1070,22 @@ search参数可以是一个字符串或一个正则表达式。只有当search�
 
 ##### string.replace：替换第一项与全部替换
 
-  :::javascript
+{% highlight JavaScript %}
   'border_left_style'.replace('_', '-'); // 'border-left_style'，只替换第一项
   'border_left_style'.replace(/_/g, '-'); // 'border-left-style'，替换所有项
-                      
+  {% endhighlight %}                    
 
 replaceValue参数可以是一个字符串或一个函数。当replaceValue是一个函数时，将对每一个匹配项进行调用，将返回的文本替换匹配文本。
 
 
 ##### string.replace：使用替换函数
 
-  :::javascript
+{% highlight JavaScript %}
   // 'border-left-style'
   'borderLeftStyle'.replace(/[A-Z]/g, function ($0) {
       return '-' + $0.toLowerCase();
   });
-                      
+  {% endhighlight %}                    
 
 
 
@@ -1100,10 +1100,10 @@ search方法在字符串内查找regexp的第一个匹配的位置。和indexOf�
 
 ##### string.search
 
-  :::javascript
+{% highlight JavaScript %}
   'type="text"'.search(/"/); // 5
                       
-
+{% endhighlight %}
 
 
 
@@ -1118,10 +1118,10 @@ end参数可选，默认为字符串长度。如果指定一个end，处理规�
 
 ##### string.slice
 
-  :::javascript
+{% highlight JavaScript %}
   'Hello world!'.slice(0, 5); // Hello
   'Hello world!'.slice(-6, -1); // world
-                      
+ {% endhighlight %}                     
 
 
 [info]:
@@ -1141,10 +1141,10 @@ limit参数可以限定分割的数量，这个参数不常用。
 
 ##### string.split
 
-  :::javascript
+{% highlight JavaScript %}
   '127.0.0.1'.split('.'); // ['127', '0', '0', '1']
                       
-
+{% endhighlight %}
 
 [info]:
 IE下，如果split结果的第一项或最后一项是空字符串，会被直接省略掉。
@@ -1161,9 +1161,9 @@ substr与slice一样都可以用来截取字符串。不同的是substr第二个
 
 ##### string.substr
 
-  :::javascript
+{% highlight JavaScript %}
   'Hello world!'.substr(6, 5); // world
-                      
+ {% endhighlight %}                     
 
 
 [note]:
@@ -1181,9 +1181,9 @@ toLowerCase方法将字符串所有字母转换为小写格式。
 
 ##### string.toLowerCase
 
-  :::javascript
+{% highlight JavaScript %}
   var str = 'Hello World!'.toLowerCase(); // 'hello world!'
-                      
+ {% endhighlight %}                     
 
 
 
@@ -1195,9 +1195,9 @@ toUpperCase方法将字符串所有字母转换为大写格式。
 
 ##### string.toUpperCase
 
-  :::javascript
+{% highlight JavaScript %}
   var str = 'Hello World!'.toUpperCase(); // 'HELLO WORLD!'
-                      
+    {% endhighlight %}                  
 
 
 
@@ -1212,10 +1212,10 @@ fromCharCode方法可以从一串参数中返回一个字符串，每个参数�
 
 ##### String.formCharCode
 
-  :::javascript
+{% highlight JavaScript %}
   String.fromCharCode(20013, 22269); // 中国
                       
-
+{% endhighlight %}
 
 
 ## 数组
@@ -1230,12 +1230,12 @@ fromCharCode方法可以从一串参数中返回一个字符串，每个参数�
 
 #### 数组的浅复制
 
-  :::javascript
+{% highlight JavaScript %}
   [1, 2, 3].slice(0); // [1, 2, 3]
   
   var arr = [{}]
   arr.slice(0)[0] == a[0]; // true
-                  
+   {% endhighlight %}               
 
 
 [info]:
@@ -1256,11 +1256,11 @@ fromCharCode方法可以从一串参数中返回一个字符串，每个参数�
 
 ##### 使用splice删除数组项
 
-  :::javascript
+{% highlight JavaScript %}
   var arr = [1, 2, 3];
   arr.splice(0, 1); 
   alert(arr); // [2, 3]
-                      
+      {% endhighlight %}                
 
 
 #### 清空数组
@@ -1271,10 +1271,10 @@ fromCharCode方法可以从一串参数中返回一个字符串，每个参数�
 ##### 使用length清空数组
 
   
-  :::javascript
+{% highlight JavaScript %}
     var arr = [1, 2, 3];
   arr.length = 0; // []
-                      
+     {% endhighlight %}                 
 
 
 [note]:
@@ -1285,10 +1285,10 @@ fromCharCode方法可以从一串参数中返回一个字符串，每个参数�
 
 ##### 使用length删除数组尾部的项
 
-  :::javascript
+{% highlight JavaScript %}
   var arr = [1, 2, 3];
   arr.length = 2; // [1, 2]
-                      
+     {% endhighlight %}                 
 
 ### 遍历
 
@@ -1300,11 +1300,11 @@ fromCharCode方法可以从一串参数中返回一个字符串，每个参数�
 
 ##### 数组遍历：提前存储数组的lenght
 
-  :::javascript
+{% highlight JavaScript %}
   for (var i = 0, len = list.length; i < len; i++) {
       // ...
   }
-                      
+{% endhighlight %}
 
 
 [note]:
@@ -1322,13 +1322,13 @@ fromCharCode方法可以从一串参数中返回一个字符串，每个参数�
 
 ##### 数组遍历：使用倒序便利
 
-  :::javascript
+{% highlight JavaScript %}
   var len = list.length;
   
   while (len--) {
       var item = list[len];
   }
-                      
+   {% endhighlight %}                   
 
 
 [info]:
@@ -1341,7 +1341,7 @@ fromCharCode方法可以从一串参数中返回一个字符串，每个参数�
 
 ### 排序
 
-在javascript中，可以使用sort方法对数组进行排序。
+在**JavaScript**中，可以使用sort方法对数组进行排序。
 
 在基于比较的排序情况下，不建议自己写排序。因为使用sort排序性能并不比自己写快速排序差，甚至更好。
 
@@ -1353,10 +1353,10 @@ sort方法默认会将数组每一项转换为字符串，如果要按数值排�
 
 ##### 使用sort方法进行排序
 
-  :::javascript
+{% highlight JavaScript %}
   [3, 5, 2, 1].sort(function (a, b) {return a - b;}); // [1, 2, 3, 5]
                       
-
+{% endhighlight %}
 #### 中文排序
 
 使用字符串的localeCompare方法，可以对中文进行排序。
@@ -1369,9 +1369,9 @@ localeCompare方法依赖于本地环境。
 ##### 使用string.localeCompare进行中文排序
 
   
-  :::javascript
+{% highlight JavaScript %}
     ['张学友', '刘德华', '郭富城', '黎明'].sort(function (a, b) {return a.localeCompare(b);}); // ["郭富城", "黎明", "刘德华", "张学友"]
-                      
+   {% endhighlight %}                   
 
 
 
@@ -1385,10 +1385,10 @@ concat方法返回一个新数组，并将参数附加在数组后面。如果�
 
 ##### array.concat
 
-  :::javascript
+{% highlight JavaScript %}
   var arr = [1, 2, 3];
   var newArr = arr.concat([4, 5, 6], 7); // [1, 2, 3, 4, 5, 6, 7]
-                      
+   {% endhighlight %}                   
 
 
 #### join(separator)
@@ -1398,10 +1398,10 @@ join方法把数组构造成一个字符串，并以分隔符分隔。默认的�
 
 ##### array.join
 
-  :::javascript
+{% highlight JavaScript %}
   var arr = ['Hello', 'world];
   arr.join(' '); // "Hello world"
-                      
+  {% endhighlight %}                    
 
 
 #### pop()
@@ -1411,10 +1411,10 @@ pop方法会移除数组最后一项，并返回该项。
 
 ##### array.pop
 
-  :::javascript
+{% highlight JavaScript %}
   var arr = [1, 2, 3];
   var last = arr.pop(); // arr: [1, 2]; last: 3
-                      
+    {% endhighlight %}                  
 
 
 #### push(item...)
@@ -1436,10 +1436,10 @@ push与concat有一些不同：
 ##### array.push
 
   
-  :::javascript
+{% highlight JavaScript %}
     var arr = [1, 2, 3];
   arr.push([4, 5, 6], 7); // [1, 2, 3, [4, 5, 6], 7]
-                      
+     {% endhighlight %}                 
 
 #### shift()
 
@@ -1448,10 +1448,10 @@ shift方法会移除数组第一项，并返回该项。
 
 ##### array.shift
 
-  :::javascript
+{% highlight JavaScript %}
   var arr = [1, 2, 3];
   var first = arr.shift(); // arr: [2, 3]; first: 1
-                      
+   {% endhighlight %}                   
 
 
 #### slice(start, end)
@@ -1463,10 +1463,10 @@ slice返回数组的浅复制。索引从start开始到end（不包括end）。
 
 ##### array.slice
 
-  :::javascript
+{% highlight JavaScript %}
   var arr = [1, 2, 3, 4];
   arr.slice(1, 3); // [2, 3]
-                      
+ {% endhighlight %}                     
 
 
 #### sort(compareFunction)
@@ -1476,19 +1476,19 @@ sort方法可以对数组进行排序。默认会按照字符串的方式进行�
 
 ##### array.sort：默认按字符串排序
 
-  :::javascript
+{% highlight JavaScript %}
   [1, 4, 8, 10].sort(); // [1, 10, 4, 8]
-                      
+ {% endhighlight %}                     
 
 我们可以传递一个比较函数。该函数对数组中的两项进行比较，相等时返回0，如果想要第二个参数排在前面，则返回一个正数。
 
 
 ##### array.sort：通过比较函数实现数值排序
 
-  :::javascript
+{% highlight JavaScript %}
   [7, 4, 6, 2].sort(function (a, b) {return b - a;}); // [7, 6, 4, 2]
                       
-
+{% endhighlight %}
 
 #### splice(start, deleteCount, item...)
 
@@ -1499,10 +1499,10 @@ splice方法会以一个新的数组返回删除的项。
 
 ##### array.splice
 
-  :::javascript
+{% highlight JavaScript %}
   var arr = [1, 2, 3, 4, 5, 6];
   arr.splice(1, 2, 7); // [1, 7, 4, 5, 6]
-                      
+   {% endhighlight %}                   
 
 
 #### unshift(item...)
@@ -1518,22 +1518,22 @@ unshift与pop配合可使数组像队列一样工作。
 
 ##### array.unshift
 
-  :::javascript
+{% highlight JavaScript %}
   var arr = [3, 4, 5];
   arr.unshift(1, 2); // [1, 2, 3, 4, 5]
                       
-
+{% endhighlight %}
 ## 面向对象
 
 
 ### 静态类
 
-通常我们使用静态类封装同一类型或同一业务相关的功能。静态类在javascript里使用频率远高于可实例化的类。静态类在javascript里表现为Object。
+通常我们使用静态类封装同一类型或同一业务相关的功能。静态类在**JavaScript**里使用频率远高于可实例化的类。静态类在**JavaScript**里表现为Object。
 
 
 #### 声明静态类
 
-  :::javascript
+{% highlight JavaScript %}
   var Util = {
       formatDate: function (date) {
       },
@@ -1542,7 +1542,7 @@ unshift与pop配合可使数组像队列一样工作。
       }
   };
                   
-
+{% endhighlight %}
 使用function执行并返回，可以达到变量私有的效果。
 
 
@@ -1554,7 +1554,7 @@ unshift与pop配合可使数组像队列一样工作。
 
 #### 声明静态类：通过闭包
 
-  :::javascript
+{% highlight JavaScript %}
   var Util = function () {
       var format = "yyyy-MM-dd"; // 私有变量，不对外暴露
       
@@ -1567,7 +1567,7 @@ unshift与pop配合可使数组像队列一样工作。
       };
   }();
                   
-
+{% endhighlight %}
 
 [info]:
 如果返回对象是function或包含对function的引用，则当前执行的scope不会被释放。使用该方法请遵循闭包原则。
@@ -1582,7 +1582,7 @@ unshift与pop配合可使数组像队列一样工作。
 
 #### 使用原型继承
 
-在继承的实现上，通常我们利用javascript的语言特性，使用原型继承。
+在继承的实现上，通常我们利用**JavaScript**的语言特性，使用原型继承。
 
 原型继承的优点是：
 
@@ -1597,7 +1597,7 @@ unshift与pop配合可使数组像队列一样工作。
 
 ##### 原型继承
 
-  :::javascript
+{% highlight JavaScript %}
   function Animal(name) {
       this.name = name;
   }
@@ -1618,7 +1618,7 @@ unshift与pop配合可使数组像队列一样工作。
       alert('dog ' + this.name + ' jump');
   };
                       
-
+{% endhighlight %}
 
 
 #### 原型继承的风险
@@ -1630,7 +1630,7 @@ unshift与pop配合可使数组像队列一样工作。
 
 ##### 原型继承的风险
 
-  :::javascript
+{% highlight JavaScript %}
   function ListBase() {
       this.container = [];
   }
@@ -1656,13 +1656,13 @@ unshift与pop配合可使数组像队列一样工作。
   list1.push(1);
   list2.push(2);
   list2.alert();  // 1,2
-                      
+  {% endhighlight %}                    
 
 
 
 ## DOM
 
-由于dom对象不是javascript原生对象，所以我们在使用dom对象的时候，可能会面临这样的麻烦：性能、浏览器兼容性、内存泄露等。
+由于dom对象不是**JavaScript**原生对象，所以我们在使用dom对象的时候，可能会面临这样的麻烦：性能、浏览器兼容性、内存泄露等。
 
 
 ### 获取元素
@@ -1760,9 +1760,9 @@ ie浏览器会混淆元素的id和name属性，document.getElementById可能获�
 ##### 设置元素的class
 
   
-  :::javascript
+{% highlight JavaScript %}
     dom.className = 'my-class';
-                      
+    {% endhighlight %}                  
 
 
 [info]:
@@ -1780,10 +1780,10 @@ ie浏览器会混淆元素的id和name属性，document.getElementById可能获�
 
 ##### 设置元素的style
 
-  :::javascript
+{% highlight JavaScript %}
   dom.style.top = '10px';
                       
-
+{% endhighlight %}
 
 #### 一个例子：display的管理
 
@@ -1805,12 +1805,12 @@ ie浏览器会混淆元素的id和name属性，document.getElementById可能获�
 2. 使用一个额外的class（如myclass-hide）来控制显示隐藏，在这个class中定义display:none，需要隐藏时让元素多具有一个class。
   
   
-    :::javascript
+  {% highlight JavaScript %}
         // 使用额外的class管理可变样式
       
     baidu.addClass(dom, 'myclass-hide');
                                 
-
+{% endhighlight %}
 [info]:
 避免通过获取元素的当前display样式来进行显示隐藏。获取当前样式会导致性能问题。我们应该规划管理我们的样式。
 
@@ -1850,7 +1850,7 @@ ie浏览器会混淆元素的id和name属性，document.getElementById可能获�
 
 ##### 一个频繁触发reflow的例子
 
-  :::javascript
+{% highlight JavaScript %}
   var parent   = document.getElementById('parent');
   var elements = parent.getElementsByTagName('li');
   var len      = elements.length;
@@ -1860,7 +1860,7 @@ ie浏览器会混淆元素的id和name属性，document.getElementById可能获�
       elements[i].style.width = parent.offsetWidth + 'px';
   }
                       
-
+{% endhighlight %}
 在这个例子中，循环的每一步都读取了parent元素的offsetWidth，所以触发reflow进行重新渲染了len次。这个例子中，更好的做法是读取一次，较少reflow。
 
 
@@ -1931,13 +1931,13 @@ IE与标准浏览器在事件处理上有很明显的差异，这些差异为浏
   这种方法比较通用，但是如果为一个元素挂载多个event handler的话，后面的会覆盖前面。
   
   
-    :::javascript
+  {% highlight JavaScript %}
         // 添加事件处理：expando属性
   
     div.onclick = function (e) {
     };
                             
-  
+  {% endhighlight %}
   
 3. 添加监听器
   
@@ -1954,7 +1954,7 @@ IE与标准浏览器在事件处理上有很明显的差异，这些差异为浏
   
 ~~~~
   
-    :::javascript
+  {% highlight JavaScript %}
         // 添加事件处理：添加监听器
   
       
@@ -1966,7 +1966,7 @@ IE与标准浏览器在事件处理上有很明显的差异，这些差异为浏
         dom.addEventListener('click', listener, false);
     }
                             
-
+{% endhighlight %}
 
 [note]:
   为了屏蔽浏览器兼容性，我们可以使用baidu.event.on
@@ -1982,7 +1982,7 @@ IE与标准浏览器在事件处理上有很明显的差异，这些差异为浏
 
 1. 拼接html时，可以使用标签内联的方法添加事件。
   
-  有时候我们需要用javascript拼接html字符串。这个时候我们面对的不是dom对象，可以使用标签内联的方式添加事件。标签内联的方法可以不用关心事件的释放。
+  有时候我们需要用**JavaScript**拼接html字符串。这个时候我们面对的不是dom对象，可以使用标签内联的方式添加事件。标签内联的方法可以不用关心事件的释放。
 
   标签内联的方式使得我们丧失了对事件控制的权利。我们没有办法获得触发事件的target，没有办法停止事件冒泡，没有办法停止默认行为。我们唯一能做的就是使用this把当前dom元素传递给处理函数。
   
@@ -1990,7 +1990,7 @@ IE与标准浏览器在事件处理上有很明显的差异，这些差异为浏
   
 2. 运行环境可控时，使用expando属性的方法添加事件。
   
-  这个时候，javascript运行的页面环境全部是由我们控制的，我们不担心会有其他的javascript脚本覆盖我们挂载的event handler。
+  这个时候，**JavaScript**运行的页面环境全部是由我们控制的，我们不担心会有其他的**JavaScript**脚本覆盖我们挂载的event handler。
   
   对于大多数项目，使用这种方法代替流行的addEventListener，因为该方式会获得更高的性能（如document.body.onmousemove的拖拽处理）
   
@@ -2028,7 +2028,7 @@ IE与标准浏览器在事件处理上有很明显的差异，这些差异为浏
   :::html
     <body>
       <div class="wrap">...</div>
-      <script type="text/javascript" src="my.js"></script>
+      <script type="text/**JavaScript**" src="my.js"></script>
   </body>
                   
 
@@ -2049,7 +2049,7 @@ script标签中必选的属性为type与src。
 
 ### 分模块与分文件开发
 
-通常，一个项目中我们可能设计公共模块与业务模块划分，开发时我们会划分模块，并分成多个javascript文件。
+通常，一个项目中我们可能设计公共模块与业务模块划分，开发时我们会划分模块，并分成多个**JavaScript**文件。
 
 关于模块划分，有如下建议：
 
@@ -2057,26 +2057,26 @@ script标签中必选的属性为type与src。
 1. 公共模块以一个namespace暴露。可参考tangram。
 2. 业务模块是独立的业务单元，以一个namespace来暴露。模块中包括模块公共部分（语言、公共函数等），以及各个业务功能。
 3. charset属性可以通过脚本文件本身编码来解决，不推荐。
-关于文件划分：开发时，我们可以使用一个js文件来装载要用到的javascript文件（如build.js）。这样做的好处是，在提测前构建的时候，无需修改相应的html或模板。
+关于文件划分：开发时，我们可以使用一个js文件来装载要用到的**JavaScript**文件（如build.js）。这样做的好处是，在提测前构建的时候，无需修改相应的html或模板。
 
 
 #### 开发时外部js装载
 
   
-  :::javascript
-    document.write('<script type="text/javascript" src="/src/UIBase.js"></script>');
-  document.write('<script type="text/javascript" src="/src/UIManager.js"></script>');
-  document.write('<script type="text/javascript" src="/src/ui/MonthView.js"></script>');
-  document.write('<script type="text/javascript" src="/src/ui/Calendar.js"></script>');
-  document.write('<script type="text/javascript" src="/src/ui/Link.js"></script>');
-  document.write('<script type="text/javascript" src="/src/ui/Button.js"></script>');
-  document.write('<script type="text/javascript" src="/src/ui/TextInput.js"></script>');
-  document.write('<script type="text/javascript" src="/src/ui/BaseBox.js"></script>');
-  document.write('<script type="text/javascript" src="/src/ui/CheckBox.js"></script>');
-  document.write('<script type="text/javascript" src="/src/ui/RadioBox.js"></script>');
+{% highlight JavaScript %}
+    document.write('<script type="text/**JavaScript**" src="/src/UIBase.js"></script>');
+  document.write('<script type="text/**JavaScript**" src="/src/UIManager.js"></script>');
+  document.write('<script type="text/**JavaScript**" src="/src/ui/MonthView.js"></script>');
+  document.write('<script type="text/**JavaScript**" src="/src/ui/Calendar.js"></script>');
+  document.write('<script type="text/**JavaScript**" src="/src/ui/Link.js"></script>');
+  document.write('<script type="text/**JavaScript**" src="/src/ui/Button.js"></script>');
+  document.write('<script type="text/**JavaScript**" src="/src/ui/TextInput.js"></script>');
+  document.write('<script type="text/**JavaScript**" src="/src/ui/BaseBox.js"></script>');
+  document.write('<script type="text/**JavaScript**" src="/src/ui/CheckBox.js"></script>');
+  document.write('<script type="text/**JavaScript**" src="/src/ui/RadioBox.js"></script>');
   // ......
                   
-
+{% endhighlight %}
 
 [info]:
 切勿以document.write输出静态js引用的方式上线！在IE下，document.write无法保证脚本加载的时序性。经过测试，我们认为对于同域的静态资源，时序型可以保证，所以开发时可以采用这种方式。
@@ -2117,9 +2117,9 @@ script标签中必选的属性为type与src。
 
 
 
-## 第三方javascript
+## 第三方**JavaScript**
 
-有时候，我们开发的javascript是为了给第三方页面提供服务的（广告、开放api...），我们的js会被运行在各种各样的页面环境中。相比环境完全可控的js开发，我们需要关注一些额外的东西：
+有时候，我们开发的**JavaScript**是为了给第三方页面提供服务的（广告、开放api...），我们的js会被运行在各种各样的页面环境中。相比环境完全可控的js开发，我们需要关注一些额外的东西：
 
 
 ### 全局变量冲突
@@ -2130,11 +2130,11 @@ script标签中必选的属性为type与src。
 #### 隔离作用域，防止变量冲突
 
   
-  :::javascript
+{% highlight JavaScript %}
     (function () {
       var i = 0;
   })();
-                  
+      {% endhighlight %}            
 
 对于提供api而必须暴露的全局变量，首先减少暴露的个数，以1个为宜。通过挂载到window的property的方式暴露。
 
@@ -2142,7 +2142,7 @@ script标签中必选的属性为type与src。
 #### 全局变量暴露
 
   
-  :::javascript
+{% highlight JavaScript %}
     (function () {
       function BaiduClass() {
       }
@@ -2150,7 +2150,7 @@ script标签中必选的属性为type与src。
       window.BaiduClass = BaiduClass;
   })();
                   
-
+{% endhighlight %}
 
 
 ### 字符编码
@@ -2163,14 +2163,14 @@ script标签中必选的属性为type与src。
 #### 字符编码转换
 
   
-  :::javascript
+{% highlight JavaScript %}
     // 原始代码
   var str = '中国';
       
   // unicode转码后：
   var str = '\u4e2d\u56fd';
                   
-
+{% endhighlight %}
 
 [info]:
 unicode转码能带来字符编码的安全性。但是对于脚本执行环境编码可控的页面，不建议进行unicode转码。因为会给js文件增加额外的字节大小。

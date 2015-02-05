@@ -14,6 +14,8 @@ tags: ['JavaScript', 'Styleguide']
 - *应当*指代*SHOULD*，不拥有强制性但建议实施，建议各项目组进一步明确定义
 - *可以*指代*MAY*，不拥有强制性但建议实施，建议各项目组进一步明确定义
 
+----
+
 ## 行长度
 
 每一行代码严格以**80**字符为最大长度，即一行包括前后的空格，不得超过**80**个字符。
@@ -139,7 +141,7 @@ if (user.isAuthenticated()
 
 在特定的位置加上空格有助于代码的可读性，以下位置*必须*加上空格：
 
-- 除括号外，所有运算符的前后，如
+- 除括号外，所有运算符的前后，如`+`, `-`等等
 - 用作代码块起始的左大括号`{`前，包括`if`、`else`、`try`、`finally`这些关键字之后，以及**函数定义的参数列表**之后
 - 以下关键字之后：`for`、`switch`、`while`
 - 对象初始化（`{ ... }`）的每个属性名的冒号`:`后
@@ -190,13 +192,15 @@ var foo = function(x, y, z) {
 如果对象属性较多导致每个属性一行占用空间过大，*可以*按语义或逻辑进行分组的组织，如：
 
 {% highlight JavaScript %}
-    // 英文-数字的映射
-    var mapping = {
-        one: 1, two: 2, three: 3, four: 4, five: 5,
-        six: 6, seven: 7, eight: 8, nine: 9, ten: 10,
-        eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15,
-        sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19, twenty: 20
-    };
+
+// 英文-数字的映射
+var mapping = {
+    one: 1, two: 2, three: 3, four: 4, five: 5,
+    six: 6, seven: 7, eight: 8, nine: 9, ten: 10,
+    eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15,
+    sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19, twenty: 20
+};
+
 {% endhighlight %}
 
 通过5个一组的分组，将每一行控制在合理的范围内，并且按逻辑进行了切分。
@@ -256,6 +260,7 @@ order.data.read('id=' + me.model.id, attachDataToModel, 300);
 严格按照每个对象的起始`{`和结束`}`在独立一行的风格书写，如：
 
 {% highlight JavaScript %}
+
 var array = [
     {
         // ...
