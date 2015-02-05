@@ -31,7 +31,13 @@ This is a very exclusive collection of only must-have JavaScript links. I'm only
 * [ES6 Modules: The Final Syntax](http://www.2ality.com/2014/09/es6-modules-final.html) by @rauschma #AMDisDead
 
 
+## Required Reading
+
+* [The Tech Behind the New Twitter.com](https://blog.twitter.com/2010/tech-behind-new-twittercom) The Twitter.com redesign on 2010, publicly switched to client-side templating, turning the server into something more like a simple API
+* [Facebook just taught us all how to build websites](https://medium.com/@ericflo/facebook-just-taught-us-all-how-to-build-websites-51f1e7e996f2)
+
 ## Required Viewing
+
 * [Asynchronous Programming at Netflix](https://www.youtube.com/watch?v=gawmdhCNy-A) - [Jafar Husain](https://twitter.com/jhusain)
 * [David Nolen: Immutability: Putting The Dream Machine To Work](https://www.youtube.com/watch?v=SiFwRtCnxv4) - [David Nolen](https://twitter.com/swannodette)
 * [Delivering the Goods](https://www.youtube.com/watch?v=R8W_6xWphtw) Paul Irish on one of the most important but overlooked topics in the development world today - page load times.
@@ -84,7 +90,7 @@ This is a very exclusive collection of only must-have JavaScript links. I'm only
 
 * [Browserify](http://browserify.org/) Bundle modules for the browser.
 * [How to use NPM as a Build Tool](http://blog.keithcirkel.co.uk/how-to-use-npm-as-a-build-tool/)
-
+* [Webpack](http://webpack.github.io/) Module bundler
 
 ### Lint / Quality checkers
 
