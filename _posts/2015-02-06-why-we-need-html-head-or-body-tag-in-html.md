@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Why we need &lt;html&gt;, &lt;head&gt; or &lt;body&gt; tag?"
+title: "Why we need &lt;html&gt;, &lt;head&gt; or &lt;body&gt;?"
 description: ""
 category: 
 tags: []

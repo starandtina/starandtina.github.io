@@ -12,8 +12,6 @@ Originally forked from [Essential JavaScript Links](https://gist.github.com/eric
 This is a very exclusive collection of only must-have JavaScript links. I'm only listing my favorite links. Nothing else makes the cut. Feel free to suggest links if you think they're good enough to make this list. The really curious should feel free to browse the comments to find other links. I can't guarantee the quality of links in the comments.
 
 
-## Required Reading (Online resources)
-
 * [Learn JavaScript Essentials (for all skill levels)](https://medium.com/javascript-scene/learn-javascript-b631a4af11f2) - One clear path to JavaScript mastery
 * [JavaScript Training Sucks](https://medium.com/javascript-scene/javascript-training-sucks-284b53666245) 99 out of 100 JS developers lack the skills they need to fill hundreds of thousands of jobs. We can change that.
 * [The Two Pillars of JavaScript Part 1: Prototypal OO](https://medium.com/javascript-scene/the-two-pillars-of-javascript-ee6f3281e7f3)
@@ -29,12 +27,10 @@ This is a very exclusive collection of only must-have JavaScript links. I'm only
 * [Typed JavaScript](http://www.2ality.com/2014/10/typed-javascript.html) - Excellent post about the state of typed JavaScript by Axel Rauschmayer
 * [Taming the Asynchronous Beast with CSP in JavaScript](http://jlongster.com/Taming-the-Asynchronous-Beast-with-CSP-in-JavaScript) - James Long
 * [ES6 Modules: The Final Syntax](http://www.2ality.com/2014/09/es6-modules-final.html) by @rauschma #AMDisDead
-
-
-## Required Reading
-
 * [The Tech Behind the New Twitter.com](https://blog.twitter.com/2010/tech-behind-new-twittercom) The Twitter.com redesign on 2010, publicly switched to client-side templating, turning the server into something more like a simple API
 * [Facebook just taught us all how to build websites](https://medium.com/@ericflo/facebook-just-taught-us-all-how-to-build-websites-51f1e7e996f2)
+* [JavaScript-Garden](http://bonsaiden.github.io/JavaScript-Garden/): JavaScript Garden is a growing collection of documentation about the most quirky parts of the JavaScript programming language. 
+* [MindBEMding – getting your head ’round BEM syntax](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/): BEM – meaning block, element, modifier – is a front-end naming methodology thought up by the guys at Yandex. It is a smart way of naming your CSS classes to give them more transparency and meaning to other developers. They are far more strict and informative, which makes the BEM naming convention ideal for teams of developers on larger projects that might last a while.
 
 ## Required Viewing
 
@@ -43,6 +39,22 @@ This is a very exclusive collection of only must-have JavaScript links. I'm only
 * [Delivering the Goods](https://www.youtube.com/watch?v=R8W_6xWphtw) Paul Irish on one of the most important but overlooked topics in the development world today - page load times.
 
 
+## Required Subscribing
+
+* [JavaScript Weekly](http://javascriptweekly.com/): A free, once–weekly e-mail round-up of JavaScript news and articles.
+* [HTML5 Weekly](http://html5weekly.com): A once–weekly HTML5 and Web Platform technology roundup.
+CSS 3, Canvas, WebSockets, WebGL, Native Client, and more.
+* [CSS Weekly](http://css-weekly.com/): A weekly e-mail roundup of css articles, tutorials, experiments and tools curated by [Zoran Jambor](http://twitter.com/ZoranJambor).
+* [Responsive Design Weekly](http://responsivedesignweekly.com/): A free, once–weekly round-up of responsive design articles, tools, tips, tutorials and inspirational links.
+* [Web Design Weekly](http://web-design-weekly.com/): A once a week email with no spam, no rambling. Just pure awesome links to the best news and articles to hit the interweb during the week.
+* [Node Weekly](http://nodeweekly.com/): A free, once–weekly e-mail round-up of Node.js news and articles
+* [EchoJS](http://www.echojs.com/)
+* [DailyJS](http://dailyjs.com/): A JavaScript Blog.
+* [JavaScript Jabber](http://devchat.tv/js-jabber/)
+
+## Awesomeness
+
+* [A curated list of awesome awesomeness](https://github.com/bayandin/awesome-awesomeness): A curated list of amazingly awesome awesomeness. Also available on: [Awesome-Awesomeness.ZEEF.com](https://awesome-awesomeness.zeef.com/alexander.bayandin)
 
 ## Spec
 
@@ -166,15 +178,6 @@ This is a very exclusive collection of only must-have JavaScript links. I'm only
 * IRC ##JavaScript irc://irc.freenode.net/javascript
 * IRC #node.js irc://irc.freenode.net/node.js
 * IRC #io.js irc://irc.freenode.net/io.js - the Node fork
-
-
-## News
-* [JavaScript Weekly](http://javascriptweekly.com/)
-* [Node Weekly](http://nodeweekly.com/)
-* [HTML5 Weekly](http://html5weekly.com/)
-* [EchoJS](http://www.echojs.com/)
-* [DailyJS](http://dailyjs.com/)
-* [JavaScript Jabber](http://devchat.tv/js-jabber/)
 
 
 ## Pasting / sharing code
