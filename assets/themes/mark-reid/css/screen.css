@@ -179,12 +179,16 @@ sup { line-height: 1ex; }
 	line-height: 1.714em;
 }
 blockquote {
-	padding: 0 2.8em;
 	margin: 1.714em 0;
-	color: #444;
+	padding: 1em 1.285em;
+	border-left: 6px solid #b8a59b;
+	color: #666;
+	background: #f6f6f6;
 	font-size: 0.875em;
 	line-height: 1.714em;
 }
+
+blockquote p { margin: 0; }
 
 .note {
 	padding-top: 0.5em; 
