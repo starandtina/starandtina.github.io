@@ -43,10 +43,12 @@ tags: []
 
 function foo() {
   var id = 0;
-  return function() { return id++; }
+  return function () {
+    return id++;
+  }
 }
-    
-var makeid = x();
+
+var makeid = foo();
 
 var i = makeid();
 var j = makeid();
