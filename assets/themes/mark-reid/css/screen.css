@@ -603,3 +603,7 @@ img.maruku-png { }
 .image-wrapper img {
 	max-width: 40em;
 }
+
+ol ol {
+	padding-left: 25px;
+}
