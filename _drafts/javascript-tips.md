@@ -8,6 +8,10 @@ tags: []
 {% include JB/setup %}
 
 本文是关于JavaScript的一些常用Tips。
+{: .countheads }
+
+* ToC
+{:toc}
 
 ## 结构
 

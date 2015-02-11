@@ -7,9 +7,10 @@ tags: ['Frontend', 'JavaScript', 'Tricks', 'Best Practices']
 ---
 {% include JB/setup %}
 
-本文是关于**JavaScript**的一些陷阱和最佳实践中的一部分。
+本文是关于**JavaScript**的陷阱和最佳实践中的一部分。
 
-# 给未声明的变量赋值时千万不要忘记`var`关键字
+## 给未声明的变量赋值时千万不要忘记`var`关键字
+{: .countheads }
 
 给未声明的变量赋值时，JavaScript会自动在全局对象上创建一个新的同名属性（为什么这里不是说全局变量呢？见下面分析），而在浏览器中全局对象就是`window`对象，所以未声明的赋值其实是在`window`对象上创建属性。如下所示：
 
@@ -26,12 +27,12 @@ function doSomething() {
 
 创建全局变量通常会被认为是一种**Bad Practice**，特别是在一个团队开发环境中，随着code base的越来越大，会引起很多不必要的问题。
 
-## 命名冲突
+### 命名冲突
 
 随着全部变量越来越多，命名冲突的危险就越来越大。从另一方面来说，最易维护的代码就是它所有的变量都是本地的。
 通过使用全局对象，可以访问所有其他所有全局对象上预定义的对象、函数和属性，并且所有navtive的JavaScript对象都是在全局对象上预定义的，如果把你自己的变量加入这个scope，那么就很有可能与浏览器的实现或是其它第三方的代码相冲突。
 
-## 代码易碎
+### 代码易碎
 
 如果一个模块或函数依赖与全局变量，那么它就与全局环境紧密偶合。那么如果全局环境发生改变，那么该模块或函数就有可能会发生breaking changes。如下所示：
 
@@ -64,7 +65,7 @@ function sayHello(helloMessage) {
 
 如上代码就不会产生全局依赖，因此也不会被全局环境的改变则影响。延伸开来，也就是说定义函数时，最好让更多的数据相对于函数来说是本地变量，任何来自于函数外的数据都应该通过参数传递进入函数，这样做的话，你就可以将函数和全局环境隔离开，同时允许你对函数和全局做出修改而不会互相影响。
 
-## 可测试性差
+### 可测试性差
 
 最近，我开始为某个大型的SPA应添加前端测试，从最开始的测试框架选型到搭建整个前端测试环境，我发现是那么的困难。
 因为虽然我们引入了AMD以及RequireJS作为模块的加载器，但是还是严重依赖于很多全局变量，如Backbone, jQuery, Handlebars, Highcharts等等，以至于添加UT的过程是如此的艰难。
@@ -82,7 +83,7 @@ window.Handlebars = Handlebars;
 
 从测试的角度我们可以看出，保证你的代码模块或是函数不依赖于外部的全局变量可以使你的代码更容易维护，更容易测试，从而更高效。
 
-## 全局变量还是全局属性？
+### 全局变量还是全局属性？
 
 大多数讲JavaScript的文章甚至是JavaScript的书通常都会这么说：“声明全局变量的方式有两种，一种是使用var关键字（在全局上下文中），另外一种是不用var关键字（在代码的任何地方）”。而这样的描述是错误的，要记住的是：**使用var关键字是声明变量的唯一方式**。
 
@@ -128,9 +129,9 @@ typeof bar; // "undefined"
 
 {% endhighlight %}
 
-在一些浏览器（如Chrom, Firefox）中的**console**中运行时可能结果会不正确，请参考该例测试[jsfiddle](http://jsfiddle.net/wn5e3u22/)。如果想知道关于`delelte`背后更多的故事，请移步至[Understanding-delete](http://perfectionkills.com/understanding-delete/)。
+在一些浏览器（如Chrom, Firefox）中的**console**中运行时可能结果会不正确，请参考该例测试[jsfiddle](http://jsfiddle.net/wn5e3u22/)。如果想知道关于`delelte`背后更多的故事，请移步至[Understanding-delete](#[1])。
 
-## IE Bugs
+### IE Bugs
 
 避免未声明赋值的另外一个原因是在`MSHTML DOM`中有一些意思不到的古怪行为。当你在IE中创建一个未声明的赋值时，如果标识符的名字与`DOM`元素中的`id`或是`name`属性相同，那么IE会报错。如下所示：
 
@@ -172,9 +173,9 @@ Note that plain variable declarations in global scope, or explicit assignments h
 
 {% endhighlight %}
 
-## Strict 模式
+### Strict 模式
 
-ECMAScript 5为JavaScript引入了strict mode（严格模式）。它的出发点是想让开发者写出更优雅，性能更好的JavaScript代码，从而能更快调试Bugs。
+ECMAScript 5为JavaScript引入了[Strict Mode(严格模式)](#[2])。它的出发点是想让开发者写出更优雅，性能更好的JavaScript代码，从而能更快调试Bugs。
 
 在严格模式下，未声明赋值会直接报错：
 
@@ -189,8 +190,9 @@ foo = 1; // ReferenceError: foo is not defined
 所以，如果你想让你的代码更**strict**，那么最好的选择是避免未声明赋值。
 
 
-# 参考
+### 参考
+{: #references }
 
-* [Understanding delete](http://perfectionkills.com/understanding-delete/)
-* [It’s time to start using JavaScript strict mode](http://www.nczonline.net/blog/2012/03/13/its-time-to-start-using-javascript-strict-mode/)
-* [onloadfunction-considered-harmful](http://perfectionkills.com/onloadfunction-considered-harmful)
+1. {: id='[1]' }[Understanding delete](http://perfectionkills.com/understanding-delete/)
+1. {: id='[2]' }[It’s time to start using JavaScript strict mode](http://www.nczonline.net/blog/2012/03/13/its-time-to-start-using-javascript-strict-mode/)
+1. {: id='[3]' }[onloadfunction-considered-harmful](http://perfectionkills.com/onloadfunction-considered-harmful)

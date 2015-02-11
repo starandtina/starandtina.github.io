@@ -63,7 +63,9 @@ CSS 3, Canvas, WebSockets, WebGL, Native Client, and more.
 ## Awesomeness
 
 * [A curated list of awesome awesomeness](https://github.com/bayandin/awesome-awesomeness): A curated list of amazingly awesome awesomeness. Also available on: [Awesome-Awesomeness.ZEEF.com](https://awesome-awesomeness.zeef.com/alexander.bayandin)
-* [Front-end Feeds](https://github.com/impressivewebs/frontend-feeds)
+* [Front-end Feeds](https://github.com/impressivewebs/frontend-feeds): An up to date list of RSS feeds for front-end developers.
+* [RFC Reader](http://www.rfcreader.com/): An online reader(viewer) for IETF RFCs.
+* [HTTP Specifications](http://httpwg.github.io/): You could find anything you want for Hypertext Transfer Protocol - the core protocol of the World Wide Web.
 
 ## Spec
 

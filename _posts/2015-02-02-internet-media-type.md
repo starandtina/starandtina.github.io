@@ -22,7 +22,7 @@ tags: ['Frontend', 'MIME']
 
 [官方的媒体类型](https://www.iana.org/assignments/media-types/media-types.xhtml)注册是由[IANA](http://en.wikipedia.org/wiki/Internet_Assigned_Numbers_Authority)管理的。
 
-# 常用的媒体类型及其扩展名
+## 常用的媒体类型及其扩展名
 
 | 扩展名 | Internet Media Type |
 | :-------------: | :------------- :|

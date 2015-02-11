@@ -8,6 +8,10 @@ tags: []
 {% include JB/setup %}
 
 本文主要收集平常使用到的一些JavaScript Codes和Snippets。
+{: .countheads }
+
+* ToC
+{:toc}
 
 ## Table of Contents
 
@@ -37,7 +41,7 @@ tags: []
 
 ----
 
-## <a name='1'>通过闭包构造私有成员</a>
+### <a name='1'>通过闭包构造私有成员</a>
 
 {% highlight JavaScript %}
 
@@ -73,7 +77,7 @@ function Container(param) {
 
 如果想了解更多关于私有成员的实现请参考[Private properties in JavaScript](https://curiosity-driven.org/private-properties-in-javascript).
 
-## <a name='2'>使用闭包保存变量所在的作用域</a>
+### <a name='2'>使用闭包保存变量所在的作用域</a>
 
 {% highlight JavaScript %}
 
@@ -105,7 +109,7 @@ getClickHandler: function () {
 
 以上编程模式，是经常会使用到的其中一种闭包写法。
 
-## <a name='3'>闭包与变量（闭包所能访问的变量，它是可以被改变的）</a>
+### <a name='3'>闭包与变量（闭包所能访问的变量，它是可以被改变的）</a>
 
 闭包是指在建立函数时，绑定了当时作用域下的有效的自由变量。基于此，首先我们给闭包下个定义：
 
@@ -186,9 +190,9 @@ myAlerts[1](); // 1
 
 {% endhighlight %}
 
-## <a name='4'>创建对象的各种方法(八仙过海，各显神通)</a>
+### <a name='4'>创建对象的各种方法(八仙过海，各显神通)</a>
 
-### 自定义构造器函数
+#### 自定义构造器函数
 
 {% highlight JavaScript %}
 
@@ -198,7 +202,7 @@ var obj = new function() {
   
 {% endhighlight %}
 
-### 对象字面量
+#### 对象字面量
 
 {% highlight JavaScript %}
 
@@ -208,9 +212,9 @@ var obj = {
 
 {% endhighlight %}
 
-### Object.create
+#### Object.create
 
-`Object.create`是[ECMAScript 5](http://es5.github.io/#x15.2.3.5)引入的，它是`new`的一个变体，它可以让你基于一个原型对象来创建一个新的对象。
+`Object.create`是[ECMAScript 5](http://es5.github.io/#x15.2.3.5)引入的新方法，它是`new`的一个变体，它可以让你基于一个原型对象来创建一个新的对象。
 
 {% highlight JavaScript %}
 
@@ -277,7 +281,7 @@ console.log(bar.propertyArray); //logs []
 {% endhighlight %}
 
 
-## <a name='5'>定义对象方法</a>
+### <a name='5'>定义对象方法</a>
 
 {% highlight JavaScript %}
 
@@ -295,7 +299,7 @@ my1.foo();
 
 {% endhighlight %}
 
-## <a name='6'>改变目标元素的显示/隐藏状态</a>
+### <a name='6'>改变目标元素的显示/隐藏状态</a>
 
 {% highlight JavaScript %}
 
@@ -316,7 +320,7 @@ T.dom.toggle = function (element) {
 1. 或者，如果是使用`className`样式或是同时使用内联/非内联样式，可以通过`className`以及`display`属性来完成
 1. 又或者，避免使用`elem.style.display = ''`这种形式，而使用`elem.style.display = 'none'|'block'`的这种形式
 
-## <a name='7'>修改目标元素的CSS样式</a>
+### <a name='7'>修改目标元素的CSS样式</a>
 
 {% highlight JavaScript %}
 
@@ -329,7 +333,7 @@ elem.className  = ...
 
 修改内联样式或是修改`className`即可。
 
-## <a name='8'>使用`className`</a>
+### <a name='8'>使用`className`</a>
 
 {% highlight JavaScript %}
 
@@ -340,13 +344,13 @@ elem.className = 'foo';
 
 使用`className`，而不是`class`，那是因为在ECMAScript 5中class是一个[Future Reserved Word](http://es5.github.io/#x7.6.1.2)，而在[ECMAScript 6](https://people.mozilla.org/~jorendorff/es6-draft.html#sec-reserved-words)中`class`已经是一个关键词了。
 
-## <a name='9'>DOM Level 0 中的事件处理模型</a>
+### <a name='9'>DOM Level 0 中的事件处理模型</a>
 
 >事实上，并不存在DOM Level 0标准，它只存在于DOM的历史长河中。DOM Level 0通常被认为是Internet Explorer 4.0 and Netscape Navigator 4.0中所支持的`DHTML`。
 
 DOM Level 0中的事件处理模型由Netscape Navigator引入，有二种主要的类型：
 
-### 内联模型
+#### 内联模型
 
 在内联事件模型中，事件处理器是作为HTML元素的属性添加的。如下所示：
 
@@ -358,7 +362,7 @@ DOM Level 0中的事件处理模型由Netscape Navigator引入，有二种主要
 
 如果想了解更多，请参考[这里](http://www.quirksmode.org/js/events_early.html)。
 
-### 传统模型
+#### 传统模型
 
 在传统事件模型中，事件处理器是通过JavaScript脚本添加或删除的。与内联模型相同的是，每一个事件一次只能绑定一个事件处理器。
 
@@ -371,11 +375,11 @@ element.onclick = null; // 移除事件处理器
 
 如果想了解更多，请参考[这里](http://www.quirksmode.org/js/events_tradmod.html)。
 
-## <a name='10'>使用`id`属性</a>
+### <a name='10'>使用`id`属性</a>
 
 在使用`id`属性时，文档中所有的元素必须都有唯一的`id`。对于多个元素使用相同的id，在IE中会导致各种种样的问题。
 
-## <a name='11'>动态添加`className`</a>
+### <a name='11'>动态添加`className`</a>
 
 {% highlight JavaScript %}
 
@@ -391,7 +395,7 @@ for (var i = 0; i < rows.length; i++) {
 
 在上面的代码中，展示了给一个table添加class以实现斑马线的效果。对于`onmouseover/onmouseout`的JS事件处理函数也可以通过这种方式添加。
 
-## <a name='12'>解脱DOM</a>
+### <a name='12'>解脱DOM</a>
 
 {% highlight JavaScript %}
 
@@ -404,9 +408,9 @@ $('foo').related = $('bar');
 更多请参考[IE的Memory Leak](http://javascript.crockford.com/memory/leak.html)。
 
 
-## <a name='13'>强制浏览器Layout/Reflow</a>
+### <a name='13'>强制浏览器Layout/Reflow</a>
 
-### 浏览器渲染
+#### 浏览器渲染
 
 首先有个问题：浏览器是如何渲染一个Web页面的？
 从整体上来看，下面是渲染引擎在取得内容之后的基本流程：
@@ -423,11 +427,11 @@ $('foo').related = $('bar');
 4. 针对每一个`Renderer`，还需要计算它在屏幕上的确切坐标，这一步叫做`layout`
 5. 最后就是`painting`，即遍历**render树**，并使用UI后端层在浏览器窗口中绘制每个节点
 
-### 重绘(Repaint/Redraw)
+#### 重绘(Repaint/Redraw)
 
 修改元素样式（如`background-color`, `border-color`, `visibility`）时，如果并不影响元素在页面中的位置，那么浏览器只是会使用新的样式信息重绘该元素。
 
-### Layout/Reflow
+#### Layout/Reflow
 
 另外一些改变会影响文档的内容，结构或是元素位置，那么就会发生重绘（Webkit叫**Layout**，Gecko叫**Reflow**）。通常如下的一些修改会触发重新定位或回流：
 
@@ -479,7 +483,7 @@ var bWidth = elementB.offsetWidth;
 * [Speedtracer Examples](https://developers.google.com/web-toolkit/speedtracer/speed-tracer-examples)
 
 
-## <a name='14'>在JavaScript中获取内联CSS样式</a>
+### <a name='14'>在JavaScript中获取内联CSS样式</a>
 
 我们可以通过`x.style`来访问内联样式，如下所示。另外，内联样式会覆盖掉其它的样式，除非使用`!important`来提高指定样式规则的权重。
 
@@ -502,7 +506,7 @@ element.style.color ＝ 'red';
 
 否则，`color` 都是无效的。
 
-## <a name='15'>DOM/HTML: 属性那是相当有用的</a>
+### <a name='15'>DOM/HTML: 属性那是相当有用的</a>
 
 {% highlight JavaScript %}
 
@@ -525,7 +529,7 @@ element.style.color ＝ 'red';
 
 页面加载时，JS代码可以遍历所有的表单字段，并且如果pattern和required属性存在的话，那么就添加一个validate函数，该函数主要负责在表单提交前，根据正则表达式来验证文本框中的内容。
 
-## <a name='16'>简单的动画</a>
+### <a name='16'>简单的动画</a>
 
 {% highlight JavaScript %}
 
@@ -555,7 +559,7 @@ setInterval('progress()', 500);
 
 {% endhighlight %}
 
-## <a name='17'>简单的淡入/淡出效果</a>
+### <a name='17'>简单的淡入/淡出效果</a>
 
 淡入/淡出效果一般用于从页面中添加/删除某个元素时。
 
@@ -580,7 +584,7 @@ fade();
 
 更多的可以参考[这里](http://peter.michaux.ca/articles/javascript-animations-from-scratch "JavaScript Animations from Scratch")。
 
-## <a name='18'>禁止某个资源的Caching</a>
+### <a name='18'>禁止某个资源的Caching</a>
 
 {% highlight JavaScript %}
 
@@ -590,7 +594,7 @@ document.write("< img src='foo.jpg?" + Math.random() + "' />");
 
 我们可以修改**URL**，添加了一个伪随机数，这是一种常用的手段，常常用于禁止浏览器缓存图片。
 
-## <a name='19'>DOM/HTML:常用的方法</a>
+### <a name='19'>DOM/HTML:常用的方法</a>
 
 更多的信息请参考[quirksmode](http://quirksmode.org/ "http://www.quirksmode.org/dom/w3c_core.html#gettingelements")。
 
@@ -605,9 +609,9 @@ document.write("< img src='foo.jpg?" + Math.random() + "' />");
 
 我们常用的一些JavaScript库，如[jQuery](http://api.jquery.com/category/selectors/), [Prototype](http://prototypejs.org/doc/latest/dom/dollar-dollar/)等等，已经实现了通过CSS2/CSS3选择器返回元素集合，所以除了这些原生的方法外，我们还可以有更多的选择。
 
-### 节点属性
+#### 节点属性
 
-#### [node.nodeType](http://www.w3.org/TR/DOM-Level-2-Core/core.html#ID-1950641247)
+##### [node.nodeType](http://www.w3.org/TR/DOM-Level-2-Core/core.html#ID-1950641247)
 
 `nodeType'包含一个表示元素类型的数字。我们经常用到的如下所示：
 
@@ -619,7 +623,7 @@ document.write("< img src='foo.jpg?" + Math.random() + "' />");
 1. Node.DOCUMENT_NODE == 9
 1. Node.DOCUMENT_FRAGMENT_NODE == 11
 
-#### node.nodeValue
+##### node.nodeValue
 
 对文本节点来说，`nodeValue`表示真正的文本。value of text for a Text node (useful for #text). Null for most other nodes (including element nodes) devedge link 
 
@@ -639,13 +643,13 @@ var text = x.firstChild.nodeValue;
 而对于属性节点来说，`nodeValue`则表示的是属性值。
 除此之外，对于`document`和其它元素节点来说，[它会返回null](https://developer.mozilla.org/en-US/docs/Web/API/Node.nodeValue)。
 
-#### node.nodeName
+##### node.nodeName
 
 `nodeName`是最有用的一个属性。与它的名字一样，它包含了节点的名字。元素节点的名字始终与标签名相同，属性节点的名字始终与属性名字相同，文本节点的名字始终是`#text`，而文档节点的名字始终是`#document`。
 
 只是有一点我们需要注意：对于HTML元素节点来说，不管你在HTML中写的是大写或是小写，`nodeName`都会返回大写的标签名。
 
-#### node.getAttribute(name)
+##### node.getAttribute(name)
 
 返回节点上你需要查询的属性的值。
 
@@ -667,21 +671,21 @@ imgEl.setAttribute('src', 'sample.png');
 
 {% endhighlight %}
 
-### 节点上的操作
+#### 节点上的操作
 
-#### 搜索节点
+##### 搜索节点
 
 1. Children: firstChild, lastChild, childNodes
 2. Siblings: nextSibling, previousSibling
 3. Parents: parentNode
 
-#### 添加/删除 nodes
+##### 添加/删除 nodes
 
 1. removeChild(node), appendChild(node)
 2. insertBefore(newNode, referenceNode)
 3. replaceChild(replacingNode, replacedNode)
 
-## <a name='20'>从DOM树中移除当前的node</a>
+### <a name='20'>从DOM树中移除当前的node</a>
 
 {% highlight JavaScript %}
 
@@ -690,7 +694,7 @@ node.parentNode.removeChild(node);
 
 {% endhighlight %}
 
-## <a name='21'>在另外一个节点前插入一个节点</a>
+### <a name='21'>在另外一个节点前插入一个节点</a>
 
 {% highlight JavaScript %}
 
@@ -700,7 +704,7 @@ x.parentNode.insertBefore(x,y);
 
 {% endhighlight %}
 
-### 返回值
+#### 返回值
 
 `insertBefore()`返回的是被插入节点的一个引用。
 
@@ -712,7 +716,7 @@ var x = y.insertBefore(z, a);
 
 那么现在`x`就包含对`z`的一个引用。
 
-## <a name='22'>克隆一个节点（浅/深克隆）</a>
+### <a name='22'>克隆一个节点（浅/深克隆）</a>
 
 {% highlight JavaScript %}
 
@@ -723,7 +727,7 @@ var newNode = node.cloneNode(true|false); // true=deep copy, else shallow
 
 需要注意的是，克隆节点时，并不会同时克隆事件处理函数。
 
-## <a name='23'>使用另外一个节点替换一个子节点</a>
+### <a name='23'>使用另外一个节点替换一个子节点</a>
 
 `replaceChild()`方法可以允许你将一个节点替换为另外一个节点。如果被插入的节点已经在DOM中了，那么它首先会从当前的DOM中位置移除掉。并且插入的节点和被替换的节点都会保持它们的所有子节点不变。
 
@@ -735,7 +739,7 @@ x.parentNode.replaceChild(x, y);
 
 {% endhighlight %}
 
-### 返回值
+#### 返回值
 
 `replaceChild()`返回的是被替换的节点的一个引用。
 
