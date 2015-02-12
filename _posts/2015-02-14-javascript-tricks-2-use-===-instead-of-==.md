@@ -47,6 +47,8 @@ foo === foo // true
 
 {% endhighlight %}
 
+>注意：`NaN`并不等于它自己，即`NaN === NaN`返回`false`。所以我们必须使用其它方法来判断某个值是否为`NaN`。
+
 #### 普通判等运算符`==`
 
 [ES5 11.9.3](http://es5.github.io/#x11.9.3)描述了`==`的具体算法。我们以`x == y`为例：
@@ -71,6 +73,10 @@ true == 'foo' // false
 '  ' == 0 // true
 
 'foo' == new String('foo') // true
+
+[] == 0 // true
+
+'abc' == new String('abc') // true
 
 {% endhighlight %}
 
@@ -97,7 +103,7 @@ true == '2' // false 与常识相反
 {% endhighlight %}
 
 `true == 2`为`true`是因为`true`会先被转化为**1**，然后再执行`1 == 2`，所以返回`false`。
-大家可能会觉得最后一个很奇怪，为什么`'\r\n\t 111 \t' == 111`会返回`true`，那是因为`'\r\n\t 111 \t'`在转换为`Number`时，会[删除掉数值前后的空白符](#[1])。
+大家可能会觉得最后一个很奇怪，为什么上面代码中最后一个例子`'\r\n\t 111 \t' == 111`会返回`true`，那是因为`'\r\n\t 111 \t'`在执行`==`前，必须先转换为`Number`，而这样会[删除掉数值前后的空白符](#[1])。
 
 ### 什么时候可以使用`==`
 
@@ -151,6 +157,7 @@ if (id == 111111) {
 
 {% endhighlight %}
 
+这个时候，我们是去检查`id`是`111111`或是`'111111'`。
 但是，如果别人来看你的代码时，他会认为`id`是`Number`类型的。那么，为什么不直接告诉读你代码的人它是我们需要的是`Number`类型的呢？如果不是，我们需要先进行显示的类型转换。
 
 {% highlight JavaScript %}
@@ -171,7 +178,7 @@ true == new Boolean(true)
 
 {% endhighlight %}
 
-如果你看到下面的这段代码，你会认为他是想做什么？
+如果你看到下面的这段代码，你会认为写这段代码的人是想做什么？
 
 {% highlight JavaScript %}
 
@@ -196,8 +203,34 @@ str.valueOf() == 'foo'
 
 {% endhighlight %}
 
+#### 如果你知道你比较的对象类型
+
+比如，当我们[以函数的形式调用`String`构造函数](#[3])时，它会自动完成类型转换，如下代码所示：
+
+{% highlight JavaScript %}
+
+if (String(foo) == 'foo') {
+  ...
+}
+
+{% endhighlight %}
+
+你知道`String(foo)`返回的肯定会是`String`类型，所以这里使用`==`是没有任何问题的，因为我们可以保证这里不可能会有任何的类型转换的。
+但是，我们仍然可以不用这样做：
+
+* 一致性：在这里使用`==`，并没有给我们带来任何收益，那么我们为什么不使用更简单的`===`呢?
+* 简单性和性能：一般来说，`===`是判断是否相等最简单的方法，那是因为它并不会对它的操作数进行类型转换。虽然性能测试结果在所有的**JavaScript**引擎中不尽相同，但对大多数浏览器来说，[`===`与`==`性能差不多，甚至更快](#[4])。
+
+### 总结
+
+虽然许多种情况下，看似使用`==`不伤大雅，但是*不使用`==`*已经是一条不成文的规则，不仅仅是对新手而已。
+
+>代码中少一些花哨，那么就更容易理解和维护。
+
 ### 参考
 {: #references }
 
 1. {: id='[1]' }[ECMAScript 5: ToNumber](http://es5.github.io/#x9.3.1)
 2. {: id='[2]' }[ECMAScript 5: ToPrimitive](http://es5.github.io/#x9.1)
+3. {: id='[3]' }[The String Constructor Called as a Function](http://es5.github.io/#x15.5.1)
+4. {: id='[4]' }[JSPerf: Equality vs Strict Equality](http://jsperf.com/equality-vs-strict-equality)

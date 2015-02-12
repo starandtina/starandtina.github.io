@@ -8,6 +8,13 @@
 
   {{ content }}
 
+  <h3>Related Posts</h3>
+  <ul class="related-posts">
+    {% for post in site.related_posts | limit: 3 %}
+      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+
   <address class="signature">
     <a class="author" href="{{ HOME_PATH }}">{{ site.author.name }}</a> 
     <span class="date">{{ page.date | date_to_long_string }}</span>

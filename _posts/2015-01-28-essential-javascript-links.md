@@ -3,7 +3,7 @@ layout: post
 title: "Essential JavaScript Links"
 description: "Essential JavaScript Links"
 category: ['Frontend', 'JavaScript']
-tags: []
+tags: ['Frontend', 'JavaScript', 'HTML', 'CSS', 'Web Components', 'CI', 'Build']
 ---
 {% include JB/setup %}
 
