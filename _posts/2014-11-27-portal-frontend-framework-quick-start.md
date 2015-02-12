@@ -7,11 +7,14 @@ tags: ['Frontend', 'JavaScript', 'js-dev', 'portal']
 ---
 {% include JB/setup %}
 
-# Overview
 
 This page describes the guidelines that front-end engineers develop and test the components using the UI framework of Portal and quickly familiar with our basic ideas behind the scene.
+{: .countheads }
 
-# Prerequisites
+* ToC
+{:toc}
+
+### Prerequisites
 
 Installing the following tools before you continue.
 
@@ -21,38 +24,46 @@ Installing the following tools before you continue.
 If you are working on Mac platform, recommending install them using brew. 
 
 {% highlight Bash %}
+
 brew install git node
 gem install gerrit-cli
+
 {% endhighlight %}
 
-# Setup Dev Env
+### Setup Dev Env
 
-## Step 1: Clone the Repo
+#### Step 1: Clone the Repo
 
 {% highlight Bash %}
+
 git clone https://github.com/starandtina/portal
+
 {% endhighlight %}
 
-## Step 2: Install Dependencies
+#### Step 2: Install Dependencies
 
 {% highlight Bash %}
+
 npm install -g grunt-cli
 npm install -g bower
 npm install && bower install
+
 {% endhighlight %}
 
 If you have encountered **ERR!** like the one below, please run the commands with sudo.
 
 > Please try running this command again as root/Administrator
 
-## Step 3: Run it
+#### Step 3: Run it
 
 {% highlight Bash %}
+
 grunt serve        // development
 grunt serve:dist   // production
+
 {% endhighlight %}
 
-### Tips:
+##### Tips
 
 If you install the environment first time you need run the `grunt serve:dist` before run `grunt serve` to download related libraries;
 if you had encountered the error like follows, you need run the command `launchctl limit maxfiles 4096 4096 && ulimit -n 4096` before you do the grunt serve, or you can append this cmd in your `~/.bashrc` or `~/.zshrc` at your choice.
@@ -84,6 +95,7 @@ By the way, as for the JSON server task, you could find the JSON data file from 
 Example of db.json:
 
 {% highlight JSON %}
+
 {
   "addressBooks": [
     {
@@ -102,24 +114,28 @@ Example of db.json:
     }
   ]
 }
+
 {% endhighlight %}
 
 And then, the JSON server will set up the API interface below for your CRUD operation, so the development of front-end could be separated from web backend and we don't care about the changed of schema or whatever other things you could image.
 
 {% highlight JavaScript %}
+
 http://localhost:3000/addressBooks
 http://localhost:3000/services
+
 {% endhighlight %}
 
-# Define A Simple UI Layout
+### Define A Simple UI Layout
 
 Let's say that you wanna create one `About` page in order to give one brief introduction for our product.
 
-## Step 1: Create Layout Descriptor
+#### Step 1: Create Layout Descriptor
 
 We use the descriptor to define the layout.
 
 {% highlight JavaScript %}
+
 define({
   'type': 'components/layout/simple',
   'children': {
@@ -128,17 +144,19 @@ define({
     }
   }
 });
+
 {% endhighlight %}
 
 As for how Descriptor works, please refer to [here](http://starandtina.github.io/javascript/frontend/js-dev/2014/11/27/portal-frontend-framework-proposal/#ui-abstracted-and-driven-by-json). The type is the path of your component relative to directory of `src/app`.
 
 Here we use the layout of `components/layout/simple`, it only contains one body named `components/about` that is what we need to create.
 
-## Step 2: Create Component
+#### Step 2: Create Component
 
 First off, we need to create the Angular controller named `about.controller.js` which is located at directory of  `src/app/components/about`.
 
 {% highlight JavaScript %}
+
 define([
   'angular',
   'components/about/about.html'
@@ -151,38 +169,46 @@ define([
     }
   ];
 });
+
 {% endhighlight %}
 
 Then, we will create one template named `about.html.jade` or `about.html`(we support JADE and HTML)which is located at directory of `src/app/components/about`.
 
 {% highlight JADE %}
+
 .about-container
   .page-header 
     h1 About US 
       small DBaaS
+
 {% endhighlight %}
+
 or
 
 {% highlight HTML %}
+
 <div class='about-container'>
   <div class='page-header'>
     <h1>About US <small>DBaaS</small></h1>
   </div>
 </div>
+
 {% endhighlight %}
 
 Here we support pure HTML and Jade to write your template.
 However, we strongly recommend to use Jade, as it's a clean, whitespace sensitive syntax for writing HTML.
 
-## Step 3: Run it
+#### Step 3: Run it
 
 {% highlight Bash %}
+
 grunt serve
+
 {% endhighlight %}
 
 After local dev environments starts, then navigate to [About](http://localhost:5601/descriptors/about).
 
-# Define A Complex Component
+### Define A Complex Component
 
 From simple component Step 1 to 3 got an basic static page by component, but as for the production environment, we always need to get the data from backend in order to generate the dynamic page.
 
@@ -190,15 +216,16 @@ In the agile development, the backend and front developer always need coding at 
 
 Currently we use the `/test/mock/db.json` as the mock data, the `/tasks/data_server_task.js` used to define the web server.
 
-## Step 1: Create Layout Descriptor
+#### Step 1: Create Layout Descriptor
 
 the same as the Step1 of previous one.
 
-## Step 2: Create Component
+#### Step 2: Create Component
 
 Let's modify `src/app/components/about/about.controller.js`.
 
 {% highlight JavaScript %}
+
 define([
   'angular',
   'components/about/about.html'
@@ -211,10 +238,13 @@ define([
     }
   ];
 });
+
 {% endhighlight %}
+
 `src/app/components/about/about.html`
 
 {% highlight HTML %}
+
 <div class='about-container'>
   <div class='page-header'>
     <ul>
@@ -222,13 +252,15 @@ define([
     </ul>
   </div>
 </div>
+
 {% endhighlight %}
  
-## Step 3: Define The Model
+#### Step 3: Define The Model
 
 Define the Model with `factory` located at `app/factories/addressModle.js`:
 
 {% highlight JavaScript %}
+
 define([
   'angular'
 ], function (angular) {
@@ -239,13 +271,15 @@ define([
       return $resource('/api/addresses/:id');
     });
 });
+
 {% endhighlight %}
 
-## Step 4: Mock Data
+#### Step 4: Mock Data
 
 Pre insert mock data into `/test/mock/db.json`.
 
 {% highlight JSON %}
+
 {
   "addresses":[
     {"id":1,"name":"PALO ALTO, CA ,USA "},
@@ -253,19 +287,23 @@ Pre insert mock data into `/test/mock/db.json`.
     {"id":3,"name":"TOKYO, JAPAN"}
   ]
 }
+
 {% endhighlight %}
 
-## Step 5: Run it
+#### Step 5: Run it
 
 {% highlight Bash %}
+
 grunt serve
+
 {% endhighlight %}
 
-## Step 6: Write Unit Test
+#### Step 6: Write Unit Test
 
 Here is the unit test for `AboutController` located in `src/app/about/about.controller.js` using `Jasmine` and `Karma`.
 
 {% highlight JavaScript %}
+
 define([
   'base/src/app/components/about/about.controller.js',
   'angular-mocks'
@@ -285,9 +323,10 @@ define([
     });
   });
 });
+
 {% endhighlight %}
 
-# Build & Release & Deploy
+### Build & Release & Deploy
 
 After you finish your coding, next step is to build, release and deploy it on production environments.
 I'd like to build the whole project and optimize it through [Build](https://github.com/starandtina/portal/blob/master/tasks/build_task.js) task, the build files will be put into dist directory by default.  It include:
@@ -312,9 +351,10 @@ grunt distribute:release
 
 Finally, you could deploy it using the compressed package on your web server, such as nginx, apache or third-party CDN(such as [CloudFront](http://aws.amazon.com/cloudfront/)).
 
-{% highlight JavaScript %}
+{% highlight Ruby %}
+
 server {
-  # /usr/share/nginx/www/portal is your root directory
+  ### /usr/share/nginx/www/portal is your root directory
   root /usr/share/nginx/www/portal
   index index.html index.htm
   
@@ -334,12 +374,13 @@ server {
   }
  
   location /docs/docco/ {
-    root /home/ubuntu/portal # /home/ubuntu/portal is the directory of documentation
+    root /home/ubuntu/portal ### /home/ubuntu/portal is the directory of documentation
   }
  
   location /docs/styleguide/ {
     root /home/ubuntu/portal;
   }
 }
+
 {% endhighlight %}
  

@@ -7,30 +7,19 @@ tags: ['Backend', 'CF', 'NATS']
 ---
 {% include JB/setup %}
 
-# Table of Contents
+本文主要了**NATS**的工作原理，以及它在**CloudFoundry**是如何与其它组件协同工作的。
+{: .countheads }
 
-* [Introduction to NATS](#nats-intro)
-* [NATS Application Protocol](#nats-protocol)
-* [NATS Life Circle](#nats-life-circle)
-  * [NATS Sample Code](#nats-life-circle-sample)
-  * [NATS生命周期时序图](#nats-life-circle-diagram)
-* [NATS主题匹配](#nats-subject)
-  * [NATS主题特性](#nats-subject-features)
-  * [NATS主题数据结构](#nats-subject-data-structure)
-  * [NATS主题匹配算法](#nats-subject-matching-algo)
-* [NATS与其它CloudFoundry组件](#nats-cf)
-  * [NATS与Router](#nats-router)
-  * [NATS与HealthManager](#nats-hm)
-  * [NATS与DEA、CloudController](#nats-dea-cc)
-* [总结](#conclusion)
+* ToC
+{:toc}
 
-## <a name='nats-intro'>Introduction to NATS</a>
+### Introduction to NATS
 
 在CloudFoundry系统中，包含许多内部组件，如CloudController、DEA、Router等等，如果某个组件(如DEA)需要去订阅其它组件的消息，那么DEA需要找到其它每一个组件并在其上注册事件，如果需要在每一个组件上注册多个事件，那么每个事件都需要执行一次上述过程（找到该组件并注册事件），这将增大系统的复杂度，并且使系统更加耦合，从而降低了系统的可扩展性。而NATS则解决了CloudFoundry的内部组件的通讯问题。
 
 [NATS](https://github.com/derekcollison/nats)是一个轻量级的分布式的消息订阅发布系统，CloudFounery使用NATS作为内部组件的通讯系统，从而进行基于主题的消息订阅和发布。NATS是基于EventMachine，由Ruby实现的，它由NATS客户端和服务端组成。客户端负责向服务端发送指令(订阅主题，发布主题等等)，而服务端则接收并处理来自客户端的指令，并做出响应。目前，NATS客户端同时也支持node.js、Go、Java以及Java-Spring的实现。
 
-## <a name='nats-protocol'>NATS Application Protocol</a>
+### NATS Application Protocol
 
 NATS是一个典型的网络应用程序，也就是说NATS客户端和服务器端是通过计算机网络通信的，NATS在此基础之上定义了属于自己的一套应用层协议。如下所示：
 
@@ -43,9 +32,9 @@ NATS是一个典型的网络应用程序，也就是说NATS客户端和服务器
 * CONNECT：重新配置verbose和pedantic连接选项，同时会做用户验证(如果需要的话)；
 * INFO：获取Sever信息，包括id, host, port等等
 
-## <a name='nats-life-circle'>NATS生命周期</a>
+### NATS生命周期
 
-### <a name='nats-life-circle-sample'>NATS示例代码</a>
+#### NATS示例代码
 
 以下面的NATS客户端和服务端代码为例，简单介绍一下NATS的整个生命周期。
 
@@ -59,7 +48,7 @@ NATS Client:
 <p style='text-align:center'><img alt='NATS Sample Client' src='/assets/images/nats_sample_client.png' /></p>
 <p style='text-align:center'>图2 NATS Sample Client</p>
 
-### <a name='nats-life-circle-diagram'>NATS生命周期时序图</a>
+#### NATS生命周期时序图
 
 下面是NATS的完整的生命周期时序图。
 
@@ -80,11 +69,11 @@ NATS Client:
 
 7. 此时，在NATS Client端，就可以根据主题ID找到相应的订阅者，执行相应的callback。
                                       
-## <a name='nats-subject'>NATS主题匹配</a>
+### NATS主题匹配
 
 当一个NATS Client向NATS Server订阅一个消息后，Server会保留该订阅者的信息，包括当前主题，主题ID等等（具体参见图4），之后会根据主题匹配算法找到相应订阅者，并发布消息。
 
-### <a name='nats-subject-features'>NATS主题特性</a>
+#### NATS主题特性
 
 * 主题是由许多token组成的，并以`.`分隔，如`A.B.C`；
 * 支持两种通配符
@@ -103,23 +92,23 @@ NATS Client:
 |A.B.>|A.B.C/A.B.C.D.E.F.G|A.C.D.E.F.G|
 {: .neat }
 
-### <a name='nats-subject-matching-data-structure'>NATS主题数据结构</a>
+#### NATS主题数据结构
 
 在NATS服务器端内部，是由`sublist.rb`负责主题匹配工作的，它是由SublistLevel和SublistNode两个结构体组成的树形结构，如图4所示。SublistLevel主要维护的是token（包括二个特殊的通配符）至SublistNode节点的映射，而SublistNode主要保存的是订阅者信息，以及与下级SublistLevel的关系。Subscriber保存的是订阅方的信息，包含当前的Connection，主题，主题ID等等。
 
 <p style='text-align:center'><img alt='NATS Subject Structure' src='/assets/images/nats_subject_structure.png' /></p>
 <p style='text-align:center'>图4 Sublist、Subscriber 结构</p>
 
-### <a name='nats-subject-matching-algo'>NATS主题匹配算法</a>
+#### NATS主题匹配算法
 
 当NATS Server收到基于主题“A.B”的PUB消息后，它会把“A.B”主题拆分成二个token，然后将每个token中的内容从Sublist的Root Level开始从上至下开始进行匹配。如果每个Token都能匹配到节点，那么最后一个Token对应的SublistNode就是这个主题的订阅者。
 
 <p style='text-align:center'><img alt='NATS Subject Matching Algorithms' src='/assets/images/nats_subject_matching_algo.png' /></p>
 <p style='text-align:center'>图5 Sublist Workflow</p>
 
-## <a name='nats-cf'>NATS与其它CloudFoundry组件</a>
+### NATS与其它CloudFoundry组件
 
-### <a name='nats-router'>NATS与Router</a>
+#### NATS与Router
 
 Router组件主要是对所有的请求进行路由，包括管理请求和App应用请求，其它组件如果想让Router路由请求由需要先向Router注册。过程如下：
 
@@ -131,7 +120,7 @@ Router组件主要是对所有的请求进行路由，包括管理请求和App�
 
 Router同时每隔一段时间(默认是0，所以不会发送)也会通过`router.active_apps`这个channel向其它组件发送当前active的app id信息。
 
-### <a name='nats-hm'>NATS与HealthManager</a>
+#### NATS与HealthManager
 
 HealthManager组件主要是从DEA拿到app的各类运行信息，然后进行统计、分析和报警，如果某个instance出现异常，HM可以通过NATS通知CC启用或停止该instance。
 
@@ -152,7 +141,7 @@ HM不仅统计应用的运行信息，它也会分析应用的状态。与此相
 * health.start：HM可以通过该channel让CC重启app instance；
 * health.stop：HM可以通过该channel让CC关闭app instance
 
-### <a name='nats-dea-cc'>NATS与DEA、CloudController</a>
+#### NATS与DEA、CloudController
 
 DEA是一个安装在DEA VM node上的ruby的agent，由它来管理App的整个生命周期，包括stage, start, stop等等。
 具体的流程可以参见How Application Are Staged。
@@ -173,6 +162,6 @@ NATS与DEA、CloudController主要交互工作流程如下：
 * 当有stage或是run app的请求时，CC中的dea_client就会去查询这两个pool，找到合适的dea，然后根据该dea的id向对应的`staging.dea_id.start`或`dea.dea_id.start`的channel发送消息
 * DEA收到上述消息后，执行相应的任务(staging或run)
   
-## <a name='conclusion'>总结</a>
+### 总结
 
 对于CloudFoundry来说，NATS的作用是必不可少的。NATS让CF系统中的各组件各司其职，各个组件之间可以不需要知道互相的存在，只是通过简单的消息订阅发布来完成异步消息的通信和协同工作，彻底让系统解耦。同时NATS也大大的提高了系统的可维护性和可扩展性，这让我们增加新的组件也更加简单，更加高效。
