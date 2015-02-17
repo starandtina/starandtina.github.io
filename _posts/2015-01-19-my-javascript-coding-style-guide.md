@@ -7,18 +7,20 @@ tags: ['JavaScript', 'Styleguide']
 ---
 {% include JB/setup %}
 
-本文定义了个人的JavaScript编码规范。
+本文定义了个人的**JavaScript**编码规范。
 {: .countheads }
 
 * ToC
 {:toc}
 
+----
+
+### 前提说明
+
 - *必须*指代*MUST*，拥有强制性
 - *不得*指代*MUST NOT*，拥有强制性
-- *应当*指代*SHOULD*，不拥有强制性但建议实施，建议各项目组进一步明确定义
-- *可以*指代*MAY*，不拥有强制性但建议实施，建议各项目组进一步明确定义
-
-----
+- *应当*指代*SHOULD*，不拥有强制性但建议实施，建议个人根据需求进一步明确定义
+- *可以*指代*MAY*，不拥有强制性但建议实施，建议个人根据需求进一步明确定义
 
 ### 行长度
 
@@ -97,32 +99,36 @@ jQuery.format(
 三元运算符由3部分组成，因此其换行*应当*根据每个部分的长度不同，形成3种不同的情况：
 
 {% highlight JavaScript %}
-    // 无需换行
-    var result = condition ? resultA : resultB;
 
-    // 条件超长的情况
-    var result = thisIsAVeryVeryLongCondition ?
-        resultA : resultB;
+// 无需换行
+var result = condition ? resultA : resultB;
 
-    // 结果分支超长的情况
-    var result = condition ?
-        thisIsAVeryVeryLongResult :
-        resultB;
-    var result = condition ?
-        resultA :
-        thisIsAVeryVeryLongResult;
+// 条件超长的情况
+var result = thisIsAVeryVeryLongCondition ?
+    resultA : resultB;
+
+// 结果分支超长的情况
+var result = condition ?
+    thisIsAVeryVeryLongResult :
+    resultB;
+var result = condition ?
+    resultA :
+    thisIsAVeryVeryLongResult;
+
 {% endhighlight %}
 
 *不得*出现以下情况：
 
 {% highlight JavaScript %}
-    // 最后一个结果很长，但不建议合并条件和第一分支
-    // 不要这么干
-    var result = condition ? resultA :
-        thisIsAVeryVeryLongResult;
+
+// 最后一个结果很长，但不建议合并条件和第一分支
+// 不要这么干
+var result = condition ? resultA :
+    thisIsAVeryVeryLongResult;
+
 {% endhighlight %}
 
-这种方法会导致语义上的分裂，即“条件和分支”在一行，“另一分支”在一行，没有按逻辑进行组织。
+这种方法会导致语义上的分裂，即*条件和分支*在一行，*另一分支*在一行，没有按逻辑进行组织。
 
 #### 过长的逻辑条件组合
 
@@ -280,30 +286,30 @@ var array = [
 
 命名的方法通常有以下几类：
 
-- camel命名法，形如`thisIsAnApple`
-- pascal命名法，形如`ThisIsAnApple`
+- Camel命名法，形如`thisIsAnApple`
+- Pascal命名法，形如`ThisIsAnApple`
 - 下划线命名法，形如`this_is_an_apple`
 - 中划线命名法，形如`this-is-an-apple`
 
 根据不同类型的内容，采用不同的命名法：
 
-- 变量名，使用camel命名法
-- 参数名，使用camel命名法
-- 函数名，使用camel命名法
-- 方法/属性，使用camel命名法
+- 变量名，使用Camel命名法
+- 参数名，使用Camel命名法
+- 函数名，使用Camel命名法
+- 方法/属性，使用Camel命名法
 - 私有（保护）属性、函数以下划线`_`开头
 - 常量名，使用全部大写的下划线命名法，如`IS_DEBUG_ENABLED`
-- 类名，使用pascal命名法
-- 枚举名，使用pascal命名法
+- 类名，使用Pascal命名法
+- 枚举名，使用Pascal命名法
 - 枚举的属性，使用全部大写的下划线命名法
-- 命名空间，使用camel命名法
+- 命名空间，使用Camel命名法
 
 命名同时还需要关注语义，如：
 
 - 变量名*应当*使用名词
-- **boolean**类型的*应当*使用**is**、**has**等起头，表示其类型
-- 函数名*应当*用动宾短语
-- 类名用*应当*名词
+- **Boolean**类型的*应当*使用**is**、**has**等起头，表示其类型
+- 函数名*应当*使用动宾短语
+- 类名用*应当*使用名词
 
 ### 语法
 

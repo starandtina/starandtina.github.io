@@ -7,41 +7,15 @@ tags: []
 ---
 {% include JB/setup %}
 
-本文主要收集平常使用到的一些JavaScript Codes和Snippets。
+本文主要收集平常使用到的一些**JavaScript** Codes和Snippets。
 {: .countheads }
 
 * ToC
 {:toc}
 
-## Table of Contents
-
-1. [通过闭包构造私有成员](#1)
-1. [使用闭包保存变量所在的作用域](#2)
-1. [闭包与变量（闭包所能访问的变量，它是可以被改变的）](#3)
-1. [创建对象的各种方法(八仙过海，各显神通)](#4)
-1. [定义对象方法](#5)
-1. [改变目标元素的显示/隐藏状态](#6)
-1. [修改目标元素的CSS样式](#7)
-1. [使用`className`](#8)
-1. [DOM Level 0 中的事件处理模型](#9)
-1. [使用`id`属性](#10)
-1. [动态添加`className`](#11)
-1. [解脱DOM](#12)
-1. [强制浏览器Layout/Reflow](#13)
-1. [在JavaScript中获取内联CSS样式](#14)
-1. [DOM/HTML: 属性那是相当有用的](#15)
-1. [简单的动画](#16)
-1. [简单的淡入/淡出效果](#17)
-1. [禁止某个资源的caching](#18)
-1. [DOM/HTML:常用的方法](#19)
-1. [从DOM树中移除当前的node](#20)
-1. [在另外一个节点前插入一个节点](#21)
-1. [克隆一个节点（浅/深克隆）](#22)
-1. [使用另外一个节点替换一个子节点](#23)
-
 ----
 
-### <a name='1'>通过闭包构造私有成员</a>
+### 通过闭包构造私有成员
 
 {% highlight JavaScript %}
 
@@ -61,7 +35,7 @@ var j = makeid();
 
 在函数`foo`中，`id`实际上是私有成员，我们通过且仅能通过闭包函数`makeid()`访问它。
 
-**私有成员**：私有Private成员要由构造器生成。构造器中的普通的var变量和参数都成为私有成员。
+>**私有成员**：私有Private成员要由构造器生成。构造器中的普通的var变量和参数都成为私有成员。
 
 {% highlight JavaScript %}
 
@@ -77,7 +51,7 @@ function Container(param) {
 
 如果想了解更多关于私有成员的实现请参考[Private properties in JavaScript](https://curiosity-driven.org/private-properties-in-javascript).
 
-### <a name='2'>使用闭包保存变量所在的作用域</a>
+### 使用闭包保存变量所在的作用域
 
 {% highlight JavaScript %}
 
@@ -109,7 +83,7 @@ getClickHandler: function () {
 
 以上编程模式，是经常会使用到的其中一种闭包写法。
 
-### <a name='3'>闭包与变量（闭包所能访问的变量，它是可以被改变的）</a>
+### 闭包与变量（闭包所能访问的变量，它是可以被改变的）
 
 闭包是指在建立函数时，绑定了当时作用域下的有效的自由变量。基于此，首先我们给闭包下个定义：
 
@@ -129,7 +103,7 @@ getClickHandler: function () {
 function Robot() {
   var createTime = new Date();
 
-  this.getAge = function () { // 這邊建立了Closure
+  this.getAge = function () { // 这里建立了Closure
     var now = new Date();
     var age = now - createTime;
     return age;
@@ -143,7 +117,7 @@ alert(robot.getAge());
 
 单单看`getAge`函数的话，`createTime`并没有多大的意义，对`getAge`而言，`createTime`是一个自由变量，同时它也是`Robot`函数的本地私有成员变量，但是在`getAge`所引用的函数中被关闭了，从而`createTime`的生命周期得以延续，即使它是使用`var`声明的，只要`getAge`中所引用的`Function`对象还存在，`createTime`自由变量也就能继续存活。
 
-关于闭包，[Crockford](http://javascript.crockford.com/private.html)曾经说过:
+关于闭包，[Crockford](http://javascript.crockford.com/private.**HTML**)曾经说过:
 
 >一个内部的函数总是可以访问这个函数外部的变量和参数，甚至在外部的函数返回之后。
 
@@ -190,7 +164,7 @@ myAlerts[1](); // 1
 
 {% endhighlight %}
 
-### <a name='4'>创建对象的各种方法(八仙过海，各显神通)</a>
+### 创建对象的各种方法(八仙过海，各显神通)
 
 #### 自定义构造器函数
 
@@ -281,7 +255,7 @@ console.log(bar.propertyArray); //logs []
 {% endhighlight %}
 
 
-### <a name='5'>定义对象方法</a>
+### 定义对象方法
 
 {% highlight JavaScript %}
 
@@ -299,7 +273,7 @@ my1.foo();
 
 {% endhighlight %}
 
-### <a name='6'>改变目标元素的显示/隐藏状态</a>
+### 改变目标元素的显示/隐藏状态
 
 {% highlight JavaScript %}
 
@@ -320,7 +294,7 @@ T.dom.toggle = function (element) {
 1. 或者，如果是使用`className`样式或是同时使用内联/非内联样式，可以通过`className`以及`display`属性来完成
 1. 又或者，避免使用`elem.style.display = ''`这种形式，而使用`elem.style.display = 'none'|'block'`的这种形式
 
-### <a name='7'>修改目标元素的CSS样式</a>
+### 修改目标元素的CSS样式
 
 {% highlight JavaScript %}
 
@@ -333,7 +307,7 @@ elem.className  = ...
 
 修改内联样式或是修改`className`即可。
 
-### <a name='8'>使用`className`</a>
+### 使用`className`
 
 {% highlight JavaScript %}
 
@@ -342,9 +316,9 @@ elem.className = 'foo';
 
 {% endhighlight %}
 
-使用`className`，而不是`class`，那是因为在ECMAScript 5中class是一个[Future Reserved Word](http://es5.github.io/#x7.6.1.2)，而在[ECMAScript 6](https://people.mozilla.org/~jorendorff/es6-draft.html#sec-reserved-words)中`class`已经是一个关键词了。
+使用`className`，而不是`class`，那是因为在ECMAScript 5中class是一个[Future Reserved Word](http://es5.github.io/#x7.6.1.2)，而在[ECMAScript 6](https://people.mozilla.org/~jorendorff/es6-draft.**HTML**#sec-reserved-words)中`class`已经是一个关键词了。
 
-### <a name='9'>DOM Level 0 中的事件处理模型</a>
+### DOM Level 0 中的事件处理模型
 
 >事实上，并不存在DOM Level 0标准，它只存在于DOM的历史长河中。DOM Level 0通常被认为是Internet Explorer 4.0 and Netscape Navigator 4.0中所支持的`DHTML`。
 
@@ -356,11 +330,11 @@ DOM Level 0中的事件处理模型由Netscape Navigator引入，有二种主要
 
 {% highlight HTML %}
 
-<p>Hey <a href="http://www.example.com" onclick="triggerAlert('Joe'); return false;">Joe</a>!</p>
+<p>Hey <a href="http://www.example.com" onclick="triggerAlert('Joe'); return false;">Joe!</p>
 
 {% endhighlight %}
 
-如果想了解更多，请参考[这里](http://www.quirksmode.org/js/events_early.html)。
+如果想了解更多，请参考[这里](http://www.quirksmode.org/js/events_early.**HTML**)。
 
 #### 传统模型
 
@@ -373,13 +347,13 @@ element.onclick = null; // 移除事件处理器
 
 {% endhighlight %}
 
-如果想了解更多，请参考[这里](http://www.quirksmode.org/js/events_tradmod.html)。
+如果想了解更多，请参考[这里](http://www.quirksmode.org/js/events_tradmod.**HTML**)。
 
-### <a name='10'>使用`id`属性</a>
+### 使用`id`属性
 
 在使用`id`属性时，文档中所有的元素必须都有唯一的`id`。对于多个元素使用相同的id，在IE中会导致各种种样的问题。
 
-### <a name='11'>动态添加`className`</a>
+### 动态添加`className`
 
 {% highlight JavaScript %}
 
@@ -395,7 +369,7 @@ for (var i = 0; i < rows.length; i++) {
 
 在上面的代码中，展示了给一个table添加class以实现斑马线的效果。对于`onmouseover/onmouseout`的JS事件处理函数也可以通过这种方式添加。
 
-### <a name='12'>解脱DOM</a>
+### 解脱DOM
 
 {% highlight JavaScript %}
 
@@ -405,27 +379,28 @@ $('foo').related = $('bar');
 
 给DOM对象添加指向其它相关联的DOM对象的属性，这种方式不会导致IE中的内存溢出，那是因为所有的操作都是在`DOM`内完成的。
 
-更多请参考[IE的Memory Leak](http://javascript.crockford.com/memory/leak.html)。
+更多请参考[IE的Memory Leak](http://javascript.crockford.com/memory/leak.**HTML**)。
 
 
-### <a name='13'>强制浏览器Layout/Reflow</a>
+### 强制浏览器Layout/Reflow
 
 #### 浏览器渲染
 
-首先有个问题：浏览器是如何渲染一个Web页面的？
-从整体上来看，下面是渲染引擎在取得内容之后的基本流程：
+首先有个问题：
 
-{% highlight HTML %}
+>浏览器是如何渲染一个Web页面的？
 
-解析html以构建dom树 -> 构建render树 -> 布局render树 -> 绘制render树
+从整体上来看，下面是浏览器渲染引擎在取得**HTML**内容之后的基本流程：
 
-{% endhighlight %}
+
+>解析**HTML**以构建**DOM**树 -> 构建**Render**树 -> 布局**Render**树 -> 绘制**Render**树
+
 
 1. 首先，基于从服务端返回的HTML字符串构建**DOM树**
 2. 加载并解析样式（包括外部CSS文件以及内联样式），从而形成**[CSSOM(CSS Object Model)](http://dev.w3.org/csswg/cssom/)**(CSSOM提供了一套API来操作CSS)
 3. 基于DOM和CSSOM构建别个一棵**Render树**，它包含一系列需要被渲染的对象（Webkit称这些对象为`Renderer`或`Render object`，而Gecko叫`frame`），但是**Render树**并不会包含一些不可见的DOM元素（包含`<head>`元素或是拥有`display:none`样式的元素）。每个'Renderer'都包含与之对应的`DOM`对象和计算完成的样式信息（如颜色，大小等等），它们将按照正确的顺序显示到屏幕上
 4. 针对每一个`Renderer`，还需要计算它在屏幕上的确切坐标，这一步叫做`layout`
-5. 最后就是`painting`，即遍历**render树**，并使用UI后端层在浏览器窗口中绘制每个节点
+5. 最后就是`Painting`，即遍历**Render树**，并使用**UI**后端层在浏览器窗口中绘制每个节点
 
 #### 重绘(Repaint/Redraw)
 
@@ -483,7 +458,7 @@ var bWidth = elementB.offsetWidth;
 * [Speedtracer Examples](https://developers.google.com/web-toolkit/speedtracer/speed-tracer-examples)
 
 
-### <a name='14'>在JavaScript中获取内联CSS样式</a>
+### 在JavaScript中获取内联CSS样式
 
 我们可以通过`x.style`来访问内联样式，如下所示。另外，内联样式会覆盖掉其它的样式，除非使用`!important`来提高指定样式规则的权重。
 
@@ -506,13 +481,13 @@ element.style.color ＝ 'red';
 
 否则，`color` 都是无效的。
 
-### <a name='15'>DOM/HTML: 属性那是相当有用的</a>
+### DOM/HTML: 属性那是相当有用的
 
 {% highlight JavaScript %}
 
 <a href='javascript:showImg()'>
   <img title='my image' name='sunset'>
-</a>
+
 
 {% endhighlight %}
 
@@ -529,7 +504,7 @@ element.style.color ＝ 'red';
 
 页面加载时，JS代码可以遍历所有的表单字段，并且如果pattern和required属性存在的话，那么就添加一个validate函数，该函数主要负责在表单提交前，根据正则表达式来验证文本框中的内容。
 
-### <a name='16'>简单的动画</a>
+### 简单的动画
 
 {% highlight JavaScript %}
 
@@ -559,7 +534,7 @@ setInterval('progress()', 500);
 
 {% endhighlight %}
 
-### <a name='17'>简单的淡入/淡出效果</a>
+### 简单的淡入/淡出效果
 
 淡入/淡出效果一般用于从页面中添加/删除某个元素时。
 
@@ -584,7 +559,7 @@ fade();
 
 更多的可以参考[这里](http://peter.michaux.ca/articles/javascript-animations-from-scratch "JavaScript Animations from Scratch")。
 
-### <a name='18'>禁止某个资源的Caching</a>
+### 禁止某个资源的Caching
 
 {% highlight JavaScript %}
 
@@ -594,9 +569,9 @@ document.write("< img src='foo.jpg?" + Math.random() + "' />");
 
 我们可以修改**URL**，添加了一个伪随机数，这是一种常用的手段，常常用于禁止浏览器缓存图片。
 
-### <a name='19'>DOM/HTML:常用的方法</a>
+### DOM/HTML:常用的方法
 
-更多的信息请参考[quirksmode](http://quirksmode.org/ "http://www.quirksmode.org/dom/w3c_core.html#gettingelements")。
+更多的信息请参考[quirksmode](http://quirksmode.org/ "http://www.quirksmode.org/dom/w3c_core.**HTML**#gettingelements")。
 
 * document.createElement('div'): 创建一个`DIV`元素节点
 * document.createTextNode(): 创建一个文本节点
@@ -611,7 +586,7 @@ document.write("< img src='foo.jpg?" + Math.random() + "' />");
 
 #### 节点属性
 
-##### [node.nodeType](http://www.w3.org/TR/DOM-Level-2-Core/core.html#ID-1950641247)
+##### [node.nodeType](http://www.w3.org/TR/DOM-Level-2-Core/core.**HTML**#ID-1950641247)
 
 `nodeType'包含一个表示元素类型的数字。我们经常用到的如下所示：
 
@@ -685,7 +660,7 @@ imgEl.setAttribute('src', 'sample.png');
 2. insertBefore(newNode, referenceNode)
 3. replaceChild(replacingNode, replacedNode)
 
-### <a name='20'>从DOM树中移除当前的node</a>
+### 从DOM树中移除当前的node
 
 {% highlight JavaScript %}
 
@@ -694,7 +669,7 @@ node.parentNode.removeChild(node);
 
 {% endhighlight %}
 
-### <a name='21'>在另外一个节点前插入一个节点</a>
+### 在另外一个节点前插入一个节点
 
 {% highlight JavaScript %}
 
@@ -716,7 +691,7 @@ var x = y.insertBefore(z, a);
 
 那么现在`x`就包含对`z`的一个引用。
 
-### <a name='22'>克隆一个节点（浅/深克隆）</a>
+### 克隆一个节点（浅/深克隆）
 
 {% highlight JavaScript %}
 
@@ -727,7 +702,7 @@ var newNode = node.cloneNode(true|false); // true=deep copy, else shallow
 
 需要注意的是，克隆节点时，并不会同时克隆事件处理函数。
 
-### <a name='23'>使用另外一个节点替换一个子节点</a>
+### 使用另外一个节点替换一个子节点
 
 `replaceChild()`方法可以允许你将一个节点替换为另外一个节点。如果被插入的节点已经在DOM中了，那么它首先会从当前的DOM中位置移除掉。并且插入的节点和被替换的节点都会保持它们的所有子节点不变。
 

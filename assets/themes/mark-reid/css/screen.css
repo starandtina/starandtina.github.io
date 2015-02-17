@@ -248,38 +248,6 @@ blockquote p {
 	border-bottom: 1px solid silver;
 }
 
-/* @group Table */
-table.neat {
-	width: 80%;
-	margin: 1.5em auto 1.5em auto;
-	table-layout: fixed;
-	border-spacing: 0;
-}
-table.neat tr {
-	text-align: center;
-}
-table.neat th {
-	font-weight: normal;
-	background-color: #eeeeee;
-}
-table.neat td {
-	background-color: white;
-}
-table.neat th.title {
-	border-bottom: 1px solid gray;
-	border-top: 1px solid gray;
-	vertical-align: bottom;
-	background-color: lightgrey;
-}
-caption {
-	color: #333;
-	font-size: 0.875em;
-	margin: 0.875em auto 0 auto;
-	line-height: 1.14em;
-	text-align: justify;
-}
-
-/* @end */
 /* @group Lists */
 ul {
 	margin-top: 1.5em;
@@ -821,11 +789,85 @@ h4.nocount:before {
 	content: "[" counter(refcounter) "] ";
 	counter-increment: refcounter;
 }
-
 li:target {
 	background-color: #BFEFFF;
 }
-
 #markdown-toc ul {
 	margin: 0.1em 0;
 }
+
+/* @group Table */
+table.neat {
+	width: 80%;
+	margin: 1.5em auto 1.5em auto;
+	table-layout: fixed;
+	border-spacing: 0;
+}
+table.neat tr {
+	text-align: center;
+}
+table.neat th {
+	font-weight: normal;
+	background-color: #eeeeee;
+}
+table.neat td {
+	background-color: white;
+}
+table.neat th.title {
+	border-bottom: 1px solid gray;
+	border-top: 1px solid gray;
+	vertical-align: bottom;
+	background-color: lightgrey;
+}
+caption {
+	color: #333;
+	font-size: 0.875em;
+	margin: 0.875em auto 0 auto;
+	line-height: 1.14em;
+	text-align: justify;
+}
+table {
+	max-width: 100%;
+	background-color: transparent;
+}
+th {
+	text-align: left;
+}
+.table {
+	border-collapse: collapse !important;
+}
+.table {
+	width: 100%;
+	margin-bottom: 20px;
+}
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+	padding: 8px;
+	line-height: 1.42857143;
+	vertical-align: top;
+	border-top: 1px solid #ddd;
+}
+.table > thead > tr > th {
+	vertical-align: bottom;
+	border-bottom: 2px solid #ddd;
+}
+.table > caption + thead > tr:first-child > th,
+.table > colgroup + thead > tr:first-child > th,
+.table > thead:first-child > tr:first-child > th,
+.table > caption + thead > tr:first-child > td,
+.table > colgroup + thead > tr:first-child > td,
+.table > thead:first-child > tr:first-child > td {
+	border-top: 0;
+}
+.table > tbody + tbody {
+	border-top: 2px solid #ddd;
+}
+.table .table {
+	background-color: #fff;
+}
+
+/* @end */

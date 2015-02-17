@@ -7,7 +7,6 @@ tags: ['Frontend', 'JavaScript', 'js-dev', 'portal']
 ---
 {% include JB/setup %}
 
-
 This page describes the guidelines that front-end engineers develop and test the components using the UI framework of Portal and quickly familiar with our basic ideas behind the scene.
 {: .countheads }
 
