@@ -17,7 +17,7 @@ tags: ['Frontend', 'JavaScript', 'Tricks', 'Best Practices']
 
 ### `===` && `==`
 
-在`JavaScript`中，有二种判断值是否相等的等值运算符：
+在`JavaScript`中，有二种判断值是否相等的等性运算符：
 
 * [严格判等运算符](http://es5.github.io/#x11.9.4)：只考虑类型相同的值是否相等，如果不同，直接返回`false`
 * [普通判等运算符](http://es5.github.io/#x11.9.1)：在做相等比较前，会进行一系列的类型转换
@@ -59,6 +59,15 @@ foo === foo // true
 1. 如果其中一个是`Boolean`类型，另外一个是非`Boolean`类型，那么需要先把`Boolean`类型转换为`Number`类型，然后再执行`==`
 1. 如果其中一个是`String`或是`Number`类型，另外一个是`Object`类型，那么需要先把`Object`类型转换为**primitive**的类型，然后再执行`==`
 1. 其它情况返回`false`
+
+在比较时，该运算符还遵守下列规则：
+
+* 值`null`和`undefined`相等
+* 在检查相等性时，不能把`null`和`undefined`转换成其他值
+* 如果某个运算数是`NaN`，等号将返回`false`，非等号将返回`true`
+* 如果两个运算数都是对象，那么比较的是它们的引用值，如果两个运算数指向同一对象，那么等号返回`true`，否则两个运算数不相等
+
+>即使两个数都是`NaN`，等号仍然返回`false`，因为根据规则，`NaN`不等于`NaN`。
 
 {% highlight JavaScript %}
 

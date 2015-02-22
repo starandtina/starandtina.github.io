@@ -56,7 +56,7 @@ if (num > 0) {
 for (i = 0; i < len; i++) {
 }
 
-function setStyle(dom, name, value) {
+function setStyle(DOM, name, value) {
 }
 
 {% endhighlight %}          
@@ -204,7 +204,7 @@ function foo() {
   // ...
 }
 
-{% endhighlight %}                            
+{% endhighlight %}       
 
 ###### 对于通过`new`来实例化对象的函数构造器，使用**Pascal命名法**
   
@@ -892,7 +892,7 @@ print instanceof Object; //true
 
 foo('Hello world!');
 
-{% endhighlight %}                         
+{% endhighlight %}    
 
 ##### 方法调用
 
@@ -1001,22 +1001,22 @@ init();
 * 不包含对非原生对象的引用，如`DOM`对象。如果包含循环引用，并引用了非原生对象，可能导致无法释放产生内存泄露
 
 
->如果闭包中需要使用dom，闭包环境应引用dom元素id，在需要使用的时候再获取。
+>如果闭包中需要使用DOM，闭包环境应引用DOM元素id，在需要使用的时候再获取。
 
-###### 闭包函数中使用dom元素
+###### 闭包函数中使用DOM元素
 
 {% highlight JavaScript %}
 
 function getHandler() {
-  var domId = 'dom';
+  var DOMId = 'DOM';
   return function () {
-    var dom = document.getElementById(domId); // 获取DOM元素
+    var DOM = document.getElementById(DOMId); // 获取DOM元素
   };
 }
 
 {% endhighlight %}             
 
->在mouseover事件或其他频繁执行的状态，如果多次获取同一个dom对象会导致效率问题，可以在第一次持有dom对象的引用，在使用完后释放。
+>在mouseover事件或其他频繁执行的状态，如果多次获取同一个DOM对象会导致效率问题，可以在第一次持有DOM对象的引用，在使用完后释放。
 
 
 ### 字符串
@@ -1032,17 +1032,17 @@ function getHandler() {
 #### 拼接
 
 字符串拼接是一个相当消耗资源的操作，但是最好的做法是什么呢？过去常见的性能优化方法中都会提到使用数组*push+join*的方式来取代字符串的拼接，但是实际上是这样的么？
-如果我们对拼接后的字符串不做任何操作，那么最新版的Chrome(40.0.2214.111 (64-bit))和Firefox(35.0.1)结果是一样的。
+如果我们对拼接后的字符串**不做任何操作**，那么最新版的Chrome(40.0.2214.111 (64-bit))和Firefox(35.0.1)结果是一样的：*+＝*操作符比*+*, *String.prototype.concat*和*Array.prototype.join*都快，并且*Array.prototype.join*是最慢的[[8]](#[8]]。
 
-可以通过JSPerf上的一个[测试](http://jsperf.com/string-concat-fast/9)可以看出对于，结果是不一样的。
+但是，如果我们对拼接后的字符串进行操作，结果是不一样的[[9]](#[9])。
 
-* Firefox上，*+＝*操作符比*+*, *String.prototype.concat*和*Array.prototype.join*都快. 并且*Array.prototype.join*是最慢的
-* Chrome上，*Array.prototype.join*是最快的，而*String.prototype.concat*是最慢的
+* Firefox(35.0.1)：*+＝*操作符比*+*, *String.prototype.concat*和*Array.prototype.join*都快, 并且*Array.prototype.join*是最慢的
+* Chrome(40.0.2214.111 (64-bit))：*Array.prototype.join*是最快的，而*String.prototype.concat*是最慢的
 
-v8中的实现类似**Java**的*StringBuilder*，内部也是用数组来实现的，但做了特殊优化，所以性能比JS数组快。
+*v8*中的实现类似**Java**的*StringBuilder*，内部也是用数组来实现的，但做了特殊优化，所以性能比JS数组快。
 Firefox的方法是对于短字符串使用*memcpy*，长字符串使用*Rope数据结构*。
 
-总的来说，字符串拼接，应使用数组作为*StringBuffer*保存字符串片段，使用时调用*join*方法。避免使用*+*或*+=*的方式拼接较长的字符串，每个字符串都会使用一个小的内存片段，过多的内存片段会影响性能。
+总的来说，字符串拼接，应使用数组作为*StringBuffer*保存字符串片段，使用时调用*join*方法，尽量避免使用*+*或*+=*的方式拼接较长的字符串，每个字符串都会使用一个小的内存片段，过多的内存片段会影响性能。
 
 >绝大部分现代浏览器都对+=的字符串拼接进行了优化，但在*IE6*和*IE7*中字符串拼接远远慢于*push+join*，同时IE6的使用率依然很高。
 
@@ -1054,10 +1054,9 @@ var str = '';
 for (var i = 0, len = list.length; i < len; i++) {
   str += '<div>' + list[i] + '</div>';
 }
-dom.innerHTML = str;
+DOM.innerHTML = str;
 
 {% endhighlight %}
-
 
 ###### 提倡的拼接方式：push+join
 
@@ -1067,7 +1066,7 @@ var str = [];
 for (var i = 0, len = list.length; i < len; i++) {
   str.push('<div>' + list[i] + '</div>');
 }
-dom.innerHTML = str.join('');
+DOM.innerHTML = str.join('');
 
 {% endhighlight %}
 
@@ -1081,650 +1080,510 @@ var strLen = 0;
 for (var i = 0, len = list.length; i < len; i++) {
   str[strLen++] = '<div>' + list[i] + '</div>';
 }
-dom.innerHTML = str.join('');
+DOM.innerHTML = str.join('');
 
 {% endhighlight %}
 
-
 #### 字符串格式化
 
-复杂的字符串拼接，应使用格式化的方式，提高代码可读性。请参考baidu.string.format。
-
+复杂的字符串拼接，应使用格式化的方式，提高代码可读性。
 
 ###### 字符串格式化
 
 {% highlight JavaScript %}
-  // 让人难以理解的拼接：    
-  var str = '<div id="' + id + '" class="' + className + '">' + html + '</div>';
 
-  // 使用格式化：
-  var tpl = '<div id="${0}" class="${1}">${2}</div>';
-  var str = baidu.format( tpl,
-                          id, className, html
-    );
- {% endhighlight %}                 
+// 让人难以理解的拼接：
+var str = '<div id="' + id + '" class="' + className + '">' + html + '</div>';
 
+// 使用格式化：
+var tpl = '<div id="${0}" class="${1}">${2}</div>';
+var str = jQuery.format(tpl,
+  id, className, html
+);
 
-
+{% endhighlight %}
 
 #### 字符串常用实例方法
 
+更多的可以参考[这里](http://www.w3school.com.cn/jsref/jsref_obj_string.asp)。
 
-###### charAt(position)
+###### stringObject.charAt(position)
 
-charAt方法返回字符串处于position位置的字符。如果position为负值或超出字符串长度，则返回空字符串。
-
-
-####### string.charAt
+`charAt`方法返回字符串处于*position*位置的字符。如果*position*为负值或超出字符串长度，则返回空字符串。
 
 {% highlight JavaScript %}
-  'hello'.charAt(0); // e
- {% endhighlight %}                     
 
-
-
-
-###### charCodeAt(position)
-
-charCodeAt方法返回字符串处于position位置字符的unicode码。如果position为负值或超出字符串长度，则返回NaN。
-
-
-####### string.charCodeAt
-
-{% highlight JavaScript %}
-  'hello'.charCodeAt(0); // 101，e的unicode码，也就是ascii码。
-                      
-{% endhighlight %}
-
-
-
-###### indexOf(searchString, position)
-
-indexOf方法在字符串内查找子字符串searchString的第一个匹配的位置。无匹配时返回-1。可选参数position可设置从指定位置开始查找。
-
-
-####### string.indexOf
-
-{% highlight JavaScript %}
-  var index = 'Hello World'.indexOf('l'); // 2
-{% endhighlight %}                      
-
-
-
-
-###### lastIndexOf(searchString, position)
-
-lastIndexOf方法与indexOf方法类似，但是lastIndexOf方法是从尾部向前查找。
-
-
-####### string.lastIndexOf
-
-{% highlight JavaScript %}
-  var index = 'Hello World'.lastIndexOf('l'); // 9
- {% endhighlight %}                     
-
-
-
-
-###### localeCompare(otherString)
-
-localeCompare用于比较两个字符串，该方法与本机环境相关。如果字符串比otherString小，则返回-1，相等则返回0。
-
-
-[note]:
-该方法一般与数组的sort方法结合使用。
-
-
-~~~~
-
-####### string.localeCompare
-
-{% highlight JavaScript %}
-  ['张学友', '刘德华', '郭富城', '黎明'].sort(function (a, b) {return a.localeCompare(b);}); // ["郭富城", "黎明", "刘德华", "张学友"]
-                      
-{% endhighlight %}
-
-
-
-###### match(regexp)
-
-match方法对字符串匹配一个正则表达式，返回一个匹配数组。
-
-如果regexp不包含g标识，该方法结果与regexp.exec(string)结果相同，包含第一个匹配和其中的分组。如果regexp包含g标识，该方法结果包含所有的匹配。
-
-
-####### string.match
-
-{% highlight JavaScript %}
-  var html = '<html><head><title>title</title></head><body><p>p</p></body></html>';
-  html.match(/<[a-z0-9]+(\s+[a-z0-9='"]+)?>/g); // ['<html>', '<head>', '<title>', '<body>', '<p>']
-                      
+'hello'.charAt(0); // 'h'
 
 {% endhighlight %}
 
+###### stringObject.charCodeAt(position)
 
-###### replace(search, replaceValue)
-
-replace方法对字符串进行替换，并返回一个新字符串。
-
-
-[note]:
-search参数可以是一个字符串或一个正则表达式。只有当search是一个带有g标识的正则表达式时，才会替换字符串中所有匹配项，否则只替换第一个匹配项。
-
-
-~~~~
-
-####### string.replace：替换第一项与全部替换
+`charCodeAt`方法返回字符串处于*position*位置字符的*Unicode编码*。如果*position*为负值或超出字符串长度，则返回`NaN`。
 
 {% highlight JavaScript %}
-  'border_left_style'.replace('_', '-'); // 'border-left_style'，只替换第一项
-  'border_left_style'.replace(/_/g, '-'); // 'border-left-style'，替换所有项
-  {% endhighlight %}                    
-
-replaceValue参数可以是一个字符串或一个函数。当replaceValue是一个函数时，将对每一个匹配项进行调用，将返回的文本替换匹配文本。
-
-
-####### string.replace：使用替换函数
-
-{% highlight JavaScript %}
-  // 'border-left-style'
-  'borderLeftStyle'.replace(/[A-Z]/g, function ($0) {
-      return '-' + $0.toLowerCase();
-  });
-  {% endhighlight %}                    
-
-
-
-
-###### search(regexp)
-
-search方法在字符串内查找regexp的第一个匹配的位置。和indexOf不同的是：
-
-
-1. 它只接受正则表达式。
-2. 它不接受position参数。
-
-####### string.search
-
-{% highlight JavaScript %}
-  'type="text"'.search(/"/); // 5
+  
+'hello'.charCodeAt(0); // 104: 字符h的Unicode码，即ASCII码
                       
 {% endhighlight %}
 
+###### stringObject.indexOf(searchString, position)
 
-
-###### slice(start, end)
-
-slice方法截取字符串的一部分构成新的字符串，从start到end（不包括end）。
-
-start参数为负值时，将与字符串的length相加，如果还是负数则为0。
-
-end参数可选，默认为字符串长度。如果指定一个end，处理规则和start参数一样。
-
-
-####### string.slice
+`indexOf`方法在字符串内查找子字符串*searchString*的第一个匹配的位置，无匹配时返回*-1*，可选参数*position*可设置从指定位置开始查找。
 
 {% highlight JavaScript %}
-  'Hello world!'.slice(0, 5); // Hello
-  'Hello world!'.slice(-6, -1); // world
- {% endhighlight %}                     
 
+var index = 'Hello World'.indexOf('l'); // 2
 
-[info]:
-不要使用substring来截取字符串，它的功能和slice完全一样，只是不支持负数作为参数。
+{% endhighlight %}
 
+一般情况下，如果我们不需要*searchString*的索引值，那么我们也可以使用`RegExp.prototype.test`来检索字符串中指定的值，它返回`true`或`false`。
 
-~~~~
+[JSPerf: RegExp.prototype.test & String.prototype.indexOf](http://jsperf.com/test-vs-indexof-fast): `indexOf`更快，可能是因为省去了构建正则表达式的开销。
 
+###### stringObject.lastIndexOf(searchString, position)
 
-
-###### split(separator, limit)
-
-split方法将字符串分割成数组，separator可以是一个字符串，或是一个正则表达式。
-
-limit参数可以限定分割的数量，这个参数不常用。
-
-
-####### string.split
+`lastIndexOf()`方法与`indexOf()`方法类似，但是`lastIndexOf()`方法是从尾部向前查找。
 
 {% highlight JavaScript %}
-  '127.0.0.1'.split('.'); // ['127', '0', '0', '1']
+
+var index = 'Hello World'.lastIndexOf('l'); // 9
+
+{% endhighlight %}
+
+###### stringObject.localeCompare(otherString)
+
+`localeCompare`用本地特定的顺序来比较两个字符串，该方法与本机环境相关。如果字符串比*otherString*小，则返回小于0的数，则该方法返回大于 0 的数。如果两个字符串相等，或根据本地排序规则没有区别，该方法返回0。
+
+>该方法一般与数组的`sort()`方法结合使用，`localeCompare()`方法提供的比较字符串的方法，考虑了默认的本地排序规则。**ECMAscript **标准并没有规定如何进行本地特定的比较操作，它只规定该函数采用底层操作系统提供的排序规则。
+
+{% highlight JavaScript %}
+
+['张学友', '刘德华', '郭富城', '黎明'].sort(function (a, b) {
+  return a.localeCompare(b);
+}); // ["郭富城", "黎明", "刘德华", "张学友"]
+
+{% endhighlight %}
+
+###### stringObject.match(regexp)
+
+`match()`方法可在字符串内检索指定的值，或找到一个或多个正则表达式的匹配。
+该方法类似`indexOf()`和`lastIndexOf()`，但是它返回指定的值，而不是字符串的位置。
+
+>在全局检索模式下，`match()`既不提供与子表达式匹配的文本的信息，也不声明每个匹配子串的位置。如果您需要这些全局检索的信息，可以使用`RegExp.exec()`。
+
+如果*regexp*没有标志*g*，那么`match()`方法就只能在*stringObject*中执行一次匹配。如果没有找到任何匹配的文本，`match()`将返回`null`。否则，它将返回一个数组，其中存放了与它找到的匹配文本有关的信息。该数组的第0个元素存放的是匹配文本，而其余的元素存放的是与正则表达式的子表达式匹配的文本。除了这些常规的数组元素之外，返回的数组还含有两个对象属性。*index*属性声明的是匹配文本的起始字符在*stringObject*中的位置，*input*属性声明的是对*stringObject*的引用。
+
+{% highlight JavaScript %}
+
+var html = '<html><head><title>title</title></head><body style="color:red;"><p>p</p></body></html>';
+html.match(/<[^>/]+>/g); // ["<html>", "<head>", "<title>", "<body style="color:red;">", "<p>"]    
+
+{% endhighlight %}           
+
+让我们来比较与RegExp相关的几个字符串方法(`match`, `search`, `exec`, `test`)的性能：[RegExp方法](http://jsperf.com/regex-methods-x-1)。`RegExp.prototype.exec`比`String.prototype.match`快很多，但是那是因为他们的用途根本就不一样。在搜索子串时，`RegExp.prototype.test`相对更快，也许是因为它并不需要返回匹配子串的索引吧。
+
+###### stringObject.replace(search, replaceValue)
+
+`replace()`方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串，并返回一个新字符串。
+
+{% highlight JavaScript %}
+
+'border_left_style'.replace('_', '-'); // 'border-left_style'，只替换第一项
+'border_left_style'.replace(/_/g, '-'); // 'border-left-style'，替换所有项
+
+{% endhighlight %}       
+
+*replaceValue*可以是字符串，也可以是函数。如果它是字符串，那么每个匹配都将由字符串替换。但是*replaceValue*中的*$*字符具有特定的含义[[10]]，它说明从模式匹配得到的字符串将用于替换。
+
+{% highlight JavaScript %}
+
+// 使用替换函数
+'borderLeftStyle'.replace(/[A-Z]/g, function ($0) {
+  return '-' + $0.toLowerCase();
+});
+
+{% endhighlight %}
+
+###### stringObject.search(regexp)
+
+`search()`方法用于检索字符串中指定的子字符串，或检索与正则表达式相匹配的子字符串，并返回*stringObject*中第一个与*regexp *相匹配的子串的起始位置。和`stringObject.indexOf`不同的是：
+
+* 它可以是需要在*stringObject*中检索的子串，也可以是需要检索的*RegExp*对象
+* 它不接受*position*参数
+
+性能测试：[String.prototype.search vs String.prototype.indexOf](http://jsperf.com/search-vs-indexof11/9)
+
+很显示，`indexOf`肯定是最快，其次是`search(string)`，最后是`search(regexp)`
+
+{% highlight JavaScript %}
+  
+'type="text"'.search(/"/); // 5
+
+{% endhighlight %}
+
+###### stringObject.slice(start, end)
+
+`slice()`方法提取字符串的片断(从start到end，但不包括end)，并在新的字符串中返回被提取的部分。
+*start*参数为负值时，将与字符串的*length*相加，如果还是负数则为0。*end*参数可选，默认为字符串长度。如果指定一个*end*，处理规则和*start*参数一样。
+
+{% highlight JavaScript %}
+
+'Hello world!'.slice(0, 5); // Hello
+'Hello world!'.slice(-6, -1); // world
+
+{% endhighlight %}
+
+>不要使用substring来截取字符串，它的功能和slice完全一样，只是不支持负数作为参数。
+
+###### stringObject.split(separator, limit)
+
+`split()`方法将字符串分割成数组，*separator*可以是一个字符串，或是一个正则表达式。*limit*参数可以限定分割的数量，这个参数不常用。
+
+{% highlight JavaScript %}
+
+'127.0.0.1'.split('.'); // ['127', '0', '0', '1']
                       
 {% endhighlight %}
 
-[info]:
-IE下，如果split结果的第一项或最后一项是空字符串，会被直接省略掉。
+>IE下，如果split结果的第一项或最后一项是空字符串，会被直接省略掉。
 
+###### stringObject.substr(start, length)
 
-~~~~
-
-
-
-###### substr(start, length)
-
-substr与slice一样都可以用来截取字符串。不同的是substr第二个参数指定的是要截取的字符串长度。
-
+`substr`与`slice`一样都可以用来截取字符串。不同的是`substr`第二个参数指定的是要截取的字符串长度。
 
 ####### string.substr
 
 {% highlight JavaScript %}
-  'Hello world!'.substr(6, 5); // world
- {% endhighlight %}                     
 
+'Hello world!'.substr(6, 5); // world
 
-[note]:
-在某些环境下，substr方法的start参数不支持负数，负数时会默认成0。
+{% endhighlight %}
 
+###### stringObject.toLowerCase()
 
-~~~~
-
-
-
-###### toLowerCase()
-
-toLowerCase方法将字符串所有字母转换为小写格式。
-
-
-####### string.toLowerCase
+`toLowerCase()`方法将字符串转换为小写。
 
 {% highlight JavaScript %}
-  var str = 'Hello World!'.toLowerCase(); // 'hello world!'
- {% endhighlight %}                     
 
+var str = 'Hello World!'.toLowerCase(); // 'hello world!'
 
+{% endhighlight %}
 
+###### stringObject.toUpperCase()
 
-###### toUpperCase()
-
-toUpperCase方法将字符串所有字母转换为大写格式。
-
-
-####### string.toUpperCase
+`toUpperCase()`方法将字符串转换为大写。
 
 {% highlight JavaScript %}
-  var str = 'Hello World!'.toUpperCase(); // 'HELLO WORLD!'
-    {% endhighlight %}                  
 
+var str = 'Hello World!'.toUpperCase(); // 'HELLO WORLD!'
 
-
+{% endhighlight %}
 
 #### 字符串常用静态方法
 
-
 ###### String.fromCharCode(code...)
 
-fromCharCode方法可以从一串参数中返回一个字符串，每个参数对应的是相应位置的unicode码。
-
+`fromCharCode()`方法可以从一串参数中返回一个字符串，每个参数对应的是相应位置的*Unicode编码*。
 
 ####### String.formCharCode
 
 {% highlight JavaScript %}
-  String.fromCharCode(20013, 22269); // 中国
-                      
+
+String.fromCharCode(20013, 22269); // 中国
+
 {% endhighlight %}
 
 
 ### 数组
 
-
 #### 复制
 
-数组的复制可以使用slice方法。
-
-使用slice方法是浅复制。如果数组中包含对象，则相应索引的对象引用是同一个对象。如果需要深复制请参考：baidu.object.clone
-
+数组的复制可以使用`slice()`方法，但是使用`slice()`方法是浅复制。如果数组中包含对象，则相应索引的对象引用是同一个对象[[11]]。
 
 ###### 数组的浅复制
 
 {% highlight JavaScript %}
-  [1, 2, 3].slice(0); // [1, 2, 3]
-  
-  var arr = [{}]
-  arr.slice(0)[0] == a[0]; // true
-   {% endhighlight %}               
 
+[1, 2, 3].slice(0); // [1, 2, 3]
 
-[info]:
-避免使用Array.apply的方法复制数组。当只有一个参数时，会被当作初始化的数组长度，导致不期望的结果。
+var arr = [{}]
+arr.slice(0)[0] == a[0]; // true
 
+{% endhighlight %}
 
-~~~~
+我们可以利用`Array.apply`消除数组中的*hole*。虽然*hole*在遍历数组或是判断使用`in`判断某个元素是否在数组中时都起作用，但是当你想输出*hole*的值时，却是`undefined`。
 
+{% highlight JavaScript %}
 
+['a', , 'b'].forEach(function (x) {
+  console.log(x);
+}); // 'a' 'b'
+1 in ['a', , 'b']; // false
+['a', , 'b'][1]; // undefined
+
+// 消除hole
+Array.apply(null, ['a', , 'b']); // [ 'a', undefined, 'b' ]
+
+{% endhighlight %}
+
+>避免使用Array.apply的方法复制数组。当只有一个参数时，会被当作初始化的数组长度，导致不期望的结果。
 
 #### 删除
 
+##### 删除数组项
 
-###### 删除数组项
-
-删除数组项使用splice方法。
-
-
-####### 使用splice删除数组项
+删除数组项可以使用`splice()`方法。
 
 {% highlight JavaScript %}
-  var arr = [1, 2, 3];
-  arr.splice(0, 1); 
-  alert(arr); // [2, 3]
-      {% endhighlight %}                
 
+var arr = [1, 2, 3];
+arr.splice(0, 1);
+alert(arr); // [2, 3]
 
-###### 清空数组
+{% endhighlight %}
 
-我们可以设置数组的length为0来清除数组的所有项。
+##### 清空数组
 
-
-####### 使用length清空数组
-
+我们可以设置数组的*length*为*0*来清除数组的所有项。
   
 {% highlight JavaScript %}
-    var arr = [1, 2, 3];
-  arr.length = 0; // []
-     {% endhighlight %}                 
 
+var arr = [1, 2, 3];
+arr.length = 0; // []
 
-[note]:
-当length被设置为小于当前长度时，下标大于或等于设置长度的项会被删除。
+{% endhighlight %}                 
 
-
-~~~~
-
-####### 使用length删除数组尾部的项
+>当*length*被设置为小于当前长度时，下标大于或等于设置长度的项会被删除。
 
 {% highlight JavaScript %}
-  var arr = [1, 2, 3];
-  arr.length = 2; // [1, 2]
-     {% endhighlight %}                 
+
+var arr = [1, 2, 3];
+arr.length = 2; // [1, 2]
+
+{% endhighlight %}                 
 
 #### 遍历
 
-
 ###### 数组长度的变量保存
 
-数组遍历时，应先将数组的length保存到临时变量中，避免在循环的每一步都读取数组的length。
-
-
-####### 数组遍历：提前存储数组的lenght
+数组遍历时，应先将数组的*length*保存到临时变量中，避免在循环的每一步都读取数组的*length*。
 
 {% highlight JavaScript %}
-  for (var i = 0, len = list.length; i < len; i++) {
-      // ...
-  }
+
+for (var i = 0, len = list.length; i < len; i++) {
+  // ...
+}
+
 {% endhighlight %}
 
-
-[note]:
-如果能保证数组所有项的ToBoolean不为false，可以使用for (var i = 0, obj; obj = list[i]; i++)进行遍历。这种遍历方式对性能有提高。
-
-
-~~~~
-
-
+>如果能保证数组所有项的*ToBoolean*不为*false*，可以使用`for (var i = 0, obj; obj = list[i]; i++)`进行遍历，这种遍历方式对性能有提高。
 
 ###### 倒序遍历
 
 当遍历的顺序无关时，建议使用倒序遍历。
 
-
-####### 数组遍历：使用倒序便利
-
 {% highlight JavaScript %}
-  var len = list.length;
-  
-  while (len--) {
-      var item = list[len];
-  }
-   {% endhighlight %}                   
 
+var len = list.length;
 
-[info]:
-查找匹配项并删除时，应使用倒序遍历。
+while (len--) {
+  var item = list[len];
+}
 
-
-~~~~
-
-
+{% endhighlight %}
 
 #### 排序
 
-在**JavaScript**中，可以使用sort方法对数组进行排序。
+在**JavaScript**中，可以使用`sort()`方法对数组进行排序。
 
-在基于比较的排序情况下，不建议自己写排序。因为使用sort排序性能并不比自己写快速排序差，甚至更好。
-
+在基于比较的排序情况下，不建议自己写排序。因为使用*sort排序*性能并不比自己写快速排序差，甚至更好。
 
 ###### 数值排序
 
-sort方法默认会将数组每一项转换为字符串，如果要按数值排序，需要传递一个比较函数。
-
-
-####### 使用sort方法进行排序
+`sort()`方法默认会将数组每一项转换为字符串，如果要按数值排序，需要传递一个比较函数。
 
 {% highlight JavaScript %}
-  [3, 5, 2, 1].sort(function (a, b) {return a - b;}); // [1, 2, 3, 5]
+
+[3, 5, 2, 1].sort(function (a, b) {
+  return a - b;
+}); // [1, 2, 3, 5]
                       
 {% endhighlight %}
+
 ###### 中文排序
 
-使用字符串的localeCompare方法，可以对中文进行排序。
-
-localeCompare方法的返回值类似于sort方法比较函数的约定。
-
-localeCompare方法依赖于本地环境。
-
-
-####### 使用string.localeCompare进行中文排序
-
+使用字符串的`localeCompare()`方法，可以对中文进行排序。`localeCompare()`方法的返回值类似于*sort方法*比较函数的约定，并且它是用本地特定的顺序来比较两个字符串，所以它依赖于本地环境。
   
 {% highlight JavaScript %}
-    ['张学友', '刘德华', '郭富城', '黎明'].sort(function (a, b) {return a.localeCompare(b);}); // ["郭富城", "黎明", "刘德华", "张学友"]
-   {% endhighlight %}                   
 
+['张学友', '刘德华', '郭富城', '黎明'].sort(function (a, b) {
+  return a.localeCompare(b);
+}); // ["郭富城", "黎明", "刘德华", "张学友"]
 
+{% endhighlight %}             
 
 #### 常用数组实例方法
 
+更多的可以参考[这里](http://www.w3school.com.cn/jsref/jsref_obj_array.asp)。
 
 ###### concat(item...)
 
-concat方法返回一个新数组，并将参数附加在数组后面。如果参数是一个数组，则数组中的每一项会被分别添加。
-
-
-####### array.concat
+`concat()`方法返回一个新数组，并将参数附加在数组后面。如果参数是一个数组，则数组中的每一项会被分别添加。
 
 {% highlight JavaScript %}
-  var arr = [1, 2, 3];
-  var newArr = arr.concat([4, 5, 6], 7); // [1, 2, 3, 4, 5, 6, 7]
-   {% endhighlight %}                   
 
+var arr = [1, 2, 3];
+var newArr = arr.concat([4, 5, 6], 7); // [1, 2, 3, 4, 5, 6, 7]
+
+{% endhighlight %}              
 
 ###### join(separator)
 
-join方法把数组构造成一个字符串，并以分隔符分隔。默认的分隔符为“,”。
-
-
-####### array.join
+`join()`方法把数组构造成一个字符串，并以分隔符分隔。默认的分隔符为','。
 
 {% highlight JavaScript %}
-  var arr = ['Hello', 'world];
-  arr.join(' '); // "Hello world"
-  {% endhighlight %}                    
 
+var arr = ['Hello', 'world'];
+arr.join(' '); // "Hello world"
+
+{% endhighlight %}
 
 ###### pop()
 
-pop方法会移除数组最后一项，并返回该项。
-
-
-####### array.pop
+`pop()`方法会移除数组最后一项，并返回该项。
 
 {% highlight JavaScript %}
-  var arr = [1, 2, 3];
-  var last = arr.pop(); // arr: [1, 2]; last: 3
-    {% endhighlight %}                  
 
+var arr = [1, 2, 3];
+var last = arr.pop(); // arr: [1, 2]; last: 3
+
+{% endhighlight %}
 
 ###### push(item...)
 
-push方法向数组尾部添加一个或多个项，并返回操作后的数组长度。
+`push()`方法向数组尾部添加一个或多个项，并返回操作后的数组长度。
 
+>*push*与*pop*配合可使数组像*stack*一样工作。
 
-[note]:
-push与pop配合可使数组像stack一样工作。
+*push*与*concat*有一些不同：
 
+* *push*会修改当前数组
+* 如果参数是一个数组，*push*会把参数作为一个整体添加到当前数组中，而不是将数组中的每一项会被分别添加
 
-~~~~
-push与concat有一些不同：
-
-
-1. push会修改当前数组。
-2. 如果参数是一个数组，push会把参数作为一项添加到当前数组中。
-
-####### array.push
-
-  
 {% highlight JavaScript %}
-    var arr = [1, 2, 3];
-  arr.push([4, 5, 6], 7); // [1, 2, 3, [4, 5, 6], 7]
-     {% endhighlight %}                 
+
+var arr = [1, 2, 3];
+arr.push([4, 5, 6], 7); // [1, 2, 3, [4, 5, 6], 7]
+
+{% endhighlight %}                
 
 ###### shift()
 
-shift方法会移除数组第一项，并返回该项。
-
-
-####### array.shift
+`shift()`方法会移除数组第一项，并返回该项。
 
 {% highlight JavaScript %}
-  var arr = [1, 2, 3];
-  var first = arr.shift(); // arr: [2, 3]; first: 1
-   {% endhighlight %}                   
 
+var arr = [1, 2, 3];
+var first = arr.shift(); // arr: [2, 3]; first: 1
+
+{% endhighlight %}
 
 ###### slice(start, end)
 
-slice返回数组的浅复制。索引从start开始到end（不包括end）。
-
-如果start或end是负数，解析器会试图把他们与数组的length相加，使其成为非负数。
-
-
-####### array.slice
+`slice()`方法会返回数组的浅复制，索引从*start*开始到*end*（不包括end）。
+如果*start*或*end*是负数，解析器会试图把他们与数组的*length*相加，使其成为非负数。
 
 {% highlight JavaScript %}
-  var arr = [1, 2, 3, 4];
-  arr.slice(1, 3); // [2, 3]
- {% endhighlight %}                     
 
+var arr = [1, 2, 3, 4];
+arr.slice(1, 3); // [2, 3]
+
+{% endhighlight %}
 
 ###### sort(compareFunction)
 
-sort方法可以对数组进行排序。默认会按照字符串的方式进行排序。
+`sort()`方法用于对数组的元素进行排序，默认将按字母顺序对数组中的元素进行排序，说得更精确点，是按照字符编码的顺序进行排序。
 
+>请注意，数组在原数组上进行排序，不生成副本。
 
 ####### array.sort：默认按字符串排序
 
 {% highlight JavaScript %}
-  [1, 4, 8, 10].sort(); // [1, 10, 4, 8]
- {% endhighlight %}                     
 
-我们可以传递一个比较函数。该函数对数组中的两项进行比较，相等时返回0，如果想要第二个参数排在前面，则返回一个正数。
+[1, 4, 8, 10].sort(); // [1, 10, 4, 8]
 
+{% endhighlight %}
 
-####### array.sort：通过比较函数实现数值排序
+另外，我们也可以传递一个比较函数。该函数对数组中的两项进行比较，相等时返回0，如果想要第二个参数排在前面，则返回一个正数。
 
 {% highlight JavaScript %}
-  [7, 4, 6, 2].sort(function (a, b) {return b - a;}); // [7, 6, 4, 2]
+
+[7, 4, 6, 2].sort(function (a, b) {
+  return b - a;
+}); // [7, 6, 4, 2]
                       
 {% endhighlight %}
 
 ###### splice(start, deleteCount, item...)
 
-splice方法最大的作用是移除数组的项。其还能在删除项的位置插入新的item。
-
-splice方法会以一个新的数组返回删除的项。
-
-
-####### array.splice
+`splice()`方法最大的作用是移除数组的项，同时还能在删除项的位置插入新的项，然后返回被删除的项。
 
 {% highlight JavaScript %}
-  var arr = [1, 2, 3, 4, 5, 6];
-  arr.splice(1, 2, 7); // [1, 7, 4, 5, 6]
-   {% endhighlight %}                   
 
+var arr = [1, 2, 3, 4, 5, 6];
+arr.splice(1, 2, 7); // [1, 7, 4, 5, 6]
+
+{% endhighlight %}
 
 ###### unshift(item...)
 
-unshift方法向数组开始部分添加一个或多个项。
+`unshift()`方法向数组开始部分添加一个或多个项。
 
-
-[note]:
-unshift与pop配合可使数组像队列一样工作。
-
-
-~~~~
-
-####### array.unshift
+>*unshift*与*pop*配合可使数组像*Queue*一样工作。
 
 {% highlight JavaScript %}
-  var arr = [3, 4, 5];
-  arr.unshift(1, 2); // [1, 2, 3, 4, 5]
+
+var arr = [3, 4, 5];
+arr.unshift(1, 2); // [1, 2, 3, 4, 5]
                       
 {% endhighlight %}
-### 面向对象
 
+
+### 面向对象
 
 #### 静态类
 
-通常我们使用静态类封装同一类型或同一业务相关的功能。静态类在**JavaScript**里使用频率远高于可实例化的类。静态类在**JavaScript**里表现为Object。
-
+通常我们使用静态类封装同一类型或同一业务相关的功能。静态类在**JavaScript**里使用频率远高于可实例化的类。静态类在**JavaScript**里表现为*Object*。
 
 ###### 声明静态类
 
 {% highlight JavaScript %}
-  var Util = {
-      formatDate: function (date) {
-      },
-          
-      encodeHTML: function (source) {
-      }
-  };
+
+var Util = {
+  formatDate: function (date) {},
+  encodeHTML: function (source) {}
+};
                   
 {% endhighlight %}
-使用function执行并返回，可以达到变量私有的效果。
 
-
-[note]:
-该方法可以提高Javascript代码压缩的效果。因为局部变量是可以被压缩的，而全局变量以及对象成员是无法被压缩的。
-
-
-~~~~
-
-###### 声明静态类：通过闭包
+使用*IIFE*(immediately invoked function expression)可以达到变量私有的效果,该方法可以提高**JavaScript**代码压缩的效果。因为局部变量是可以被压缩的，而全局变量以及对象成员是无法被压缩的。
 
 {% highlight JavaScript %}
-  var Util = function () {
-      var format = "yyyy-MM-dd"; // 私有变量，不对外暴露
-      
-      return {
-          formatDate: function (date) {
-          },
-          
-          encodeHTML: function (source) {
-          }
-      };
-  }();
+
+var Util = function () {
+  var format = "yyyy-MM-dd"; // 私有变量，不对外暴露
+
+  return {
+    formatDate: function (date) {},
+
+    encodeHTML: function (source) {}
+  };
+}();
                   
 {% endhighlight %}
 
-[info]:
-如果返回对象是function或包含对function的引用，则当前执行的scope不会被释放。使用该方法请遵循闭包原则。
-
-
-~~~~
-
-
-
 #### 继承
-
 
 ###### 使用原型继承
 
@@ -1732,40 +1591,38 @@ unshift与pop配合可使数组像队列一样工作。
 
 原型继承的优点是：
 
+* 做类型判断的时候，*dog is a Animal*。这点如果使用属性复制法，则无法实现
+* 多实例使用一个原型对象，减少内存开销
 
-1. 做类型判断的时候，dog is a Animal。这点如果使用属性复制法，则无法实现。
-2. 多实例使用一个原型对象，减少内存开销。
 原型继承的缺点是：
 
+* 由于子类原型是父类的实例，所以实例化的时候需要关注构造函数的参数
+* 子类构造函数和方法需要指定父类的名称来进行*super*的调用，在子类编写的过程中都需要关心父类的名称。如SuperClass.call或SuperClass.prototype.method.call
 
-1. 由于子类原型是父类的实例，所以实例化的时候需要关注构造函数的参数。
-2. 子类构造函数和方法需要指定父类的名称来进行super的调用，在子类编写的过程中都需要关心父类的名称。如SuperClass.call或SuperClass.prototype.method.call。
-
-####### 原型继承
 
 {% highlight JavaScript %}
-  function Animal(name) {
-      this.name = name;
-  }
-      
-  Animal.prototype = {
-      jump: function () {
-          alert('animal ' + this.name + ' jump');
-      }
-  };
-      
-  function Dog(name) {
-      Animal.call(this, name);
-  }
-      
-  Dog.prototype = new Animal();
-      
-  Dog.prototype.jump = function () {
-      alert('dog ' + this.name + ' jump');
-  };
-                      
-{% endhighlight %}
 
+function Animal(name) {
+ this.name = name;
+}
+
+Animal.prototype = {
+ jump: function () {
+   alert('animal ' + this.name + ' jump');
+ }
+};
+
+function Dog(name) {
+ Animal.call(this, name);
+}
+
+Dog.prototype = new Animal();
+
+Dog.prototype.jump = function () {
+ alert('dog ' + this.name + ' jump');
+};
+                  
+{% endhighlight %}
 
 ###### 原型继承的风险
 
@@ -1773,425 +1630,344 @@ unshift与pop配合可使数组像队列一样工作。
 
 下面是一个简单的风险例子：
 
-
-####### 原型继承的风险
-
 {% highlight JavaScript %}
-  function ListBase() {
-      this.container = [];
-  }
-  
-  ListBase.prototype = {
-      push: function (item) {
-          this.container.push(item);
-      },
-          
-      alert: function () {
-          alert(this.container);
-      }
-  };
-  
-  function List() {
-  }
-  
-  List.prototype = new ListBase();
-  
-  var list1 = new List();
-  var list2 = new List();
-  
-  list1.push(1);
-  list2.push(2);
-  list2.alert();  // 1,2
-  {% endhighlight %}                    
 
+function ListBase() {
+  this.container = [];
+}
+
+ListBase.prototype = {
+  push: function (item) {
+    this.container.push(item);
+  },
+
+  alert: function () {
+    alert(this.container);
+  }
+};
+
+function List() {}
+
+List.prototype = new ListBase();
+
+var list1 = new List();
+var list2 = new List();
+
+list1.push(1);
+list2.push(2);
+list2.alert(); // 1,2
+
+{% endhighlight %}
 
 
 ### DOM
 
-由于dom对象不是**JavaScript**原生对象，所以我们在使用dom对象的时候，可能会面临这样的麻烦：性能、浏览器兼容性、内存泄露等。
-
+由于*DOM*对象不是**JavaScript**原生对象，所以我们在使用*DOM*对象的时候，可能会面临各种各样的麻烦：性能、浏览器兼容性、内存泄露等。
 
 #### 获取元素
 
+##### 获取单个元素
 
-###### 获取单个元素
+通常，我们使用`document.getElementById()`方法来获取DOM元素，避免使用`document.all`。
 
-通常，我们使用document.getElementById来获取dom元素，避免使用document.all。document.getElementById是标准方法，兼容所有浏览器。
+>`document.getElementById()方法`是标准方法，兼容所有浏览器。但是，IE浏览器会混淆元素的*id*和*name*属性，`document.getElementById()`可能获得不期望的元素。在对元素的*id*与*name*属性的命名需要非常小心，应使用不同的命名法。下面是一个name与id冲突的例子：
 
+{% highlight HTML %}
 
-[info]:
-ie浏览器会混淆元素的id和name属性，document.getElementById可能获得不期望的元素。在对元素的id与name属性的命名需要非常小心，应使用不同的命名法。下面是一个name与id冲突的例子：
+<input type='text' name='test'>
+<div id='test'></div>
 
+<!-- ie6下为INPUT -->
+<button onclick='alert(document.getElementById('test').tagName)'></button>
 
-~~~~
+{% endhighlight %}            
 
-####### id与name的冲突
+##### 获取元素集合
 
-  :::html
-  <input type="text" name="test">
-  <div id="test"></div>
+###### getElementsByTagName
   
-  <!-- ie6下为INPUT -->
-  <button onclick="alert(document.getElementById('test').tagName)"></button>
-                      
+`getElementsByTagName(tagName)`方法可以根据标签名获得元素下的子元素，包含非直接附属的子元素。我们可以指定tagName参数为_*_来获得元素的所有子元素。
+  
+{% highlight HTML %}
 
+<!-- DOM操作实时反映到结果集合中 -->
+<body>
+<div></div>
+<span></span>
+&gt;script&lt;var elements = document.body.getElementsByTagName('*');
+alert(elements[0].tagName); // div
 
-###### 获取元素集合
+var div = elements[0];
+var u = document.createElement('u');
 
+document.body.insertBefore(u, div);
+alert(elements[0].tagName); // u，实时反应到结果中
+</script>
+</body>
 
-1. getElementsByTagName
+{% endhighlight %}  
   
-  getElementsByTagName(tagName)方法可以根据标签名获得元素下的子元素，包含非直接附属的子元素。我们可以指定tagName参数为'*'来获得元素的所有子元素。
+###### childNodes
   
-  
-  
-  
-    :::html
-        <!-- dom操作实时反映到结果集合中 -->
-  
-    <body>
-    <div></div>
-    <span></span>
-    
-    <script>
-    var elements = document.body.getElementsByTagName('*');
-    alert(elements[0].tagName); // div
-    
-    var div = elements[0];
-    var u = document.createElement('u');
-    
-    document.body.insertBefore(u, div);
-    alert(elements[0].tagName); // u，实时反应到结果中
-    </script>
-    </body>
-                                
+`childNodes`属性可以获取控件的直接子节点集合，但是集合中包括文本、注释、属性等类型的节点。
 
+###### children
   
-2. childNodes
-  
-  childNodes属性可以获取控件的直接子节点集合。集合中包括文本、注释、属性等类型的节点。
-  
-  
-3. children
-  
-  children属性可以获取控件的直接子元素集合。集合中只包含html元素。
+`children`属性可以获取控件的直接子元素集合，但是集合中只包含元素节点，并不包括文本节点等等。
 
-[info]:
-  以上方法或属性的结果并不直接引用dom元素，而是对索引进行读取，所以dom结构的改变会实时反映到结果中。使用了getElementsByTagName方法需要小心dom操作的时序性。
-  
-  
-~~~~
-
-
-
+>以上方法或属性的结果并不直接引用DOM元素，而是对索引进行读取，所以DOM结构的改变会实时反映到结果中。使用了getElementsByTagName方法需要小心DOM操作的时序性。
 
 #### 样式读取
 
-样式读取的陷阱很多。比如通过class具有的样式无法被直接读取，还有对颜色的读取在不同浏览器下的表示方式存在差异，等等。所以我们应该遵循如下建议：
+>浏览器不兼容性的重灾区。
 
+通过`style`属性，我们不能读取*embeded*, *linked*或者是*imported*的样式，但是我们又偶尔需要去获取这些非*inline*样式，*Microsoft*和*W3C*提供了不同的方法去访问这些*非inline*样式 。
 
-1. 不以样式判断状态，也不建议以className判断状态。状态应被单独管理。这样可以减少读取样式的可能性，避免差异发生。
-2. 如果非要读取元素实时样式，使用tangram的baidu.dom.getStyle方法。
+##### style
 
+通过`style`属性可以给元素设置*inline*样式。
 
+The general rule is that all dashes are removed from the CSS property names, and that the character after a dash becomes uppercase. Thus margin-left becomes marginLeft, text-decoration becomes textDecoration, and border-left-style becomes borderLeftStyle.
+许多**CSS**样式名称里面都会包含*-*，比如`font-size`。在`JavaScript`中，*-*是不用于属性名称中的，所以，一般的原则是去掉所有的*-*，然后*-*后面的第一个字符变为大写，如*margin-left*变为 *marginLeft*。另外，别忘记添加**CSS**单位，如`px`，因为如果没有它，浏览器会不知道如何解析它，所以它什么都不会做。
+
+>`HTML`元素的`style`属性仅仅提供访问元素的内联样式。
+
+##### currentStyle
+
+*Microsoft*是使用`currentStyle`属性，它与`style`属性几乎一样，除了它支持访问元素的所有样式，并不限于*inline*样式，因此它是真正反应了作用于元素上的实时样式，另外，它是只读的。
+
+{% highlight JavaScript %}
+
+var x = document.getElementById('test'); 
+alert(x.currentStyle.color);
+
+{% endhighlight %}
+
+##### window.getComputedStyle()
+
+W3C的解决方案是`window.getComputedStyle()`方法, 它与`currentStyle`差不多，但是它的语法更复杂：
+
+{% highlight JavaScript %}
+
+var x = document.getElementById('test'); 
+alert(window.getComputedStyle(x,null).color);
+
+{% endhighlight %}
+
+`getComputedStyle()`方法始终返回的是计算后的pixel值，尽管它的原始值可能是使用的*em*或是百分比%。
 
 #### 样式设置
 
-
 ###### className
 
-通过设置元素的className属性可以为元素设置class。该方式兼容所有浏览器。
-
-
-####### 设置元素的class
-
-  
-{% highlight JavaScript %}
-    dom.className = 'my-class';
-    {% endhighlight %}                  
-
-
-[info]:
-避免使用setAttribute方法设置元素的class。
-
-
-~~~~
-
-
-
-###### style
-
-通过style可以给元素设置样式。通常css样式对应的设置名称为：去掉单词连接的中划线，并使用驼峰命名法。如：margin-left -> marginLeft。
-
-
-####### 设置元素的style
+**JavaScript**允许你动态地更改元素的`class`和`id`属性，之后浏览器会自动更新元素的样式。幸运的是该方式兼容所有浏览器。
 
 {% highlight JavaScript %}
-  dom.style.top = '10px';
-                      
+
+element.className = 'class';
+
 {% endhighlight %}
-
-###### 一个例子：display的管理
-
-通常我们认为style.display = ''可以设置一个元素为显示。但是当元素具有的class中包含display:none的定义时，必须设置为block才能显示该元素。这对我们带来了困扰。
-
-我们可以通过下面的方法解决：
-
-
-1. 不将display:none定义在class中，而定义在元素的style属性中。display作为可变的样式定义，不应该被定义在元素的显示样式规则中。
-  
-  
-    :::html
-        <!-- 可变样式定义在标签内内联中 -->
-    
-    <div class="myclass" style="display:none"></div>
-                                
-  
-  
-2. 使用一个额外的class（如myclass-hide）来控制显示隐藏，在这个class中定义display:none，需要隐藏时让元素多具有一个class。
-  
-  
-  {% highlight JavaScript %}
-        // 使用额外的class管理可变样式
-      
-    baidu.addClass(dom, 'myclass-hide');
-                                
-{% endhighlight %}
-[info]:
-避免通过获取元素的当前display样式来进行显示隐藏。获取当前样式会导致性能问题。我们应该规划管理我们的样式。
-
-
-~~~~
-
-
 
 #### 性能
 
-提高dom操作的性能有一个主要原则：减少dom操作，减少浏览器的reflow。
+提高DOM操作的性能有一个主要原则：减少DOM操作，减少浏览器的Reflow。
 
-
-###### 减少dom操作
+##### 减少DOM操作
 
 举一个简单的例子：构建一个列表。我们可以用两种方式：
 
+* 在循环体中`createElement()`并*append*到父元素中
+* 在循环体中拼接*HTML*字符串，循环结束后赋给父元素*innerHTML*
 
-1. 在循环体中createElement并append到父元素中。
-2. 在循环体中拼接html字符串，循环结束后为父元素赋innerHTML。
-第一种方法看起来比较标准，但是每次循环都会对dom进行操作，性能极低。在这里推荐使用第二种方法。
+第一种方法看起来比较标准，但是每次循环都会对DOM进行操作，性能极低。在这里推荐使用第二种方法。
 
-
-
-
-###### 减少浏览器的reflow
+##### 减少浏览器的Reflow
 
 下面一些场景会触发浏览器的reflow：
 
-
-1. DOM元素的添加、修改（内容）、删除。
-2. 应用新的样式或者修改任何影响元素布局的属性。
-3. Resize浏览器窗口、滚动页面。
-4. 读取元素的某些属性（offsetLeft、offsetTop、offsetHeight、offsetWidth、scrollTop/Left/Width/Height、clientTop/Left/Width/Height、getComputedStyle()、currentStyle(in IE)) 。
-下面的例子是一个频繁触发reflow的例子：
-
-
-####### 一个频繁触发reflow的例子
+* DOM操作：添加/删除/修改/隐藏元素(`display:none`)，移动元素或是修改元素出现顺序
+* 内容变更，如表单元素值的修改
+* 修改或是计算CSS属性(offsetLeft、offsetTop、offsetHeight、offsetWidth、scrollTop/Left/Width/Height、clientTop/Left/Width/Height、getComputedStyle()、currentStyle(in IE))
+* 添加或是删除样式表
+* 修改**class**属性
+* 操作浏览器窗口，如*resizing*或是*scrolling*
+* 激活**pseudo-class**，如`:hover`, `:checked`, `:first-child`等等
 
 {% highlight JavaScript %}
-  var parent   = document.getElementById('parent');
-  var elements = parent.getElementsByTagName('li');
-  var len      = elements.length;
-  var i;
-      
-  for (i = 0, ; i < len; i++) {
-      elements[i].style.width = parent.offsetWidth + 'px';
-  }
-                      
+
+// 一个频繁触发reflow的例子
+var parent = document.getElementById('parent');
+var elements = parent.getElementsByTagName('li');
+var len = elements.length;
+var i;
+
+for (i = 0, ; i < len; i++) {
+  elements[i].style.width = parent.offsetWidth + 'px';
+}
+
 {% endhighlight %}
-在这个例子中，循环的每一步都读取了parent元素的offsetWidth，所以触发reflow进行重新渲染了len次。这个例子中，更好的做法是读取一次，较少reflow。
 
+在这个例子中，循环的每一步都读取了*parent*元素的*offsetWidth*，所以触发*Reflow*进行重新渲染了*len*次。这个例子中，更好的做法是读取一次，较少*Reflow*。
 
-####### 一个频繁触发reflow的例子的改进
+{% highlight JavaScript %}
 
-  
-  var parent   = document.getElementById('parent');
-  var elements = parent.getElementsByTagName('li');
-  var width    = parent.offsetWidth;
-  var len      = elements.length;
-  var i;
-      
-  for (i = 0, ; i < len; i++) {
-      elements[i].style.width = width + 'px';
-  }
-                      
+// 一个频繁触发reflow的例子的改进  
+var parent = document.getElementById('parent');
+var elements = parent.getElementsByTagName('li');
+var width = parent.offsetWidth;
+var len = elements.length;
+var i;
 
-[更多关于reflow的资料请见这里](http://blog.csdn.net/baiduforum/archive/2010/03/25/5415527.aspx)
+for (i = 0, ; i < len; i++) {
+  elements[i].style.width = width + 'px';
+}
 
+{% endhighlight %}
 
+[更多关于Layout/Reflow](/2015/02/02/javascript-common-codes-and-snippets/#layoutreflow)
 
 
 ### DOM事件
 
-
 #### 浏览器差异性
 
-IE与标准浏览器在事件处理上有很明显的差异，这些差异为浏览器端开发带来了很大的麻烦：
+IE与标准浏览器在事件处理上有很明显的差异，这些差异为浏览器端开发带来了很大的麻烦。
 
+##### EventArgument
+  
+IE通过`window.event`获取*EventArgument*；标准浏览器通过监听器的第一个参数获取*EventArgument*。
+*EventArgument*对象本身也存在差异性，最典型的是IE通过*srcElement*属性获得触发事件的元素，标准浏览器则是*target*属性。
 
-1. EventArgument
+##### 事件触发
   
-  IE通过window.event获取EventArgument；标准浏览器通过监听器的第一个参数获取EventArgument。
+IE的事件触发为冒泡模型，而标准浏览器的触发为捕获-冒泡模型。  
   
-  EventArgument对象本身也存在差异性，最典型的是IE通过srcElement属性获得触发事件的元素，标准浏览器则是target属性。
+##### 监听方法
   
-  
-2. 事件触发
-  
-  IE的事件触发为冒泡模型；标准浏览器的触发为捕获-冒泡模型。
-  
-  
-3. 监听方法
-  
-  ie使用attachEvent方法添加监听器；标准浏览器使用addEventListener方法添加监听器。
-
-
+IE使用`attachEvent()`方法添加监听器；标准浏览器使用`addEventListener()`方法添加事件监听器(IE9开始支持它)。
 
 #### 添加事件处理的方法
 
-通常，为一个dom元素添加事件处理，可以使用3种方法：
+通常，为一个DOM元素添加事件处理，可以使用3种方法：
 
+##### 内联模型
 
-1. 标签内联
-  
-  这种方法最简单，但是在html中书写行为，违背了结构-表现-行为分离的原则。
-  
-  
-    :::html
-        <!-- 添加事件处理：标签内联 -->
-  
-    <div onclick="callFunction()"></div>
-                            
-  
-  
-2. expando属性
-  
-  这种方法比较通用，但是如果为一个元素挂载多个event handler的话，后面的会覆盖前面。
-  
-  
-  {% highlight JavaScript %}
-        // 添加事件处理：expando属性
-  
-    div.onclick = function (e) {
-    };
-                            
-  {% endhighlight %}
-  
-3. 添加监听器
-  
-  这种方法比较流行，但是浏览器存在差异，并可能带来性能问题。
+在内联事件模型中，事件处理器是作为HTML元素的属性添加的。如下所示：
 
+{% highlight HTML %}
 
-[info]:
-  标准的addEventListener提供了两种时间触发模型：冒泡和捕获。可以通过第三个参数指定。IE的attachEvent支持冒泡的事件触发。所以为了保持一致性，通常addEventListener的第三个参数都为false。
-  
-  事件类型中，标准浏览器不需要添加“on”，如“click”；IE需要添加为“onclick”。
-  
-  IE下使用attachEvent挂载监听器，当事件被触发时，函数的指针指向window，而不是触发事件的元素本身。
-  
-  
-~~~~
-  
-  {% highlight JavaScript %}
-        // 添加事件处理：添加监听器
-  
-      
-    function listener(e) {}
-        
-    if (baidu.ie) {
-        dom.attachEvent('onclick', listener);
-    } else {
-        dom.addEventListener('click', listener, false);
-    }
+<p>Hey <a href="http://www.example.com" onclick="triggerAlert('Joe'); return false;">Joe!</p>
+
+{% endhighlight %}
+
+如果想了解更多，请参考[这里](http://www.quirksmode.org/js/events_early.HTML)。
+
+##### 传统模型
+
+在传统事件模型中，事件处理器是通过**JavaScript**脚本添加或删除的。与内联模型相同的是，每一个事件一次只能绑定一个事件处理器。
+
+{% highlight JavaScript %}
+
+element.onclick = doSomething; //添加事件处理器
+element.onclick = null; // 移除事件处理器
+
+{% endhighlight %}
+
+如果想了解更多，请参考[这里](http://www.quirksmode.org/js/events_tradmod.HTML)。
+
+##### 高级事件模型：事件监听器
+
+标准的`addEventListener()`方法提供了两种时间触发模型：冒泡和捕获。可以通过第三个参数指定。IE的`attachEvent()方法`**只支持冒泡的事件触发**。所以为了保持一致性，通常`addEventListener()`方法的第三个参数都为*false*。
+
+事件类型中，标准浏览器不需要添加*on*，如*click*；IE需要添加为*onclick*。
+
+IE通过下使用`attachEvent()`挂载事件监听器，当事件被触发时，**函数的**this**指针始终指向`window`**，而不是触发事件的元素本身。
+
+{% highlight JavaScript %}
+
+// 添加事件处理：添加监听器
+function listener(e) {}
+
+if ($.browser.ie) {
+  element.attachEvent('onclick', listener);
+} else {
+  element.addEventListener('click', listener, false);
+}
                             
 {% endhighlight %}
 
-[note]:
-  为了屏蔽浏览器兼容性，我们可以使用baidu.event.on
-  
-  
-~~~~
-
-
-
-
 #### 添加事件原则
 
+##### 拼接html时，可以使用标签内联的方法添加事件
+  
+有时候我们需要用**JavaScript**拼接html字符串。这个时候我们面对的不是DOM对象，可以使用标签内联的方式添加事件。标签内联的方法可以不用关心事件的释放。
 
-1. 拼接html时，可以使用标签内联的方法添加事件。
-  
-  有时候我们需要用**JavaScript**拼接html字符串。这个时候我们面对的不是dom对象，可以使用标签内联的方式添加事件。标签内联的方法可以不用关心事件的释放。
+标签内联的方式使得我们丧失了对事件控制的权利。我们没有办法获得触发事件的target，没有办法停止事件冒泡，没有办法停止默认行为。我们唯一能做的就是使用*this*把当前DOM元素传递给处理函数。
 
-  标签内联的方式使得我们丧失了对事件控制的权利。我们没有办法获得触发事件的target，没有办法停止事件冒泡，没有办法停止默认行为。我们唯一能做的就是使用this把当前dom元素传递给处理函数。
-  
-  
-  
-2. 运行环境可控时，使用expando属性的方法添加事件。
-  
-  这个时候，**JavaScript**运行的页面环境全部是由我们控制的，我们不担心会有其他的**JavaScript**脚本覆盖我们挂载的event handler。
-  
-  对于大多数项目，使用这种方法代替流行的addEventListener，因为该方式会获得更高的性能（如document.body.onmousemove的拖拽处理）
-  
-  
-3. 对于页面级别的事件管理，使用添加监听器的方法。
-  
-  有时我们需要在点击页面时关闭所有的浮动层。类似的情况向body添加监听器更容易实现，相互之间无影响。
-  
-  
-  对于元素级别事件挂载：有的时候一个项目由多人开发，大家为了不覆盖相互对同一个元素的事件处理而添加监听器。但这种情况大多是因为对交互的分析、事件的管理没有很好的规划。
-  
-  
-4. 针对第三方环境时，使用添加监听器的方法。
-  
-  添加监听器的方法能够不覆盖之前对响应元素添加的监听器。不过监听器之间的处理顺序无法保证。
-  
-  开发人员需要持有监听器函数的引用，在适当时候（元素释放、页面卸载等）卸载添加的监听器。
+##### 运行环境可控时，使用传统模型的方法添加事件
 
+这个时候，**JavaScript**运行的页面环境全部是由我们控制的，我们不担心会有其他的**JavaScript**脚本覆盖我们挂载的event handler。
+
+对于大多数项目，使用这种方法代替流行的`addEventListener`，因为该方式会获得更高的性能（如document.body.onmousemove的拖拽处理）
+  
+##### 对于页面级别的事件管理，使用添加监听器的方法
+  
+有时我们需要在点击页面时关闭所有的浮动层。类似的情况向body添加监听器更容易实现，相互之间无影响。
+
+对于元素级别事件挂载：有的时候一个项目由多人开发，大家为了不覆盖相互对同一个元素的事件处理而添加监听器。但这种情况大多是因为对交互的分析、事件的管理没有很好的规划。
+
+##### 针对第三方环境时，使用添加监听器的方法
+  
+添加监听器的方法能够不覆盖之前对响应元素添加的监听器。不过监听器之间的处理顺序无法保证。
+
+开发人员需要持有监听器函数的引用，在适当时候（元素释放、页面卸载等）卸载添加的监听器。
 
 
 ### 页面加载与代码构建
 
-
 #### 页面加载
 
-通常我们在body标签结束之前加载外部js。在这个位置加载js的好处是：
+通常我们在body标签结束之前加载外部**JavaScript**。在这个位置加载**JavaScript**的好处是：
 
+* 让用户预先下载可见的HTML视图，避免下载**JavaScript**的阻断导致用户面对空白页面等待
+* 保证页面的DOM结构已经加载完成，操作DOM可以不用顾忌或判断是否加载完毕
 
-1. 让用户预先下载可见的html视图，避免下载js的阻断导致用户面对空白页面等待。
-2. 保证页面的dom结构已经加载完成，操作dom可以不用顾忌或判断是否加载完毕。
+##### 加载外部**JavaScript**
 
-###### 加载外部js
+{% highlight HTML %}
 
-  
-  :::html
-    <body>
-      <div class="wrap">...</div>
-      <script type="text/**JavaScript**" src="my.js"></script>
-  </body>
+<body>
+  <div class='container'>...</div>
+  <script type='text/javascript' src='my.js'></script>
+</body>
                   
+{% endhighlight %}
 
+>*script*标签中必选的属性为*type*和src*。
 
-[info]:
-script标签中必选的属性为type与src。
+下面的一些属性虽然常用，但部分已不推荐：
 
+* *defer*和*async*属性能延后脚本的执行时间
+* *language*属性已被*HTML5*标准删除，不推荐
+* *charset*属性可以通过脚本文件本身编码来解决，不推荐
 
-~~~~
-下面的一些属性虽然常用，但已不推荐：
+##### *defer*和*async*
 
+HTML的&lt;script&gt;标签允许你定义**JavaScript**代码何时可以开始执行。
 
-1. defer属性为ie only的属性，能延后脚本的执行时间，不推荐。
-2. language属性已被html5标准删除，不推荐。
-3. charset属性可以通过脚本文件本身编码来解决，不推荐。
+* 正常执行&lt;script&gt;
 
+这是&gt;script&lt;标签默认的行为，脚本执行的时候*HTML*的解析会暂停。对于延迟性高的服务器和大型的脚本来说，这也就意味着页面的显示会被推迟。
 
+* 延迟执行&lt;script defer&gt;
+
+与正常执行相对，延迟执行也就是会延迟脚本的执行直到*HTML*的解析完成。这样做的好处是对于你的脚本来说，此时DOM是可以访问了的。然而，并不是所有浏览器都支持它，所以不要单纯地依赖于它。
+
+* 异步执行&lt;script async&gt;
+
+如果你并不在乎脚本何时会执行，那么异步模式是最好的选择。因为对于异步执行来说，*HTML*的解析会继续，而脚本一旦下载成功，就会开始解析并执行脚本。*Google Analytics*就是使用的这种方式。
+
+![Asynchronous and deferred JavaScript execution explained](/assets/images/script_execution.jpg)
 
 #### 分模块与分文件开发
 
@@ -2199,169 +1975,133 @@ script标签中必选的属性为type与src。
 
 关于模块划分，有如下建议：
 
+* 公共模块以一个*namespace*暴露，如jQuery
+* 业务模块是独立的业务单元，以一个*namespace*来暴露。模块中包括模块公共部分（语言、公共函数等），以及各个业务功能
 
-1. 公共模块以一个namespace暴露。可参考tangram。
-2. 业务模块是独立的业务单元，以一个namespace来暴露。模块中包括模块公共部分（语言、公共函数等），以及各个业务功能。
-3. charset属性可以通过脚本文件本身编码来解决，不推荐。
-关于文件划分：开发时，我们可以使用一个js文件来装载要用到的**JavaScript**文件（如build.js）。这样做的好处是，在提测前构建的时候，无需修改相应的html或模板。
+关于文件划分：开发时，我们可以使用一个**JavaScript**文件来装载要用到的**JavaScript**文件（如build.js）。这样做的好处是，在提测前构建的时候，无需修改相应的html或模板。
 
-
-###### 开发时外部js装载
-
+##### 开发时外部**JavaScript**装载
   
 {% highlight JavaScript %}
-    document.write('<script type="text/**JavaScript**" src="/src/UIBase.js"></script>');
-  document.write('<script type="text/**JavaScript**" src="/src/UIManager.js"></script>');
-  document.write('<script type="text/**JavaScript**" src="/src/ui/MonthView.js"></script>');
-  document.write('<script type="text/**JavaScript**" src="/src/ui/Calendar.js"></script>');
-  document.write('<script type="text/**JavaScript**" src="/src/ui/Link.js"></script>');
-  document.write('<script type="text/**JavaScript**" src="/src/ui/Button.js"></script>');
-  document.write('<script type="text/**JavaScript**" src="/src/ui/TextInput.js"></script>');
-  document.write('<script type="text/**JavaScript**" src="/src/ui/BaseBox.js"></script>');
-  document.write('<script type="text/**JavaScript**" src="/src/ui/CheckBox.js"></script>');
-  document.write('<script type="text/**JavaScript**" src="/src/ui/RadioBox.js"></script>');
-  // ......
+
+document.write('<script type="text/javascript" src="/src/UIBase.js"></script>');
+document.write('<script type="text/javascript" src="/src/UIManager.js"></script>');
+document.write('<script type="text/javascript" src="/src/ui/MonthView.js"></script>');
+document.write('<script type="text/javascript" src="/src/ui/Calendar.js"></script>');
+document.write('<script type="text/javascript" src="/src/ui/Link.js"></script>');
+document.write('<script type="text/javascript" src="/src/ui/Button.js"></script>');
+document.write('<script type="text/javascript" src="/src/ui/TextInput.js"></script>');
+document.write('<script type="text/javascript" src="/src/ui/BaseBox.js"></script>');
+document.write('<script type="text/javascript" src="/src/ui/CheckBox.js"></script>');
+document.write('<script type="text/javascript" src="/src/ui/RadioBox.js"></script>');
+// ......
                   
 {% endhighlight %}
 
-[info]:
-切勿以document.write输出静态js引用的方式上线！在IE下，document.write无法保证脚本加载的时序性。经过测试，我们认为对于同域的静态资源，时序型可以保证，所以开发时可以采用这种方式。
-
-
-~~~~
-
-
+>切勿以*document.write*输出静态js引用的方式上线！在IE下，*document.write*无法保证脚本加载的时序性。经过测试，我们认为对于同域的静态资源，时序型可以保证，所以开发时可以采用这种方式。
 
 #### 自动构建
 
 提测时，我们需要一些脚本来自动将这些文件的具体内容打包到这个文件中，并且进行压缩。这个过程避免手工。想想，如果手工合并文件，是一件多麻烦的事情，在每个提测前可能都要干一遍......
 
-我们可以使用shell、ant、wscript、python等脚本进行合并。下面是一个简单的shell构建脚本的例子，这个例子中build.js会被打包压缩成build-c.js，为了避免文件被覆盖，需要手工备份build.js，mv build-c.js。当然我们也可以不备份而从svn中恢复，但那样我们需要解决svn冲突。
+我们可以使用*shell*、*ant*、*wscript*、*python*等脚本进行合并。下面是一个简单的*shell*构建脚本的例子，这个例子中build.js会被打包压缩成build-c.js，为了避免文件被覆盖，需要手工备份build.js。当然我们也可以不备份而从svn中恢复，但那样我们需要解决svn冲突。
 
-下面是一个简单的自动构建的shell脚本示例：
-
-
-###### 自动构建的shell脚本
-
+下面是一个简单的自动构建的*shell*脚本示例：
   
-  #! /bin/sh
+{% highlight Bash %}
   
-  cd ..
-  
-  # merge
-  cat assets/build.js | 
-      awk -F'"' '/src="[^"]+.js"/{print $4}' |
-          cut -c 2- |
-              xargs cat 1>assets/build-all.js
-      
-  # compress
-  java -jar ~/local/ecui.jar assets/build-all.js --mode 2 --charset utf-8 -o assets/build-c.js
+cd ..
+
+# merge
+cat assets/build.js | 
+    awk -F'"' '/src="[^"]+.js"/{print $4}' |
+    cut -c 2- |
+    xargs cat 1>assets/build-all.js
+    
+# compress
+java -jar ~/local/ecui.jar assets/build-all.js --mode 2 --charset utf-8 -o assets/build-c.js
                   
+{% endhighlight %}
 
-
-
-
-
+当然，我们可以会考虑使用现在比较流行的一些build工具，如*Grunt*，*Gulp*又或是*Webpack*。
 
 ### 第三方**JavaScript**
 
 有时候，我们开发的**JavaScript**是为了给第三方页面提供服务的（广告、开放api...），我们的js会被运行在各种各样的页面环境中。相比环境完全可控的js开发，我们需要关注一些额外的东西：
 
-
 #### 全局变量冲突
 
-由于环境的未知性，所有暴露的全局变量都可能产生危险。我们应该使用function隔离作用域。
+由于环境的未知性，所有暴露的全局变量都可能产生危险，我们应该使用*function*隔离作用域。
 
-
-###### 隔离作用域，防止变量冲突
-
-  
 {% highlight JavaScript %}
-    (function () {
-      var i = 0;
-  })();
-      {% endhighlight %}            
 
-对于提供api而必须暴露的全局变量，首先减少暴露的个数，以1个为宜。通过挂载到window的property的方式暴露。
+(function () {
+ var i = 0;
+})();
 
+{% endhighlight %}            
 
-###### 全局变量暴露
+对于提供API而必须暴露的全局变量，首先减少暴露的个数，以1个为宜。通过挂载到window的方式暴露。
 
-  
 {% highlight JavaScript %}
-    (function () {
-      function BaiduClass() {
-      }
-          
-      window.BaiduClass = BaiduClass;
-  })();
-                  
+
+(function () {
+  function BaiduClass() {}
+
+  window.BaiduClass = BaiduClass;
+})();
+         
 {% endhighlight %}
-
 
 #### 字符编码
 
-第三方页面使用的字符集编码是无法确定的，可能是gbk、utf-8等等。外联的js如果编码与页面编码不一致，可能导致问题。
+第三方页面使用的字符集编码是无法确定的，可能是*GBK*、*UTF-8*等等。外联的js如果编码与页面编码不一致，可能导致问题。
 
-解决办法：将ascii大于127的字符（如中文字符），使用unicode进行转码，保证代码中不包含ascii大于127的字符。
-
+解决办法：将*ASCII*大于127的字符（如中文字符），使用*Unicode*进行转码，保证代码中不包含*ASCII*大于127的字符。
 
 ###### 字符编码转换
 
-  
 {% highlight JavaScript %}
-    // 原始代码
-  var str = '中国';
-      
-  // unicode转码后：
-  var str = '\u4e2d\u56fd';
+
+// 原始代码
+var str = '中国';
+
+// unicode转码后：
+var str = '\u4e2d\u56fd';
                   
 {% endhighlight %}
 
-[info]:
-unicode转码能带来字符编码的安全性。但是对于脚本执行环境编码可控的页面，不建议进行unicode转码。因为会给js文件增加额外的字节大小。
+>*Unicode*转码能带来字符编码的安全性。但是对于脚本执行环境编码可控的页面，不建议进行*Unicode*转码。因为会给js文件增加额外的字节大小。
 
+#### DOM的创建
 
-~~~~
+在第三方页面中创建DOM元素，有两种可能：与用户页面本身DOM结构有关或无关。
 
-
-
-#### dom的创建
-
-在第三方页面中创建dom元素，有两种可能：与用户页面本身dom结构有关或无关。
-
-
-1. 与用户页面dom结构有关的情况，比如需要在引入脚本的位置创建元素时，使用document.write：
+##### 与用户页面DOM结构有关的情况，比如需要在引入脚本的位置创建元素时，使用`document.write()`：
   
-  
-    // 与用户页面dom结构有关时，使用document.write创建元素
-    
-    document.write('<div>myHTML</div>');
+{% highlight JavaScript %}
+
+// 与用户页面DOM结构有关时，使用document.write创建元素
+document.write('<div>myHTML</div>');
                           
+{% endhighlight %}
 
-
-2. 与用户页面dom结构无关的情况，比如绘制一个提供服务的浮动层时，应在用户页面load完成后，使用createElement创建：
+##### 与用户页面DOM结构无关的情况，比如绘制一个提供服务的浮动层时，应在用户页面load完成后，使用createElement创建：
   
-  
-    // 与用户页面dom结构无关时，在用户页面load完成后，使用createElement创建
-    
-    baidu.dom.ready(function () {
-      var div = document.createElement('div');
-      document.body.appendChild(div);
-    });
-                            
+{% highlight JavaScript %} 
 
+// 与用户页面DOM结构无关时，在用户页面load完成后，使用createElement创建
+$.ready(function () {
+ var div = document.createElement('div');
+ document.body.appendChild(div);
+});
+                       
+{% endhighlight %}
 
-[info]:
-由于window.onload事件的触发时机是页面完全加载(包括图片等资源)，所以建议使用DOMContentLoaded事件，在dom树在页面中构建完成后即可创建元素。该事件非所有浏览器都支持，详细方案见baidu.dom.ready。
+>由于*window.onload*事件的触发时机是页面完全加载(包括图片等资源)，所以建议使用*DOMContentLoaded*事件，在DOM树在页面中构建完成后即可创建元素。该事件非所有浏览器都支持，详细方案见$.ready。
 
+>绝对定位的元素应创建于body标签下。切忌创建在未知的当前区域，有可能因为处于表格内部或其他绝对定位元素内，导致定位错误。
 
-~~~~
-
-[info]:
-绝对定位的元素应创建于body标签下。切忌创建在未知的当前区域，有可能因为处于表格内部或其他绝对定位元素内，导致定位错误。
-
-~~~~
 
 ### 参考
 
@@ -2372,6 +2112,10 @@ unicode转码能带来字符编码的安全性。但是对于脚本执行环境�
 * {: id='[5]'}[Function Decompilation](http://kangax.github.io/jstests/function-decompilation/)
 * {: id='[6]'}[JSPerf: RegExp Literal vs RegExp Object](http://jsperf.com/regex-literal-vs-object)
 * {: id='[7]'}[Understanding Delete](http://perfectionkills.com/understanding-delete/)
+* {: id='[8]'}[JSPerf: string-concat-fast/11](http://jsperf.com/string-concat-fast/11)
+* {: id='[9]'}[JSPerf: string-concat-fast/9](http://jsperf.com/string-concat-fast/11)
+* {: id='[10]'}[JavaScript replace()](http://www.w3school.com.cn/jsref/jsref_replace.asp)
+* {: id='[11]'}[Underscore: clone](http://underscorejs.org/#clone)
 
 ### 参考书籍
 

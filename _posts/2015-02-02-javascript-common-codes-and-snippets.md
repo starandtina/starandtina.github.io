@@ -117,7 +117,7 @@ alert(robot.getAge());
 
 单单看`getAge`函数的话，`createTime`并没有多大的意义，对`getAge`而言，`createTime`是一个自由变量，同时它也是`Robot`函数的本地私有成员变量，但是在`getAge`所引用的函数中被关闭了，从而`createTime`的生命周期得以延续，即使它是使用`var`声明的，只要`getAge`中所引用的`Function`对象还存在，`createTime`自由变量也就能继续存活。
 
-关于闭包，[Crockford](http://javascript.crockford.com/private.**HTML**)曾经说过:
+关于闭包，[Crockford](http://javascript.crockford.com/private.HTML)曾经说过:
 
 >一个内部的函数总是可以访问这个函数外部的变量和参数，甚至在外部的函数返回之后。
 
@@ -316,7 +316,7 @@ elem.className = 'foo';
 
 {% endhighlight %}
 
-使用`className`，而不是`class`，那是因为在ECMAScript 5中class是一个[Future Reserved Word](http://es5.github.io/#x7.6.1.2)，而在[ECMAScript 6](https://people.mozilla.org/~jorendorff/es6-draft.**HTML**#sec-reserved-words)中`class`已经是一个关键词了。
+使用`className`，而不是`class`，那是因为在ECMAScript 5中class是一个[Future Reserved Word](http://es5.github.io/#x7.6.1.2)，而在[ECMAScript 6](https://people.mozilla.org/~jorendorff/es6-draft.HTML#sec-reserved-words)中`class`已经是一个关键词了。
 
 ### DOM Level 0 中的事件处理模型
 
@@ -334,11 +334,11 @@ DOM Level 0中的事件处理模型由Netscape Navigator引入，有二种主要
 
 {% endhighlight %}
 
-如果想了解更多，请参考[这里](http://www.quirksmode.org/js/events_early.**HTML**)。
+如果想了解更多，请参考[这里](http://www.quirksmode.org/js/events_early.HTML)。
 
 #### 传统模型
 
-在传统事件模型中，事件处理器是通过JavaScript脚本添加或删除的。与内联模型相同的是，每一个事件一次只能绑定一个事件处理器。
+在传统事件模型中，事件处理器是通过**JavaScript**脚本添加或删除的。与内联模型相同的是，每一个事件一次只能绑定一个事件处理器。
 
 {% highlight JavaScript %}
 
@@ -347,7 +347,7 @@ element.onclick = null; // 移除事件处理器
 
 {% endhighlight %}
 
-如果想了解更多，请参考[这里](http://www.quirksmode.org/js/events_tradmod.**HTML**)。
+如果想了解更多，请参考[这里](http://www.quirksmode.org/js/events_tradmod.HTML)。
 
 ### 使用`id`属性
 
@@ -379,8 +379,7 @@ $('foo').related = $('bar');
 
 给DOM对象添加指向其它相关联的DOM对象的属性，这种方式不会导致IE中的内存溢出，那是因为所有的操作都是在`DOM`内完成的。
 
-更多请参考[IE的Memory Leak](http://javascript.crockford.com/memory/leak.**HTML**)。
-
+更多请参考[IE的Memory Leak](http://javascript.crockford.com/memory/leak.HTML)。
 
 ### 强制浏览器Layout/Reflow
 
@@ -390,16 +389,14 @@ $('foo').related = $('bar');
 
 >浏览器是如何渲染一个Web页面的？
 
-从整体上来看，下面是浏览器渲染引擎在取得**HTML**内容之后的基本流程：
+从整体上来看，下面是浏览器渲染引擎在取得HTML内容之后的基本流程：
 
-
->解析**HTML**以构建**DOM**树 -> 构建**Render**树 -> 布局**Render**树 -> 绘制**Render**树
-
+>解析HTML以构建**DOM**树 -> 构建**Render**树 -> 布局**Render**树 -> 绘制**Render**树
 
 1. 首先，基于从服务端返回的HTML字符串构建**DOM树**
 2. 加载并解析样式（包括外部CSS文件以及内联样式），从而形成**[CSSOM(CSS Object Model)](http://dev.w3.org/csswg/cssom/)**(CSSOM提供了一套API来操作CSS)
-3. 基于DOM和CSSOM构建别个一棵**Render树**，它包含一系列需要被渲染的对象（Webkit称这些对象为`Renderer`或`Render object`，而Gecko叫`frame`），但是**Render树**并不会包含一些不可见的DOM元素（包含`<head>`元素或是拥有`display:none`样式的元素）。每个'Renderer'都包含与之对应的`DOM`对象和计算完成的样式信息（如颜色，大小等等），它们将按照正确的顺序显示到屏幕上
-4. 针对每一个`Renderer`，还需要计算它在屏幕上的确切坐标，这一步叫做`layout`
+3. 基于DOM和CSSOM构建别个一棵**Render树**，它包含一系列需要被渲染的对象（Webkit称这些对象为`Renderer`或`Render object`，而Gecko叫`frame`），但是**Render树**并不会包含一些不可见的DOM元素（包含`<head>`元素或是拥有`display:none`样式的元素）。每个`Renderer`都包含与之对应的`DOM`对象和计算完成的样式信息（如颜色，大小等等），它们将按照正确的顺序显示到屏幕上
+4. 针对每一个`Renderer`，还需要计算它在屏幕上的确切坐标，这一步叫做`Layout`
 5. 最后就是`Painting`，即遍历**Render树**，并使用**UI**后端层在浏览器窗口中绘制每个节点
 
 #### 重绘(Repaint/Redraw)
@@ -408,14 +405,14 @@ $('foo').related = $('bar');
 
 #### Layout/Reflow
 
-另外一些改变会影响文档的内容，结构或是元素位置，那么就会发生重绘（Webkit叫**Layout**，Gecko叫**Reflow**）。通常如下的一些修改会触发重新定位或回流：
+除了重绘外，另外一些改变会影响文档的内容，结构或是元素位置，那么就会发生重绘（Webkit叫**Layout**，Gecko叫**Reflow**）。通常如下的一些修改会触发重新定位或回流：
 
 * DOM操作：添加/删除/修改/隐藏元素(`display:none`)，移动元素或是修改元素出现顺序
 * 内容变更，如表单元素值的修改
-* 修改或是计算CSS属性
+* 修改或是计算CSS属性(offsetLeft、offsetTop、offsetHeight、offsetWidth、scrollTop/Left/Width/Height、clientTop/Left/Width/Height、getComputedStyle()、currentStyle(in IE))
 * 添加或是删除样式表
 * 修改**class**属性
-* 操作浏览器窗口，如resizing或是scrolling
+* 操作浏览器窗口，如*resizing*或是*scrolling*
 * 激活**pseudo-class**，如`:hover`, `:checked`, `:first-child`等等
 
 看一个简单来自Google Speedtracer的例子：
@@ -456,7 +453,6 @@ var bWidth = elementB.offsetWidth;
 
 * [How Browses Work](http://taligarsiel.com/Projects/howbrowserswork1.htm)
 * [Speedtracer Examples](https://developers.google.com/web-toolkit/speedtracer/speed-tracer-examples)
-
 
 ### 在JavaScript中获取内联CSS样式
 
@@ -571,7 +567,7 @@ document.write("< img src='foo.jpg?" + Math.random() + "' />");
 
 ### DOM/HTML:常用的方法
 
-更多的信息请参考[quirksmode](http://quirksmode.org/ "http://www.quirksmode.org/dom/w3c_core.**HTML**#gettingelements")。
+更多的信息请参考[quirksmode](http://quirksmode.org/ "http://www.quirksmode.org/dom/w3c_core.HTML#gettingelements")。
 
 * document.createElement('div'): 创建一个`DIV`元素节点
 * document.createTextNode(): 创建一个文本节点
@@ -586,7 +582,7 @@ document.write("< img src='foo.jpg?" + Math.random() + "' />");
 
 #### 节点属性
 
-##### [node.nodeType](http://www.w3.org/TR/DOM-Level-2-Core/core.**HTML**#ID-1950641247)
+##### [node.nodeType](http://www.w3.org/TR/DOM-Level-2-Core/core.HTML#ID-1950641247)
 
 `nodeType'包含一个表示元素类型的数字。我们经常用到的如下所示：
 
