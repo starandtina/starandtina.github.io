@@ -45,6 +45,7 @@ This is a very exclusive collection of only must-have JavaScript links. I'm only
 * [Asynchronous Programming at Netflix](https://www.youtube.com/watch?v=gawmdhCNy-A) - [Jafar Husain](https://twitter.com/jhusain)
 * [David Nolen: Immutability: Putting The Dream Machine To Work](https://www.youtube.com/watch?v=SiFwRtCnxv4) - [David Nolen](https://twitter.com/swannodette)
 * [Delivering the Goods](https://www.youtube.com/watch?v=R8W_6xWphtw) Paul Irish on one of the most important but overlooked topics in the development world today - page load times.
+* [bolshchikov/js-must-watch](https://github.com/bolshchikov/js-must-watch): Must-watch videos about javascript.
 
 
 ### Dailies and Weeklies
@@ -68,6 +69,7 @@ CSS 3, Canvas, WebSockets, WebGL, Native Client, and more.
 ### Awesomeness
 
 * [A curated list of awesome awesomeness](https://github.com/bayandin/awesome-awesomeness): A curated list of amazingly awesome awesomeness. Also available on: [Awesome-Awesomeness.ZEEF.com](https://awesome-awesomeness.zeef.com/alexander.bayandin)
+* [moklick/frontend-stuff](https://github.com/moklick/frontend-stuff): A continuously expanded list of framework/libraries and tools I used/want to use when building things on the web. Mostly Javascript stuff.
 * [Front-end Feeds](https://github.com/impressivewebs/frontend-feeds): An up to date list of RSS feeds for front-end developers.
 * [RFC Reader](http://www.rfcreader.com/): An online reader(viewer) for IETF RFCs.
 * [HTTP Specifications](http://httpwg.github.io/): You could find anything you want for Hypertext Transfer Protocol - the core protocol of the World Wide Web.
