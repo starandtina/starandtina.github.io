@@ -7,7 +7,7 @@ tags: ['JavaScript', 'Navigation Timing', 'Performance', 'WPO']
 ---
 {% include JB/setup %}
 
-Navigation Timing是一套**JavaScript** API，主要用于衡量文档加载性能。
+Navigation Timing是一套主要用于衡量文档加载性能的**JavaScript** API，。
 {: .countheads }
 
 * ToC
@@ -33,7 +33,7 @@ Navigation Timing 2目前还是工作草案，它是做为第一版的一个补�
 
 #### navigationStart
 
-浏览器完成卸载前一个文档的时间(也就是准备加载新页面的那个起始时间)。如果没有前一个文档，那么就返回`timing.fetchStart`的值。
+浏览器完成卸载前一个文档的时间(也就是准备加载新页面的那个起始时间)。如果没有前一个文档，那么就返回**fetchStart**的值。
 
 #### unloadEventStart
 
@@ -47,7 +47,7 @@ Navigation Timing 2目前还是工作草案，它是做为第一版的一个补�
 
 #### redirectStart
 
-如果发生了HTTP重定向，或者类似的事情，并且，从导航开始，中间的每次重定向都和当前文档同域的话，就返回开始重定向的`timing.fetchStart`的值。其他情况则返回0。
+如果发生了HTTP重定向，或者类似的事情，并且，从导航开始，中间的每次重定向都和当前文档同域的话，就返回开始重定向的**fetchStart**的值。其他情况则返回0。
 
 #### redirectEnd
 
@@ -55,7 +55,7 @@ Navigation Timing 2目前还是工作草案，它是做为第一版的一个补�
 
 #### fetchStart
 
-如果一个新的资源(这里是指当前文档)获取被发起，或类似的事情发生，则`fetchStart`必须返回用户代理开始检查其相关缓存的那个时间，其他情况则返回开始获取该资源的时间。
+如果一个新的资源(这里是指当前文档)获取被发起，或类似的事情发生，则**fetchStart**必须返回用户代理开始检查其相关缓存的那个时间，其他情况则返回开始获取该资源的时间。
 
 #### domainLookupStart
 
@@ -67,11 +67,11 @@ Navigation Timing 2目前还是工作草案，它是做为第一版的一个补�
 
 #### connectStart
 
-返回用户代理向服务器服务器请求文档，开始建立连接的那个时间，如果此连接是一个长连接，又或者直接从缓存中获取资源（即没有与服务器建立连接）。则返回domainLookupEnd的值。
+返回用户代理向服务器请求文档，开始建立连接的那个时间，如果此连接是一个长连接，又或者直接从缓存中获取资源（即没有与服务器建立连接）。则返回**domainLookupEnd**的值。
 
 #### connectEnd
 
-返回用户代理向服务器服务器请求文档，建立连接成功后(注意，不是断开连接的时间。)的那个时间。如果此连接是一个长连接，又或直接从缓存中获取资源 （即没有与服务器建立连接），则返回**domainLookupEnd**的值。
+返回用户代理向服务器服务器请求文档，建立连接成功后(注意，不是断开连接的时间)的那个时间。如果此连接是一个长连接，又或直接从缓存中获取资源 （即没有与服务器建立连接），则返回**domainLookupEnd**的值。
 
 #### secureConnectionStart
 
@@ -81,7 +81,7 @@ Navigation Timing 2目前还是工作草案，它是做为第一版的一个补�
 
 返回从服务器、缓存、本地资源等，开始请求文档的时间。
 
-如果请求中途，连接断开了，并且用户代理进行了重连，并重新请求了资源，那么requestStart就必须为这个新请求所对应的时间。
+如果请求中途，连接断开了，并且用户代理进行了重连，并重新请求了资源，那么**requestStart**就必须为这个新请求所对应的时间。
 
 **注意**: 此接口并不包含一个表示请求结束的属性，如**requestEnd**，原因有两点:
 
@@ -163,9 +163,11 @@ DOMContentLoad和 DOMInteractive 之间差了以下两个步骤。
 |指标|指标值|
 | :-------------: | :------------- |
 |DNS|domainLookupEnd - domainLookupStart|
-|页面等待响应的耗费时间|responseEnd – fetchStart  |
-|页面DOM渲染的耗费时间(domReady)|domContentLoadedEventEnd – fetchStart  |
-|页面Load完成的耗费时间(onLoad)|loadEventEnd  – fetchStart  |
+|TCP|connectEnd - connectStart|
+|TTFB| responseStart - navigationStart |
+|页面等待响应的耗费时间|responseEnd – fetchStart|
+|页面DOM渲染的耗费时间(domReady)|domContentLoadedEventEnd – fetchStart|
+|页面Load完成的耗费时间(onLoad)|loadEventEnd  – fetchStart|
 {: .neat }
 
 ### Navigation Timing API Overview

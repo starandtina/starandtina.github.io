@@ -1181,7 +1181,9 @@ html.match(/<[^>/]+>/g); // ["<html>", "<head>", "<title>", "<body style="color:
 
 {% endhighlight %}           
 
-让我们来比较与RegExp相关的几个字符串方法(`match`, `search`, `exec`, `test`)的性能：[RegExp方法](http://jsperf.com/regex-methods-x-1)。`RegExp.prototype.exec`比`String.prototype.match`快很多，但是那是因为他们的用途根本就不一样。在搜索子串时，`RegExp.prototype.test`相对更快，也许是因为它并不需要返回匹配子串的索引吧。
+让我们来比较与RegExp相关的几个字符串方法(`match`, `search`, `exec`, `test`)的性能：[JSPerf: RegExp方法](http://jsperf.com/regex-methods-x-1)。
+
+`RegExp.prototype.exec`比`String.prototype.match`快很多，但是那是因为他们的用途根本就不一样。在搜索子串时，`RegExp.prototype.test`相对更快，也许是因为它并不需要返回匹配子串的索引吧。
 
 ###### stringObject.replace(search, replaceValue)
 

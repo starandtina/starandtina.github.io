@@ -73,6 +73,8 @@ CSS 3, Canvas, WebSockets, WebGL, Native Client, and more.
 * [Front-end Feeds](https://github.com/impressivewebs/frontend-feeds): An up to date list of RSS feeds for front-end developers.
 * [RFC Reader](http://www.rfcreader.com/): An online reader(viewer) for IETF RFCs.
 * [HTTP Specifications](http://httpwg.github.io/): You could find anything you want for Hypertext Transfer Protocol - the core protocol of the World Wide Web.
+* [ECMAScript 6 Tools](https://github.com/addyosmani/es6-tools): An aggregation of tooling for using ES6 today.
+* [Web Performance Optimization](https://github.com/davidsonfellipe/awesome-wpo): A curated list of Web Performance Optimization.
 
 ### Spec
 
