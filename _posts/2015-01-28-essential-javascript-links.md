@@ -75,6 +75,7 @@ CSS 3, Canvas, WebSockets, WebGL, Native Client, and more.
 * [HTTP Specifications](http://httpwg.github.io/): You could find anything you want for Hypertext Transfer Protocol - the core protocol of the World Wide Web.
 * [ECMAScript 6 Tools](https://github.com/addyosmani/es6-tools): An aggregation of tooling for using ES6 today.
 * [Web Performance Optimization](https://github.com/davidsonfellipe/awesome-wpo): A curated list of Web Performance Optimization.
+* [Frontend Guidelines](https://github.com/bendc/frontend-guidelines): Some HTML, CSS and JS best practices
 
 ### Spec
 
