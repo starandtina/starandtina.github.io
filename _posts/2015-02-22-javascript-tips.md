@@ -1862,7 +1862,7 @@ IE使用`attachEvent()`方法添加监听器；标准浏览器使用`addEventLis
 
 {% endhighlight %}
 
-如果想了解更多，请参考[这里](http://www.quirksmode.org/js/events_early.HTML)。
+如果想了解更多，请参考[这里](http://www.quirksmode.org/js/events_early.html)。
 
 ##### 传统模型
 
@@ -1875,7 +1875,7 @@ element.onclick = null; // 移除事件处理器
 
 {% endhighlight %}
 
-如果想了解更多，请参考[这里](http://www.quirksmode.org/js/events_tradmod.HTML)。
+如果想了解更多，请参考[这里](http://www.quirksmode.org/js/events_tradmod.html)。
 
 ##### 高级事件模型：事件监听器
 
