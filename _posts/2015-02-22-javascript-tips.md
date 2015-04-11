@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "JavaScript Tips"
-description: ""
-category: 
-tags: []
+description: "JavaScript Tips"
+category: ['Frontend']
+tags: ['Frontend', 'JavaScript', 'Style Guide', 'Best Practices']
 ---
 {% include JB/setup %}
 
@@ -169,7 +169,7 @@ if (condition)
 
 #### 常量命名
 
-目前主流浏览器中，**JavaScript**中无法使用`const`（[ES6已经支持const](#[1])）声明常量。如果要声明一个在程序运行阶段不会更改的变量（如配置项），命名规则为：每个字母大写，单词间以下划线分割。
+目前主流浏览器中，**JavaScript**中无法使用`const`（[ES6已经支持const](#ES6: const)）声明常量。如果要声明一个在程序运行阶段不会更改的变量（如配置项），命名规则为：每个字母大写，单词间以下划线分割。
 
 ###### 常量命名示例
 
@@ -316,7 +316,7 @@ function jsonPost(url, jsonData, successFn, failedFn) {
 
 #### 注释标签
 
-常用的注释标签包括`param`、`return`、`private`、`extend`等。下表是**[JSDoc](#[2]})**支持的部分标签.
+常用的注释标签包括`param`、`return`、`private`、`extend`等。下表是**[JSDoc](#JSDoc})**支持的部分标签.
 
 #### JSDoc常用标签
 
@@ -2107,8 +2107,8 @@ $.ready(function () {
 
 ### 参考
 
-* {: id='[1]'}[ES6: const](https://people.mozilla.org/~jorendorff/es6-draft.html#sec-let-and-const-declarations)
-* {: id='[2]'}[JSDoc](http://usejsdoc.org/)
+* {: id='ES6: const'}[ES6: const](https://people.mozilla.org/~jorendorff/es6-draft.html#sec-let-and-const-declarations)
+* {: id='JSDoc'}[JSDoc](http://usejsdoc.org/)
 * {: id='[3]'}[JavaScript tricks 2: Use `===` instead of `==`](/frontend/javascript/tricks/2015/02/14/javascript-tricks-2-use-===-instead-of-==/)
 * {: id='[4]'}[Function.prototype.toString()](http://es5.github.io/#x15.3.4.2)
 * {: id='[5]'}[Function Decompilation](http://kangax.github.io/jstests/function-decompilation/)
