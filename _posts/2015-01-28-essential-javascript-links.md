@@ -23,28 +23,28 @@ This is a very exclusive collection of only must-have JavaScript links. I'm only
 * [JavaScript Training Sucks](https://medium.com/javascript-scene/javascript-training-sucks-284b53666245) 99 out of 100 JS developers lack the skills they need to fill hundreds of thousands of jobs. We can change that.
 * [The Two Pillars of JavaScript Part 1: Prototypal OO](https://medium.com/javascript-scene/the-two-pillars-of-javascript-ee6f3281e7f3)
 * [The Two Pillars of JavaScript Part 2: Functional Programming](https://medium.com/javascript-scene/the-two-pillars-of-javascript-pt-2-functional-programming-a63aa53a41a4)
-* [JavaScript Objects](http://davidwalsh.name/javascript-objects) An excellent explanation of inheritance in JavaScript by Kyle Simpson.
+* [JavaScript Objects](http://davidwalsh.name/javascript-objects): An excellent explanation of inheritance in JavaScript by Kyle Simpson.
 * [Isomorphic JavaScript](http://isomorphic.net/)
 * [JavaScript Application Architecture on the Road to 2015](https://medium.com/@addyosmani/javascript-application-architecture-on-the-road-to-2015-d8125811101b) - Addy Osmani
-* [Reactive MVC and the Virtual DOM](http://futurice.com/blog/reactive-mvc-and-the-virtual-dom) Great read, even if you're not a React user.
+* [Reactive MVC and the Virtual DOM](http://futurice.com/blog/reactive-mvc-and-the-virtual-dom): Great read, even if you're not a React user.
 * [Introduction to Reactive Programming](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754)
-* [The General Theory of Reactivity](https://github.com/kriskowal/gtor) What is all this talk about reactive? Functional? Promises? This is the beginning of a reactive programming bible.
-* [ES6 Promises](http://blog.getify.com/promises-part-1/) This is a multi-part blog post series on the whys and hows and problems of Promises by Kyle Simpson.
-* [ES6 Generators](http://davidwalsh.name/es6-generators) A series of blog posts by Kyle Simpson.
-* [Typed JavaScript](http://www.2ality.com/2014/10/typed-javascript.html) - Excellent post about the state of typed JavaScript by Axel Rauschmayer
+* [The General Theory of Reactivity](https://github.com/kriskowal/gtor): What is all this talk about reactive? Functional? Promises? This is the beginning of a reactive programming bible.
+* [ES6 Promises](http://blog.getify.com/promises-part-1/): This is a multi-part blog post series on the whys and hows and problems of Promises by Kyle Simpson.
+* [ES6 Generators](http://davidwalsh.name/es6-generators): A series of blog posts by Kyle Simpson.
+* [Typed JavaScript](http://www.2ality.com/2014/10/typed-javascript.html): Excellent post about the state of typed JavaScript by Axel Rauschmayer
 * [Taming the Asynchronous Beast with CSP in JavaScript](http://jlongster.com/Taming-the-Asynchronous-Beast-with-CSP-in-JavaScript) - James Long
 * [ES6 Modules: The Final Syntax](http://www.2ality.com/2014/09/es6-modules-final.html) by @rauschma #AMDisDead
-* [The Tech Behind the New Twitter.com](https://blog.twitter.com/2010/tech-behind-new-twittercom) The Twitter.com redesign on 2010, publicly switched to client-side templating, turning the server into something more like a simple API
+* [The Tech Behind the New Twitter.com](https://blog.twitter.com/2010/tech-behind-new-twittercom): The Twitter.com redesign on 2010, publicly switched to client-side templating, turning the server into something more like a simple API
 * [Facebook just taught us all how to build websites](https://medium.com/@ericflo/facebook-just-taught-us-all-how-to-build-websites-51f1e7e996f2)
 * [JavaScript-Garden](http://bonsaiden.github.io/JavaScript-Garden/): JavaScript Garden is a growing collection of documentation about the most quirky parts of the JavaScript programming language. 
 * [MindBEMding – getting your head ’round BEM syntax](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/): BEM – meaning block, element, modifier – is a front-end naming methodology thought up by the guys at Yandex. It is a smart way of naming your CSS classes to give them more transparency and meaning to other developers. They are far more strict and informative, which makes the BEM naming convention ideal for teams of developers on larger projects that might last a while.
-
+* [Chrome DevTools: State Of The Union 2015](http://addyosmani.com/blog/chrome-devtools-state-of-the-union-2015/): [@addyosmani](http://twitter.com/addyosmani) walks through the latest updates on your favourite debugging companion; exploring new features like paint profiling, animation inspection and updates to the JavaScript editing workflow with V8.
 
 ### Required Viewing
 
 * [Asynchronous Programming at Netflix](https://www.youtube.com/watch?v=gawmdhCNy-A) - [Jafar Husain](https://twitter.com/jhusain)
 * [David Nolen: Immutability: Putting The Dream Machine To Work](https://www.youtube.com/watch?v=SiFwRtCnxv4) - [David Nolen](https://twitter.com/swannodette)
-* [Delivering the Goods](https://www.youtube.com/watch?v=R8W_6xWphtw) Paul Irish on one of the most important but overlooked topics in the development world today - page load times.
+* [Delivering the Goods](https://www.youtube.com/watch?v=R8W_6xWphtw): Paul Irish on one of the most important but overlooked topics in the development world today - page load times.
 * [bolshchikov/js-must-watch](https://github.com/bolshchikov/js-must-watch): Must-watch videos about javascript.
 
 
@@ -75,11 +75,12 @@ CSS 3, Canvas, WebSockets, WebGL, Native Client, and more.
 * [HTTP Specifications](http://httpwg.github.io/): You could find anything you want for Hypertext Transfer Protocol - the core protocol of the World Wide Web.
 * [ECMAScript 6 Tools](https://github.com/addyosmani/es6-tools): An aggregation of tooling for using ES6 today.
 * [Web Performance Optimization](https://github.com/davidsonfellipe/awesome-wpo): A curated list of Web Performance Optimization.
-* [Frontend Guidelines](https://github.com/bendc/frontend-guidelines): Some HTML, CSS and JS best practices
+* [Frontend Guidelines](https://github.com/bendc/frontend-guidelines): Some HTML, CSS and JS best practices.
+* [free-for-dev](https://github.com/ripienaar/free-for-dev): A list of SaaS, PaaS and IaaS offerings that have free tiers of interest to devops and infradev.
 
 ### Spec
 
-* [ES5 Spec](http://es5.github.io/) An annotated, hyperlinked version of the ES5 spec
+* [ES5 Spec](http://es5.github.io/) An annotated, hyperlinked version of the ES5 spec.
 * [ES6 draft](https://people.mozilla.org/~jorendorff/es6-draft.html)
 
 
