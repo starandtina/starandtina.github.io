@@ -77,6 +77,7 @@ CSS 3, Canvas, WebSockets, WebGL, Native Client, and more.
 * [Web Performance Optimization](https://github.com/davidsonfellipe/awesome-wpo): A curated list of Web Performance Optimization.
 * [Frontend Guidelines](https://github.com/bendc/frontend-guidelines): Some HTML, CSS and JS best practices.
 * [free-for-dev](https://github.com/ripienaar/free-for-dev): A list of SaaS, PaaS and IaaS offerings that have free tiers of interest to devops and infradev.
+* [timjacobi/angular2-education](https://github.com/timjacobi/angular2-education): A curated list of helpful material to get started with education on Angular 2
 
 ### Spec
 
