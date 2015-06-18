@@ -7,7 +7,7 @@ tags: ['Frontend', 'JavaScript', 'HTML', 'CSS', 'Web Components', 'CI', 'Build']
 ---
 {% include JB/setup %}
 
-Originally forked from [Essential JavaScript Links](https://gist.github.com/ericelliott/d576f72441fc1b27dace).
+Originally forked from [Essential JavaScript Links](https://gist.github.com/ericelliott/d576f72441fc1b27dace) but modified according to personal favor.
 {: .countheads }
 
 * ToC
@@ -39,6 +39,9 @@ This is a very exclusive collection of only must-have JavaScript links. I'm only
 * [JavaScript-Garden](http://bonsaiden.github.io/JavaScript-Garden/): JavaScript Garden is a growing collection of documentation about the most quirky parts of the JavaScript programming language. 
 * [MindBEMding – getting your head ’round BEM syntax](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/): BEM – meaning block, element, modifier – is a front-end naming methodology thought up by the guys at Yandex. It is a smart way of naming your CSS classes to give them more transparency and meaning to other developers. They are far more strict and informative, which makes the BEM naming convention ideal for teams of developers on larger projects that might last a while.
 * [Chrome DevTools: State Of The Union 2015](http://addyosmani.com/blog/chrome-devtools-state-of-the-union-2015/): [@addyosmani](http://twitter.com/addyosmani) walks through the latest updates on your favourite debugging companion; exploring new features like paint profiling, animation inspection and updates to the JavaScript editing workflow with V8.
+* [JavaScript Scene](https://medium.com/javascript-scene/learn-javascript-b631a4af11f2): Learn JavaScript Essentials(for all skill levels) by Eric Elliott (author of [Programming JavaScript Applications](http://chimera.labs.oreilly.com/books/1234000000262/index.html))
+* [miguelmota/javascript-idiosyncrasies](https://github.com/miguelmota/javascript-idiosyncrasies): A bunch of Javascript idiosyncrasies, kinda. 
+
 
 ### Required Viewing
 
@@ -80,6 +83,7 @@ CSS 3, Canvas, WebSockets, WebGL, Native Client, and more.
 * [Web Performance Optimization](https://github.com/davidsonfellipe/awesome-wpo): A curated list of Web Performance Optimization.
 * [Frontend Guidelines](https://github.com/bendc/frontend-guidelines): Some HTML, CSS and JS best practices.
 * [free-for-dev](https://github.com/ripienaar/free-for-dev): A list of SaaS, PaaS and IaaS offerings that have free tiers of interest to devops and infradev.
+* [timjacobi/angular2-education](https://github.com/timjacobi/angular2-education): A curated list of helpful material to get started with education on Angular 2
 
 ### Spec
 
