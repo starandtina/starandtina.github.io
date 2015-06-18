@@ -65,6 +65,9 @@ CSS 3, Canvas, WebSockets, WebGL, Native Client, and more.
 * [A Drip of JavaScript](http://adripofjavascript.com/): One quick JavaScript tip, delivered to your inbox every other week.
 * [Modern Web Observer](http://modernweb.com/modern-web-observer/)
 * [Web Development Reading List](https://wdrl.info/): A handcrafted, carefully selected list of web development related resources. Published usually every week.
+* [hackernewsletter](http://www.hackernewsletter.com/): A weekly newsletter of the best articles on startups, technology, programming, and more. All links are curated by hand from the popular Hacker News site.
+* [The Smashing Email Newsletter](http://www.smashingmagazine.com/the-smashing-newsletter/): We love useful stuff, and we love quality writing, that’s why we send out an editorial email newsletter twice a month with useful tips, tricks and resources for designers and developers — thoroughly collected, written and edited by us exclusively for our readers.
+* [ES Weekly](http://esweekly.com/): Stay up to date with the latest ES6 & ES7 news & tools delivered directly to your inbox
 
 ### Awesomeness
 

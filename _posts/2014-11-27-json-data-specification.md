@@ -57,7 +57,7 @@ http响应的status必须（MUST）为200。通常JSON数据被用于通过XMLHt
 
 #### Content-Type
 
-Content-Type字段定义了响应体的类型。一般情况下，浏览器会根据该类型对内容进行正确的处理。对于传输JSON数据的响应，Content-Type推荐（RECOMMENDED）设置为__"text/javascript"__或__"application/json"__。避免（MUST NOT）将Context-Type设置为text/html，否则可能导致安全问题。
+Content-Type字段定义了响应体的类型。一般情况下，浏览器会根据该类型对内容进行正确的处理。对于传输JSON数据的响应，Content-Type推荐（RECOMMENDED）设置为**"text/javascript"**或**"application/json"**。避免（MUST NOT）将Context-Type设置为text/html，否则可能导致安全问题。
 
 Content-Type中可以指定字符集。通常需要（SHOULD）明确指定一个字符集。如果是通过XMLHTTPRequest请求的数据，并且字符编码为UTF-8时，可以不指定字符集。
 
@@ -133,13 +133,13 @@ data字段可以是除JSON Null之外的任意JSON类型，表示请求返回的
 
 本章为常见数据场景定义了通用的标准数据格式，用于数据传输和使用。额外地，本章为部分可能大数据量传输的数据场景定义了变通数据格式。变通数据格式可在数据解析阶段转换成标准数据格式。
 
-变通数据格式必须（MUST）是一个JSON Object，其中必须（MUST）包含e-type属性和data属性。e-type属性标识数据类型，便于对数据进行解析；data属性包含变通后的数据。变通数据可以（MAY）包含其他的属性，标识数据的其他扩展信息。
+变通数据格式必须（MUST）是一个JSON Object，其中必须（MUST）包含*type*属性和data属性。*type*属性标识数据类型，便于对数据进行解析；data属性包含变通后的数据。变通数据可以（MAY）包含其他的属性，标识数据的其他扩展信息。
 
-变通数据格式的e-type属性定义了table值。e-type属性可以使用者扩展其他属性值，扩展的属性值必须（MUST）以“项目缩写-名称”命名，如“fc-list”，自主解析。
+变通数据格式的*type*属性定义了table值。*type*属性可以使用者扩展其他属性值，扩展的属性值必须（MUST）以“项目缩写-名称”命名，如“fc-list”，自主解析。
 
 #### 日期类型
 
-日期类型不属于JSON数据类型。对于日期类型，我们需要（MUST）使用JSON String来表示。为了让日期能够更容易的被显示和被解析，对于日期我们应当（SHOULD）使用更适合internet的格式，遵循rfc3339。
+日期类型不属于JSON数据类型。对于日期类型，我们需要（MUST）使用JSON String来表示。为了让日期能够更容易的被显示和被解析，对于日期我们应当（SHOULD）使用更适合internet的格式，遵循[rfc3339](#rfc3339)。
 
 ###### 数据场景：日期
 
@@ -168,7 +168,7 @@ data字段可以是除JSON Null之外的任意JSON类型，表示请求返回的
 
 #### 二维表
 
-二维表类型表识为table，是关系模型的主要数据结构。二维表结构具有变通数据格式。标准二维表数据必须（MUST）以一维JSON Array形式表示，JSON Array中每一项是一个JSON Object，代表一条记录。JSON Object的每个成员代表一个字段。每条记录的主键命名必须（MUST）为"id"。
+二维表类型表识为**Table**，是关系模型的主要数据结构。二维表结构具有变通数据格式。标准二维表数据必须（MUST）以一维JSON Array形式表示，JSON Array中每一项是一个JSON Object，代表一条记录。JSON Object的每个成员代表一个字段。每条记录的主键命名必须（MUST）为**"id"**。
 
 在标准二维表中，字段名在每条记录中都被传输，会造成额外的数据量传输。这个问题会随着记录数的增大会更加突出。为了减少传输数据量，变通格式使用二维JSON Array传输数据，扩展fields属性用于字段说明。fields字段为JSON Array。
 
@@ -196,7 +196,7 @@ data字段可以是除JSON Null之外的任意JSON类型，表示请求返回的
 
 {% highlight JSON %}
 {
-  "e-type": "table",
+  "*type*": "table",
   "fields": ["id", "name", "sex", "age"],
   "data": [
     [250, "lucy", 1, 18],
@@ -209,7 +209,7 @@ data字段可以是除JSON Null之外的任意JSON类型，表示请求返回的
 
 数据页是列表数据常用的数据方式，可能通过查询或翻页获得数据。数据页是二维表数据的包装，包含列表数据本身更多的信息。
 
-数据页必须（MUST）是一个JSON Object，其中必须（MUST）包含的属性为data。data是一个二维表。数据页可以包括一些可选（OPTIONAL）的属性，表示当前数据页的信息。下表列举了数据页的可选属性。
+数据页必须（MUST）是一个JSON Object，其中必须（MUST）包含的属性为*data*。*data*是一个二维表。数据页可以包括一些可选（OPTIONAL）的属性，表示当前数据页的信息。下表列举了数据页的可选属性。
 
 #### 数据页可选属性
 
@@ -355,7 +355,7 @@ data字段可以是除JSON Null之外的任意JSON类型，表示请求返回的
 
 ### 引用
 
-+ [RFC 2119] "Key words for use in RFCs to Indicate Requirement Levels"
-+ [RFC 4627] "The application/json Media Type for JavaScript Object Notation (JSON)"
-+ [RFC 2616] "Hypertext Transfer Protocol"
-+ [RFC 3339] "Date and Time on the Internet: Timestamps"
++ [RFC 2119: Key words for use in RFCs to Indicate Requirement Levels](http://www.rfcreader.com/#rfc2119)
++ [RFC 4627: The application/json Media Type for JavaScript Object Notation (JSON)](http://www.rfcreader.com/#rfc4627)
++ [RFC 2616: Hypertext Transfer Protocol](http://www.rfcreader.com/#rfc2616)
++ {: id='rfc3339' }[RFC 3339: Date and Time on the Internet: Timestamps](http://www.rfcreader.com/#rfc3339)
