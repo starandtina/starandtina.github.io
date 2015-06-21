@@ -17,7 +17,7 @@ This is a very exclusive collection of only must-have JavaScript links. I'm only
 
 ----
 
-### Required Reading
+# Required Reading
 
 * [Learn JavaScript Essentials (for all skill levels)](https://medium.com/javascript-scene/learn-javascript-b631a4af11f2) - One clear path to JavaScript mastery
 * [JavaScript Training Sucks](https://medium.com/javascript-scene/javascript-training-sucks-284b53666245) 99 out of 100 JS developers lack the skills they need to fill hundreds of thousands of jobs. We can change that.
@@ -43,7 +43,7 @@ This is a very exclusive collection of only must-have JavaScript links. I'm only
 * [miguelmota/javascript-idiosyncrasies](https://github.com/miguelmota/javascript-idiosyncrasies): A bunch of Javascript idiosyncrasies, kinda. 
 
 
-### Required Viewing
+# Required Viewing
 
 * [Asynchronous Programming at Netflix](https://www.youtube.com/watch?v=gawmdhCNy-A) - [Jafar Husain](https://twitter.com/jhusain)
 * [David Nolen: Immutability: Putting The Dream Machine To Work](https://www.youtube.com/watch?v=SiFwRtCnxv4) - [David Nolen](https://twitter.com/swannodette)
@@ -51,7 +51,7 @@ This is a very exclusive collection of only must-have JavaScript links. I'm only
 * [bolshchikov/js-must-watch](https://github.com/bolshchikov/js-must-watch): Must-watch videos about javascript.
 
 
-### Dailies and Weeklies
+# Dailies and Weeklies
 
 * [JavaScript Weekly](http://javascriptweekly.com/): A free, once–weekly e-mail round-up of JavaScript news and articles.
 * [HTML5 Weekly](http://html5weekly.com): A once–weekly HTML5 and Web Platform technology roundup.
@@ -69,9 +69,11 @@ CSS 3, Canvas, WebSockets, WebGL, Native Client, and more.
 * [Modern Web Observer](http://modernweb.com/modern-web-observer/)
 * [Web Development Reading List](https://wdrl.info/): A handcrafted, carefully selected list of web development related resources. Published usually every week.
 
-### Awesomeness
+
+# Awesomeness
 
 * [A curated list of awesome awesomeness](https://github.com/bayandin/awesome-awesomeness): A curated list of amazingly awesome awesomeness. Also available on: [Awesome-Awesomeness.ZEEF.com](https://awesome-awesomeness.zeef.com/alexander.bayandin)
+* [A curated list of awesome lists](https://github.com/sindresorhus/awesome): A curated list of awesome lists by @sindresorhus.
 * [moklick/frontend-stuff](https://github.com/moklick/frontend-stuff): A continuously expanded list of framework/libraries and tools I used/want to use when building things on the web. Mostly Javascript stuff.
 * [Front-end Feeds](https://github.com/impressivewebs/frontend-feeds): An up to date list of RSS feeds for front-end developers.
 * [RFC Reader](http://www.rfcreader.com/): An online reader(viewer) for IETF RFCs.
@@ -82,13 +84,25 @@ CSS 3, Canvas, WebSockets, WebGL, Native Client, and more.
 * [free-for-dev](https://github.com/ripienaar/free-for-dev): A list of SaaS, PaaS and IaaS offerings that have free tiers of interest to devops and infradev.
 * [timjacobi/angular2-education](https://github.com/timjacobi/angular2-education): A curated list of helpful material to get started with education on Angular 2
 
-### Spec
+# Spec
 
 * [ES5 Spec](http://es5.github.io/) An annotated, hyperlinked version of the ES5 spec.
 * [ES6 draft](https://people.mozilla.org/~jorendorff/es6-draft.html)
 
+# Conf
 
-### Books
+We need to keep learning. One of the most rewarding ways to do that is by attending conferences.
+
+* [JSConf](http://jsconf.com/): Conferences for the JavaScript community.
+* [Fluent Conf](http://fluentconf.com/): The O'Reilly Fluent Conference was first launched in 2012 as a new event for developers working with JavaScript, HTML5, and other web technologies. Fluent covers the full scope of the Web Platform and its associated technologies, including WebGL, CSS3, mobile APIs, Node.js, AngularJS, ECMAScript 6, and more.
+* [Velocity](http://velocityconf.com/): Web operations, performance, DevOps, optimization, and more. Join the engineers, developers, and technology leaders who are defining the IT-driven business at the Velocity conference.
+* [Forward JS](http://forwardjs.com/): WEB TECHNOLOGY SUMMIT
+* [MUNICH JS](http://www.munichjs.org/): MunichJS is a user group in Munich for developers (amateurs, journeymen and gurus) that meets monthly to discuss topics on JavaScript and ECMAScript. Meetings take place in each month on different locations. The group was established in October 2010 at the BarCamp in Munich. Orgnaized by Dr. Axel Rauschmayer@rauschma
+* [OSCON](http://www.oscon.com/): Open source software, architecture, frameworks, and tools for today’s engineers
+* [JS REMOTE CONFS](https://jsremoteconf.com/): JS Remote Conf is a great way to learn from the brightest minds in JavaScript while minimizing these issues. The main benefits of JS Remote Conf are: No travel, Low Cost, After Work, Watch Anywhere, Users' Group Friendly
+* [React.js Conf](http://conf.reactjs.com/): All cutting-edge techs related with React.
+
+# Books
 
 * [Professional JavaScript for Web Developer](http://www.amazon.com/Professional-JavaScript-Developers-Nicholas-Zakas/dp/1118026691/ref=sr_1_1?s=books&ie=UTF8&qid=1422710696&sr=1-1&keywords=Professional+JavaScript+for+Web+Developer&pebp=1422710700389&peasin=1118026691) by Nicholas C. Zakas:  In this book JavaScript is covered from its beginning in the earliest Netscape browsers to the present-day versions that can support the DOM and Ajax. You will learn how to extend the language to suit specific needs and how to create client-server communications without intermediaries such as Java or hidden frames. You will also learn how to apply JavaScript solutions to business problems faced by web developers everywhere. This book provides a developer-level introduction along with more advanced and useful features of JavaScript.
 * [JavaScript for Kids](http://www.amazon.com/gp/product/B00QL616QE?ie=UTF8&camp=213733&creative=393177&creativeASIN=B00QL616QE&linkCode=shr&tag=ericleads-20&linkId=6AOODC27L6URY3K2)
@@ -102,12 +116,13 @@ CSS 3, Canvas, WebSockets, WebGL, Native Client, and more.
 * [JavaScript: The Definitive Guide](http://www.amazon.com/gp/product/0596805527?ie=UTF8&camp=213733&creative=393185&creativeASIN=0596805527&linkCode=shr&tag=ericleads-20&linkId=AENIF5KLRQI3N335)
 * [You Don't Know JS](https://github.com/getify/You-Dont-Know-JS)
 * [Understanding ECMAScript 6](https://leanpub.com/understandinges6/read/) by Nicholas C. Zakas
+* [Exploring ES6: Upgrade to the next version of JavaScript](https://leanpub.com/exploring-es6/read) by Axel Rauschmayer@rauschma
 * [Node.js in Action](http://www.manning.com/cantelon/)
 * [The Dream Machine: J.C.R. Licklider and the Revolution That Made Computing Personal](http://www.amazon.com/gp/product/0670899763?ie=UTF8&camp=213733&creative=393177&creativeASIN=0670899763&linkCode=shr&tag=ericleads-20&linkId=NDUXYQOCMPC47SQI)
 * Secrets of the JavaScript Ninja(http://www.amazon.com/Secrets-JavaScript-Ninja-John-Resig/dp/193398869X/ref=sr_1_1?s=books&ie=UTF8&qid=1422710614&sr=1-1&keywords=Secrets+of+the+JavaScript+Ninja&pebp=1422710616815&peasin=193398869X) Takes you on a journey towards mastering modern JavaScript development in three phases: design, construction, and maintenance
 
 
-### Dev tools & collaboration
+# Dev tools & collaboration
 
 * [nvm](https://github.com/creationix/nvm) First install this...
 * [Node](http://nodejs.org/) Then install Node (with nvm). You'll need this even if you're a front-end dev.
@@ -124,13 +139,15 @@ CSS 3, Canvas, WebSockets, WebGL, Native Client, and more.
 * [ES6 Fiddle](http://www.es6fiddle.net/)
 
 
-### Building
+# Building
 
-* [Browserify](http://browserify.org/) Bundle modules for the browser.
+* [Grunt](http://gruntjs.com/): The JavaScript Task Runner
+* [Grulp](http://gulpjs.com/): Automate and enhance your workflow
+* [Browserify](http://browserify.org/) Bundle modules for the browser
 * [How to use NPM as a Build Tool](http://blog.keithcirkel.co.uk/how-to-use-npm-as-a-build-tool/)
-* [Webpack](http://webpack.github.io/) Module bundler
+* [Webpack](http://webpack.github.io/): The module bundler
 
-#### Lint / Quality checkers
+## Lint / Quality checkers
 
 * [JSHint](http://jshint.com/)
 * [ESLint](http://eslint.org/)
@@ -139,22 +156,22 @@ CSS 3, Canvas, WebSockets, WebGL, Native Client, and more.
 * [Nightwatch](http://nightwatchjs.org/) Dead simple integration testing with Selenium
 
 
-#### Transpilers
+## Transpilers
 
-* [6to5](https://github.com/6to5/6to5) (ES6)
+* [Babel](https://github.com/babel/babel): Babel is a compiler for writing next generation JavaScript
 * [CoffeeScript](http://coffeescript.org/)
 * [Emscripten](http://kripken.github.io/emscripten-site/) (frequently used for C/C++ JavaScript ports)
 * [Traceur](https://github.com/google/traceur-compiler) (ES.next)
 * [ES6 tools](https://github.com/addyosmani/es6-tools) Addy Osmani's ES6 Tools list
 
 
-### JavaScript environments
+# JavaScript environments
 
 * [Node.js](http://nodejs.org/) Server side JavaScript and more
 * [io.js](https://iojs.org/) - The Node fork
 
 
-### Libraries
+# Libraries
 
 * [es5-shim](https://github.com/es-shims/es5-shim) Stable, production ready.
 * [es6-shim](https://github.com/es-shims/es6-shim/) Somewhat stable, but a few things I thought were solid got shifted to ES7.
@@ -174,7 +191,7 @@ CSS 3, Canvas, WebSockets, WebGL, Native Client, and more.
 * [json-schema](https://github.com/kriszyp/json-schema) - Great for model validations
 
 
-### Web Components
+# Web Components
 
 * [FIRST](http://addyosmani.com/first/)
 * [Polyfills](http://webcomponents.org/polyfills/)
@@ -185,7 +202,7 @@ CSS 3, Canvas, WebSockets, WebGL, Native Client, and more.
 * [x-gif](http://geelen.github.io/x-gif/#/http://i.imgur.com/iKXH4E2.gif) This web component wins the internet.
 
 
-### QA / Deployment / Monitoring / CI
+# QA / Deployment / Monitoring / CI
 
 * [PM2](https://github.com/Unitech/pm2) Process monitoring / self repair
 * [New Relic](http://newrelic.com/) Deep insights into the performance and health of your production apps
@@ -195,24 +212,24 @@ CSS 3, Canvas, WebSockets, WebGL, Native Client, and more.
 * [Shippable](https://www.shippable.com/) Docker-based hosted build / CI
 
 
-### Community
+# Community
 
 * [ES Discuss](https://esdiscuss.org/) The mailing list where all the ECMAScript standard discussion action is.
 * [JavaScript on Google+](https://plus.google.com/communities/100875929141897651837)
 * [HTML5 on Google+](https://plus.google.com/communities/103299867207875326585)
 * [Node.js on Google+](https://plus.google.com/communities/115365528781941125390)
-* IRC ##JavaScript irc://irc.freenode.net/javascript
+* IRC #JavaScript irc://irc.freenode.net/javascript
 * IRC #node.js irc://irc.freenode.net/node.js
 * IRC #io.js irc://irc.freenode.net/io.js - the Node fork
 
 
-### Pasting / sharing code
+# Pasting / sharing code
 
 * [Codepen](http://codepen.io/pen/)
 * [RequireBin](http://requirebin.com/)
 
 
-### Contests
+# Contests
 
 * [DemoJS](http://demojs.org/) The JavaScript demoscene party
 * [JS1k](http://js1k.com/) JavaScript domes in 1k of memory
@@ -221,7 +238,7 @@ CSS 3, Canvas, WebSockets, WebGL, Native Client, and more.
 * [Node Knockout](http://nodeknockout.com/) The legendary Node competition
 
 
-### Hackable Hardware
+# Hackable Hardware
 
 * [Nodebots](http://nodebots.io/)
 * [Cylon](http://cylonjs.com/)
@@ -230,16 +247,16 @@ CSS 3, Canvas, WebSockets, WebGL, Native Client, and more.
 * [Espruino](http://www.espruino.com/)
 
 
-### Hosting
+# Hosting
 
 * [DigitalOcean](https://www.digitalocean.com/?refcode=fdcfedac5208)
 
-### For kids (and people who just love to have fun)
+# For kids (and people who just love to have fun)
 
 * [LearnToMod](http://www.learntomod.com/) Mod Minecraft with JavaScript
 
 
-### Twitter (alphabetical order)
+# Twitter (alphabetical order)
 
 * [Addy Osmani](https://twitter.com/addyosmani) - App architecture expert, Chrome dev tools champion
 * [Angus Croll](https://twitter.com/angustweets) - Author, "If Hemingway Wrote JavaScript"
