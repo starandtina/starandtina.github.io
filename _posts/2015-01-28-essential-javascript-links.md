@@ -41,6 +41,8 @@ This is a very exclusive collection of only must-have JavaScript links. I'm only
 * [Chrome DevTools: State Of The Union 2015](http://addyosmani.com/blog/chrome-devtools-state-of-the-union-2015/): [@addyosmani](http://twitter.com/addyosmani) walks through the latest updates on your favourite debugging companion; exploring new features like paint profiling, animation inspection and updates to the JavaScript editing workflow with V8.
 * [JavaScript Scene](https://medium.com/javascript-scene/learn-javascript-b631a4af11f2): Learn JavaScript Essentials(for all skill levels) by Eric Elliott (author of [Programming JavaScript Applications](http://chimera.labs.oreilly.com/books/1234000000262/index.html))
 * [miguelmota/javascript-idiosyncrasies](https://github.com/miguelmota/javascript-idiosyncrasies): A bunch of Javascript idiosyncrasies, kinda. 
+* [A Baseline for Front-End Developers](http://rmurphey.com/blog/2012/04/12/a-baseline-for-front-end-developers/): by @rmurphey on APR 12TH, 2012
+* [A Baseline for Front-End [JS] Developers: 2015](http://rmurphey.com/blog/2015/03/23/a-baseline-for-front-end-developers-2015/):  by @rmurphey on MAR 23RD, 2015
 
 
 # Required Viewing
@@ -68,7 +70,32 @@ CSS 3, Canvas, WebSockets, WebGL, Native Client, and more.
 * [A Drip of JavaScript](http://adripofjavascript.com/): One quick JavaScript tip, delivered to your inbox every other week.
 * [Modern Web Observer](http://modernweb.com/modern-web-observer/)
 * [Web Development Reading List](https://wdrl.info/): A handcrafted, carefully selected list of web development related resources. Published usually every week.
-
+* [DevOps Weekly newsletter](http://www.devopsweekly.com/)
+* [DevOps newsletter by ServerDensity](https://blog.serverdensity.com/devops-newsletter/)
+* [SysAdmin Casts newsletter](https://sysadmincasts.com/)
+* [Servers for hackers newsletter](https://serversforhackers.com/)
+* [Docker Weekly newsletter](https://www.docker.com/newsletter-subscription)
+* [Kubernetes Weekly newsletter](https://kubeweekly.com/)
+* [Web Operations Weekly](http://webopsweekly.com/): A weekly newsletter on Web operations, infrastructure, performance, and tooling, from the browser down to the metal.
+* [Cloud Development Weekly](http://clouddevweekly.co/): News, links and resources for developers working with cloud services, cloud APIs, and cloud-based tools
+* [This Week on Domains](http://www.thisweekindomains.com/) : A free weekly newsletter featuring the best and hand curated links related to domains, development, monetization, how to guides, tips and tricks, resources, events and more.
+* [NoSQL Weekly](http://www.nosqlweekly.com/): A free weekly newsletter featuring curated news, articles, new releases, jobs etc related to NoSQL.
+* [Founder Weekly](http://www.founderweekly.com/): A free weekly newsletter for entrepreneurs featuring best curated content, must read articles, 
+how to guides, tips and tricks, resources, events and more.
+* [Python Weekly](http://www.pythonweekly.com/): A free weekly newsletter featuring curated news, articles, new releases, jobs etc related to Python.
+* [Ruby Weekly](http://rubyweekly.com/): A free, once–weekly e-mail round-up of Ruby news and articles.
+* [Go Newsletter](http://golangweekly.com/): A weekly newsletter about the Go programming language.
+* [DB Weekly](http://dbweekly.com/): A weekly round-up of database technology news and articles covering new developments, SQL, NoSQL, document databases, graph databases, and more.
+* [MySQL Newsletter](http://mysqlnewsletter.com/): Unofficial Weekly News Digest of all things MySQL
+* [Postgres Weekly](http://postgresweekly.com/): A free, once–weekly e-mail round-up of PostgreSQL news and articles
+* [Data Science Weekly Newsletter](http://www.datascienceweekly.org/): A free weekly newsletter featuring curated news, articles and jobs related to Data Science.
+* [Big Data Weekly](http://www.bigdataweekly.com/): A free, hand-curated weekly round-up of Big Data news and links.
+* [Github Explore](https://github.com/explore): Browse interesting projects, solving all types of interesting problems.
+* [SaaS Weekly](http://hiten.com/): A weekly email of useful links for people interested in SaaS businesses.
+* [ng-newsletter](http://www.ng-newsletter.com/): The free, weekly newsletter of the best AngularJS content on the web. Hand-picked content by the experts in Angular - delivered directly to your inbox.
+* [Ember Weekly](http://emberweekly.com/): The latest Ember.js news, tips & code delivered directly to your inbox.
+* [HTML5 Game Development Newsletter](http://gamedevjsweekly.com/): Weekly newsletter
+about HTML5 Game Development.
 
 # Awesomeness
 
@@ -87,6 +114,7 @@ CSS 3, Canvas, WebSockets, WebGL, Native Client, and more.
 # Spec
 
 * [ES5 Spec](http://es5.github.io/) An annotated, hyperlinked version of the ES5 spec.
+* [ECMA-262 6th Edition / June 2015](http://www.ecma-international.org/ecma-262/6.0/): This is the HTML rendering of ECMA-262 6th Edition, The ECMAScript 2015 Language Specification.
 * [ES6 draft](https://people.mozilla.org/~jorendorff/es6-draft.html)
 
 # Conf
