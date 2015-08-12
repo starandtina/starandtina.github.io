@@ -41,6 +41,7 @@ This is a very exclusive collection of only must-have JavaScript links. I'm only
 * [Chrome DevTools: State Of The Union 2015](http://addyosmani.com/blog/chrome-devtools-state-of-the-union-2015/): [@addyosmani](http://twitter.com/addyosmani) walks through the latest updates on your favourite debugging companion; exploring new features like paint profiling, animation inspection and updates to the JavaScript editing workflow with V8.
 * [JavaScript Scene](https://medium.com/javascript-scene/learn-javascript-b631a4af11f2): Learn JavaScript Essentials(for all skill levels) by Eric Elliott (author of [Programming JavaScript Applications](http://chimera.labs.oreilly.com/books/1234000000262/index.html))
 * [miguelmota/javascript-idiosyncrasies](https://github.com/miguelmota/javascript-idiosyncrasies): A bunch of Javascript idiosyncrasies, kinda. 
+* [Making NetFlix.com Faster](http://techblog.netflix.com/2015/08/making-netflixcom-faster.html): Performance isn't an option if you're aiming for an amazing user experience. A compelling post on how Netflix improved on how fast Netflix.com renders by @kristoferbaxter.
 
 
 ### Required Viewing
