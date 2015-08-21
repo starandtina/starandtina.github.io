@@ -2,8 +2,8 @@
 layout: post
 title: "JavaScript Tips"
 description: "JavaScript Tips"
-category: ['Frontend']
-tags: ['Frontend', 'JavaScript', 'Style Guide', 'Best Practices']
+category: ['Front-End']
+tags: ['Front-End', 'JavaScript', 'Style Guide', 'Best Practices']
 ---
 {% include JB/setup %}
 

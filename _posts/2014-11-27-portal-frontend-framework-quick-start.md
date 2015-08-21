@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Portal Frontend Framework Quick Start"
-description: "Portal Frontend Framework Quick Start"
-category: ['Frontend', 'JavaScript']
-tags: ['Frontend', 'JavaScript', 'js-dev', 'portal']
+title: "Portal Front-End Framework Quick Start"
+description: "Portal Front-End Framework Quick Start"
+category: ['Front-End', 'JavaScript']
+tags: ['Front-End', 'JavaScript', 'js-dev', 'portal']
 ---
 {% include JB/setup %}
 

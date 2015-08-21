@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "Cross Domain Communication"
-description: ""
-category: 
-tags: []
+description: "Cross Domain Communication"
+category: ['Front-End', 'JavaScript']
+tags: ['Front-End', 'JavaScript', 'CDC', 'CORS']
 ---
 {% include JB/setup %}
 

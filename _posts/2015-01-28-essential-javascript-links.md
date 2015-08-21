@@ -2,8 +2,8 @@
 layout: post
 title: "Essential JavaScript Links"
 description: "Essential JavaScript Links"
-category: ['Frontend', 'JavaScript']
-tags: ['Frontend', 'JavaScript', 'HTML', 'CSS', 'Web Components', 'CI', 'Build']
+category: ['Front-End', 'JavaScript']
+tags: ['Front-End', 'JavaScript', 'HTML', 'CSS', 'Web Components', 'CI', 'Build']
 ---
 {% include JB/setup %}
 
@@ -107,7 +107,7 @@ about HTML5 Game Development.
 * [HTTP Specifications](http://httpwg.github.io/): You could find anything you want for Hypertext Transfer Protocol - the core protocol of the World Wide Web.
 * [ECMAScript 6 Tools](https://github.com/addyosmani/es6-tools): An aggregation of tooling for using ES6 today.
 * [Web Performance Optimization](https://github.com/davidsonfellipe/awesome-wpo): A curated list of Web Performance Optimization.
-* [Frontend Guidelines](https://github.com/bendc/frontend-guidelines): Some HTML, CSS and JS best practices.
+* [Front-End Guidelines](https://github.com/bendc/frontend-guidelines): Some HTML, CSS and JS best practices.
 * [free-for-dev](https://github.com/ripienaar/free-for-dev): A list of SaaS, PaaS and IaaS offerings that have free tiers of interest to devops and infradev.
 * [timjacobi/angular2-education](https://github.com/timjacobi/angular2-education): A curated list of helpful material to get started with education on Angular 2
 

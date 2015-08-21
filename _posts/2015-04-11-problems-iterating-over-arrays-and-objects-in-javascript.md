@@ -2,8 +2,8 @@
 layout: post
 title: "Problems iterating over arrays and objects in JavaScript"
 description: "Problems iterating over arrays and objects in JavaScript"
-category: ['Frontend']
-tags: ['Frontend', 'JavaScript', 'Iterator', 'js-dev']
+category: ['Front-End']
+tags: ['Front-End', 'JavaScript', 'Iterator', 'js-dev']
 ---
 {% include JB/setup %}
 

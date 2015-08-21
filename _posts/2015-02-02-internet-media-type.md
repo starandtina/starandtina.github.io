@@ -3,7 +3,7 @@ layout: post
 title: "Introducing Internet Media Type"
 description: ""
 category: []
-tags: ['Frontend', 'MIME']
+tags: ['Front-End', 'MIME']
 ---
 {% include JB/setup %}
 

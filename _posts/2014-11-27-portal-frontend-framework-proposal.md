@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Portal Frontend Framework Proposal"
-description: "Portal Frontend Framework Proposal"
-category: ['Frontend', 'JavaScript']
-tags: ['JavaScript', 'Frontend', 'js-dev', 'portal']
+title: "Portal Front-End Framework Proposal"
+description: "Portal Front-End Framework Proposal"
+category: ['Front-End', 'JavaScript']
+tags: ['JavaScript', 'Front-End', 'js-dev', 'portal']
 ---
 {% include JB/setup %}
 

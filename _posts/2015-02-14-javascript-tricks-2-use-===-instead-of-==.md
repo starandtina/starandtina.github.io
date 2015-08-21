@@ -3,7 +3,7 @@ layout: post
 title: 'JavaScript tricks 2: Use === instead of =='
 description: ""
 category: ['frontend', 'JavaScript', 'tricks']
-tags: ['Frontend', 'JavaScript', 'Tricks', 'Best Practices']
+tags: ['Front-End', 'JavaScript', 'Tricks', 'Best Practices']
 ---
 {% include JB/setup %}
 

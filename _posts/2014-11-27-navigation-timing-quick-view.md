@@ -2,7 +2,7 @@
 layout: post
 title: "Navigation Timing Quick View"
 description: "Quick start guide for Navigation Timing API."
-category: ['Frontend', 'JavaScript', 'WPO']
+category: ['Front-End', 'JavaScript', 'WPO']
 tags: ['JavaScript', 'Navigation Timing', 'Performance', 'WPO']
 ---
 {% include JB/setup %}
