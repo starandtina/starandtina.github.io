@@ -44,7 +44,7 @@ tags: []
 
 对于第一种主域名和子域名之间的交互，完全可以设置通过设置`document.domain`来保证两个不同域名下面的页面可以进行交互. 例如：
 
-点击`iframe`页面中的按钮，可以设置父页面中元素`#msg`的内容. 如果两个页面没有设置`document.domain`，是无法访问`parent.document`属性的，`sendMessage`函数也就无法达到预期的功能.
+点击**Iframe**页面中的按钮，可以设置父页面中元素`#msg`的内容. 如果两个页面没有设置`document.domain`，是无法访问`parent.document`属性的，`sendMessage`函数也就无法达到预期的功能.
 
 {% highlight HTML %}
 
@@ -239,11 +239,64 @@ tags: []
 
 #### window.name
 
-工作原理是在A中创建一个iframe，iframe的src指向B的一个文件，这个文件通过脚本设置window.name = data. data就是需要交互的数据. 等iframe加载完毕之后，A中的脚本修改iframe中contentWindow的location为A中的 一个空白页面，此时就可以获取window.name属性了。
+工作原理是在A中创建一个**Iframe**，**Iframe**的src指向B的一个文件，这个文件通过脚本设置window.name = data. data就是需要交互的数据. 等iframe加载完毕之后，A中的脚本修改iframe中contentWindow的location为A中的 一个空白页面，此时就可以获取window.name属性了。
 
 ![CDC window.name](/assets/images/cdc_window.name.png)
 {: class='image-wrapper'}
 
 这种方法的好处是B是无法获取到A的任何信息，`JavaScript`变量，`Cookie`，`DOM`等等，A唯一需要的是和B协商好接口和准备一个静态的空白页面。
 
-一个典型的用例就是[Respond](https://github.com/scottjehl/Respond#cdnx-domain-setup)。
+一个典型的用例就是[Respond CDN Cross Domain Setup](https://github.com/scottjehl/Respond#cdnx-domain-setup)。
+
+
+#### XMLHttpRequest
+
+在如今的前端开发中，大家经常会使用[**XMLHttpRequest**](https://xhr.spec.whatwg.org/)对象来做开发，以达到异步获取数据的目的。但是老版本的**XMLHttpRequest**对象有以下几个缺点：
+
+* 只支持文本数据的传送，无法用来读取和上传二进制文件
+* 传送和接收数据时，没有进度信息，只能提示有没有完成
+* 受到**同域限制**（[Same Origin Policy](http://www.w3.org/Security/wiki/Same_Origin_Policy)），只能向同一域名的服务器请求数据
+
+最后一条说的就是请求方和被请求方必须来自同样的scheme, host, and port。同域限制，简单来说就是，对于`http://www.foo.example:5050`的来自`http://www.foo.example`的请求就是一个跨端口的请求，就会触发一个安全异常 (但是一些老版本的Internet Explorer除外，因为它们允许跨端口的请求).
+
+新版本的**XMLHttpRequest**对象，针对老版本的缺点，做出了大幅改进。
+
+* 可以设置HTTP请求的时限
+* 可以使用FormData对象管理表单数据
+* 可以上传文件
+* 可以获取服务器端的二进制数据
+* 可以获得数据传输的进度信息
+* **可以请求不同域名下的数据（跨域请求）**
+
+其中最后一个跨域请求是我们期盼已久的功能。新版本的**XMLHttpRequest**对象，可以向不同域名的服务器发出HTTP请求。这叫做**跨域资源共享**（[Cross-origin resource sharing，简称CORS](http://www.w3.org/TR/access-control/)）。
+使用**跨域资源共享**的前提，是浏览器必须支持这个功能，而且服务器端必须同意这种**跨域**。如果能够满足上面的条件，则代码的写法与不跨域的请求完全一样。
+
+{% highlight JavaScript %}
+
+var xhr = new XMLHttpRequest();
+var onLoadHandler = function (event) {
+  /* do something with the response */
+}
+xhr.open('GET', 'http://other.server/and/path/to/script');
+xhr.onload = onLoadHandler;
+xhr.send();
+
+{% endhighlight %}
+
+但是，唯一重要的不同点就是目标URL必须通过发送`Access-Control-Allow-Origin`响应头来表明允许自请求域的跨域请求。
+
+目前，除了IE8和IE9（但是IE8和IE9可以使用[**XDomainRequest**](https://msdn.microsoft.com/en-us/library/cc288060(VS.85).aspx)对象达到一样的效果），[主流浏览器](http://caniuse.com/#feat=xhr2)都支持CORS，IE10也将支持这个功能。服务器端的设置，请参考[Server-Side Access Control](#Server-Side-Access-Control)。
+
+#### Cookie
+
+##### 两个域名之间的同步
+
+如果你有两个域名http://www.active.com和http://www.active.com.cn, 在*active.com*设置页面设置的**Cookie**。如果用户去访问*active.com.cn*是没有的, 因此需要在*active.com*设置Cookie的时候, 同时给*active.com.cn*设置一个同样的Cookie. 
+解决办法就是设置完毕*active.com*的Cookie之后, 建立一个隐藏的**Iframe**, **Iframe**的`src`指向*active.com.cn*的一个静态页面, 在那个页面中设置*active.com.cn*的Cookie, 设置完毕之后, 修改`top.location.href`来实现页面的跳转.
+
+
+### 参考
+{: #references }
+
+1. {: id='Server-Side-Access-Control'}[Server-Side Access Control](https://developer.mozilla.org/en-US/docs/Web/HTTP/Server-Side_Access_Control)
+
