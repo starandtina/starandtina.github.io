@@ -669,9 +669,9 @@ node.parentNode.removeChild(node);
 
 {% highlight JavaScript %}
 
-var x = document.getElementsByTagName('p')[0]; 
-var y = document.getElementsByTagName('h1')[0]; 
-x.parentNode.insertBefore(x,y);
+var newItem = document.getElementsByTagName('p')[0]; 
+var existingItem = document.getElementsByTagName('h1')[0]; 
+newItem.parentNode.insertBefore(newItem, existingItem);
 
 {% endhighlight %}
 
@@ -681,11 +681,11 @@ x.parentNode.insertBefore(x,y);
 
 {% highlight JavaScript %}
 
-var x = y.insertBefore(z, a);
+var x = y.insertBefore(newItem, existingItem);
 
 {% endhighlight %}
 
-那么现在`x`就包含对`z`的一个引用。
+那么现在`x`就包含对`newItem`的一个引用。
 
 ### 克隆一个节点（浅/深克隆）
 
@@ -696,7 +696,7 @@ var newNode = node.cloneNode(true|false); // true=deep copy, else shallow
 
 {% endhighlight %}
 
-需要注意的是，克隆节点时，并不会同时克隆事件处理函数。
+>需要注意的是，克隆节点时，并不会同时克隆事件处理函数。
 
 ### 使用另外一个节点替换一个子节点
 
@@ -704,9 +704,9 @@ var newNode = node.cloneNode(true|false); // true=deep copy, else shallow
 
 {% highlight JavaScript %}
 
-var x = document.getElementsByTagName('h1')[0];
-var y = document.getElementsByTagName('p')[1];
-x.parentNode.replaceChild(x, y);
+var newNode = document.getElementsByTagName('h1')[0];
+var oldNode = document.getElementsByTagName('p')[1];
+newNode.parentNode.replaceChild(newNode, oldNode);
 
 {% endhighlight %}
 
@@ -716,8 +716,8 @@ x.parentNode.replaceChild(x, y);
 
 {% highlight JavaScript %}
 
-var x = y.replaceChild(z, a);
+var x = y.replaceChild(newNode, oldNode);
 
 {% endhighlight %}
 
-那么现在`x`就包含对`a`的一个引用。
+那么现在`x`就包含对`oldNode`的一个引用。
