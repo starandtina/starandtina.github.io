@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "What's the result of ++[[]][+[]]+[+[]] and why?"
-description: ""
-category: 
-tags: []
+description: "What's the result of ++[[]][+[]]+[+[]] and why?"
+category: ['Front-End', 'JavaScript']
+tags: ['Front-End', 'JavaScript', 'Tricks']
 ---
 {% include JB/setup %}
 
