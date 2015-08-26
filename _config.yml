@@ -12,7 +12,7 @@ safe: true
 title : Home
 tagline: Some nice things to share with the world.
 author :
-  name : Xin Zhang
+  name : Xin(Khalil) Zhang
   email : kandmforever@126.com
   github : starandtina
   twitter : starandtina
@@ -134,3 +134,7 @@ JB :
   #   ./_includes/custom/[HELPER]
   # where [HELPER] is the name of the helper you are overriding.
   
+
+# Pagination
+paginate: 10
+paginate_path: "page/:num/"
