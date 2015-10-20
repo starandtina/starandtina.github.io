@@ -96,6 +96,9 @@ how to guides, tips and tricks, resources, events and more.
 * [Ember Weekly](http://emberweekly.com/): The latest Ember.js news, tips & code delivered directly to your inbox.
 * [HTML5 Game Development Newsletter](http://gamedevjsweekly.com/): Weekly newsletter
 about HTML5 Game Development.
+* [Offline First Reader](http://offlinefirst.org/): We live in a disconnected & battery powered world, but our technology and best practices are a leftover from the always connected & steadily powered past.
+
+This website is starting a discussion about mobile first app development that goes beyond shrinking content to phone and tablet screen sizes.
 
 # Awesomeness
 
