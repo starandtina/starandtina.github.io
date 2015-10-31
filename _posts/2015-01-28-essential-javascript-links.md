@@ -56,6 +56,7 @@ This is a very exclusive collection of only must-have JavaScript links. I'm only
 # Dailies and Weeklies
 
 * [JavaScript Weekly](http://javascriptweekly.com/): A free, once–weekly e-mail round-up of JavaScript news and articles.
+* [Fresh Brewed Frontend](https://freshbrewed.co/frontend/): A weekly reading digest for frontend developers. One email. Handpicked articles. Every Tuesday. No spam.
 * [HTML5 Weekly](http://html5weekly.com): A once–weekly HTML5 and Web Platform technology roundup.
 CSS 3, Canvas, WebSockets, WebGL, Native Client, and more.
 * [CSS Weekly](http://css-weekly.com/): A weekly e-mail roundup of css articles, tutorials, experiments and tools curated by [Zoran Jambor](http://twitter.com/ZoranJambor).
@@ -97,8 +98,6 @@ how to guides, tips and tricks, resources, events and more.
 * [HTML5 Game Development Newsletter](http://gamedevjsweekly.com/): Weekly newsletter
 about HTML5 Game Development.
 * [Offline First Reader](http://offlinefirst.org/): We live in a disconnected & battery powered world, but our technology and best practices are a leftover from the always connected & steadily powered past.
-
-This website is starting a discussion about mobile first app development that goes beyond shrinking content to phone and tablet screen sizes.
 
 # Awesomeness
 
