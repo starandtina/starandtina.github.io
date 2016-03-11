@@ -1,6 +1,6 @@
 # This is the default format. 
 # For more see: http://jekyllrb.com/docs/permalinks/
-permalink: /:categories/:year/:month/:day/:title 
+permalink: /:categories/:year-:month-:day/:title 
 
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
 highlighter: pygments
@@ -22,6 +22,7 @@ markdown: kramdown
 
 kramdown:
   input: GFM # Turn on recognition of Github Flavored Markdown
+  syntax_highlighter: rouge
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
@@ -70,7 +71,7 @@ JB :
   #   http://s3.amazonaws.com/yoursite/themes/watermelon
   #   /assets
   #
-  ASSET_PATH : false
+  ASSET_PATH : /assets/themes/mark-reid
 
   # These paths are to the main pages Jekyll-Bootstrap ships with.
   # Some JB helpers refer to these paths; change them here if needed.
@@ -134,7 +135,10 @@ JB :
   #   ./_includes/custom/[HELPER]
   # where [HELPER] is the name of the helper you are overriding.
 
+# Plugins
+whitelist: []
+gems:      [jekyll-paginate]
 
 # Pagination
 paginate: 10
-paginate_path: "page/:num/"
+paginate_path: "page:num"
