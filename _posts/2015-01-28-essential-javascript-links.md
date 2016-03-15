@@ -56,6 +56,7 @@ This is a very exclusive collection of only must-have JavaScript links. I'm only
 # Dailies and Weeklies
 
 * [JavaScript Weekly](http://javascriptweekly.com/): A free, once–weekly e-mail round-up of JavaScript news and articles.
+* ES.next News](http://esnextnews.com/): ES.next News: 5 ECMAScript.next links every week, in your inbox. 
 * [Fresh Brewed Frontend](https://freshbrewed.co/frontend/): A weekly reading digest for frontend developers. One email. Handpicked articles. Every Tuesday. No spam.
 * [HTML5 Weekly](http://html5weekly.com): A once–weekly HTML5 and Web Platform technology roundup.
 CSS 3, Canvas, WebSockets, WebGL, Native Client, and more.
