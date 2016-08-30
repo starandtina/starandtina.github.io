@@ -137,8 +137,9 @@ JB :
 
 # Plugins
 whitelist: []
-gems:      [jekyll-paginate]
+
 
 # Pagination
+gems:      [jekyll-paginate]
 paginate: 10
 paginate_path: "page:num"
