@@ -12,13 +12,187 @@ tags: []
 
 Frontend Knowledge Chart
 
-## HTML & CSS
+# HTML & CSS
 
-### 基础
+## HTML常用的一些Tips
+
+### Text
+
+#### Paragraphs
+
+大多数情况下我们都会用段落，它是HTML的重要组成部分，而在HTML中有一个元素就是为它而存在的：`<p>`。
+
+>千万别使用`<br>`标签用于分开整篇数落，因为断行标签不是用于这种情况的。
+
+**避免:**
+
+{% highlight HTML %}
+Cupcake ipsum dolor sit. Amet chupa chups chupa chups sesame snaps. Ice cream pie jelly
+beans muffin donut marzipan oat cake.
+
+<br>
+
+Gummi bears tart cotton candy icing. Muffin bear claw carrot cake jelly jujubes pudding
+chocolate cake cheesecake toffee.
+{% endhighlight %}
+
+**推荐:**
+
+对于断行标签的一个合理使用场景是，举例来说，在诗或是歌曲的押韵处断开：
+
+{% highlight HTML %}
+<p>So close, no matter how far<br>
+Couldn’t be much more from the hearth<br>
+Forever trusting who we are<br>
+And nothing else matters</p>
+{% endhighlight %}
+
+### Headings
+
+标题标签，从`<h1>`到`<h6>`，其实是有一个暗含的层级关系的，从1（最重要）到6（不重要）逐层递减.
+
+为了正确的处理语义，顺序的选择对于你来说正确的标题层级，而不是因为浏览器渲染标题时的大小而决定。你可以并且也应该用CSS来控制文本大小，同时选择一个合适的级别。
+
+**避免**:
+
+{% highlight HTML %}
+<article>
+    <h1>Monkey Island</h1>
+    <h4>Look behind you! A three-headed monkey!</h4>
+    <!-- ... -->
+</article>
+{% endhighlight %}
+
+**推荐**:
+
+{% highlight HTML %}
+<article>
+    <h1>Monkey Island</h1>
+    <h2>Look behind you! A three-headed monkey!</h2>
+    <!-- ... -->
+</article>
+{% endhighlight %}
+
+另外需要考虑的一件事情就是如何创建与标题对应的子标题或是标语。W3C规范推荐使用普通的文本标签而是更低一层级的标题。
+
+**避免**:
+
+{% highlight HTML %}
+<header>
+    <h1>Star Wars VII</h1>
+    <h2>The Force Awakens</h2>
+</header>
+{% endhighlight %}
+
+**推荐**:
+
+{% highlight HTML %}
+<header>
+    <h1>Star Wars VII</h1>
+    <p>The Force Awakens</p>
+</header>
+{% endhighlight %}
+
+### Forms
+
+#### Placeholders
+
+大家都知道表单元素`<input>`中有一个叫`placeholder`的属性，它规定描述文本区域预期值的简短提示，该提示会在文本区域为空时显示，当字段获得焦点时消失。很明显，`Placeholder`是针对为表单元素提供正确示例用的。
+
+不幸的是，我们常常将这些`placeholder`当作`<label>`元素来使用，让别人知道这个表单元素是什么而不是做为一个合法输入值的一个示例。这种做法不支持[`accessibel`](https://developer.mozilla.org/en-US/docs/Web/Accessibility)，所以你应该避免它。
+
+**避免：**
+
+{% highlight HTML %}
+<input type="email" placeholder="Your e-mail" name="mail">
+{% endhighlight %}
+
+**推荐：**
+
+{% highlight HTML %}
+<label>
+    Your e-mail:
+    <input type="email" placeholder="darth.vader@empire.gov" name="mail">
+</label>
+{% endhighlight %}
+
+### 移动设备中的键盘
+
+对于使用移动设备（如电话或是平板）浏览网站的用户来说，提供输入提示是至关重要的一个功能。只要我们能够给`<input>`元素选择正确的`type`，那么我们其实可以很轻易地就做到这一点。
+
+举例来说，`type='number'`会让移动设备显示数字键盘而不是通常的字母键盘。对于`type='email'`或是`type='tel'`来说也是一样的道理。
+
+**避免：**
+
+{% highlight HTML %}
+<label>Phone number: <input type="text" name="mobile"></label>
+{% endhighlight %}
+
+**推荐：**
+
+{% highlight HTML %}
+<label>Phone number: <input type="tel" name="mobile"></label>
+{% endhighlight %}
+
+下面是一张对比图：左边是当使用`type='text'`时的键盘显示；右边是`type='tel'`时的键盘显示。
+
+![keyboard_compare.png](https://hacks.mozilla.org/files/2016/08/keyboard_compare.png)
+{: class='image-wrapper'}
+
+## Images
+
+该说说**SVG**了吧！现在你不仅可以像下面这样在`<img>`标签中这样使用**SVG**：
+
+{% highlight HTML %}
+<img src="acolyte_cartoon.svg" alt="acolyte">
+{% endhighlight %}
+
+同时，你也可以在你的Web应用或是网站中使用**SVG sprites**实现矢量图标，而不是使用**Web Font**- 它一直是一种hack，有时可能你并不能得到你想要的结果。这是因为浏览器把**Web Font**当成文本对待，而不是图片。同时也有其它方面的问题，如广告拦截器会禁止下载**Web Font**。
+
+>[Github从2016年2月23号开始已经不再支持**Icon Font**的Octicons](https://github.com/blog/2112-delivering-octicons-with-svg)。
+
+如果你想了解更多，可以看看[Sarah Semark的这篇关于*为什么使用SVG的icons会比使用Web Font的更好*的演讲](http://wordpress.tv/2016/05/28/sarah-semark-stop-using-icon-fonts-love-svg/)。你也可以在[CSS-Tricks](https://css-tricks.com/svg-sprites-use-better-icon-fonts/)上读到更多关于这项技术的。
+
+其实**SVG sprites**与[**CSS sprites**](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Images/Implementing_image_sprites_in_CSS)很相似。它也是把所有的SVG资源合并为一个图片文件。对于SVG来说，每一个资源是被包含在`<symbol>`标签中的，像下面这样：
+
+{% highlight HTML %}
+<svg>
+    <symbol id="social-twitter" viewBox="...">
+        <!-- actual image data here -->
+    </symbol>
+</svg>
+{% endhighlight %}
+
+之后，这个图标可以通过`<svg>`标签在你的HTML文件中使用，像下面这个例子一样，我们指向SVG文件中**symbol**的ID：
+
+{% highlight HTML %}
+<svg class="social-icon">
+    <use xlink:href="icons.svg#social-twitter" />
+</svg>
+{% endhighlight %}
+
+不得不承认，创建这些**SVG spritesheet**的过程是很枯燥的。好吧，这就是这些自动化工具，如[gulp-svgstore](https://github.com/w0rm/gulp-svgstore)存在的理由，它会自动化帮你做这些并根据你提供的单个的资源文件创建好一个CSS样式表。
+
+记住一件事，既然我们开始使用`<svg>`而不是`<img`>标签来包含我们的图片资源，那么我们就可以使用CSS来应用样式。所有你可以对**Web Font icons**做的，同样你也可以对**SVG icons**做。
+
+{% highlight CSS %}
+.social-icon {
+    fill: #000;
+    transition: all 0.2s;
+}
+
+.social-icon:hover {
+    fill: #00f;
+}
+{% endhighlight %}
+
+但是，同时也有些CSS限制：当你像这样使用SVG时（通过`<use>`链接到`<symbol>`），那么图片是被注入到[Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Shadow_DOM)，那么我们就失去了某些CSS的功能。在这种情况下，我们并不能知道SVG中的哪些元素我们需要应用样式，并且一些CSS属性（像fill）中会应到到原本这些属性值为`undefined`的元素上。但是，对于**Web Font icons**来说，你同样不能做到这些。
+
+## 基础
 
 包含了HTML以及CSS的基本知识。
 
-#### 知识点
+### 知识点
 
 - HTML常用元素。
 - HTML元素间嵌套关系。
@@ -29,7 +203,7 @@ Frontend Knowledge Chart
 - 两类盒模型的概念。
 - 常见布局的实现。
 
-#### 常见问题
+### 常见问题
 
 - h1~h6的区别是什么？ul、ol的区别呢？
 
@@ -127,11 +301,11 @@ inline-block后的元素创建了一个行级的块容器，该元素内部（�
     - CSS 伪类
     - CSS 伪元素
 
-### 兼容
+## 兼容
 
 考察包括Internet Explorer 6-8、Firefox 3.5+、Chrome 6+在内的各浏览器在HTML以及CSS方面的兼容性知识。
 
-#### 知识点
+### 知识点
 
 - HTML部分元素（如ul）在不同浏览器下的默认样式的差异。
 - 部分HTML元素的使用上存在的差异，如引入flash的方式。
@@ -140,7 +314,7 @@ inline-block后的元素创建了一个行级的块容器，该元素内部（�
 - 旧浏览器不支持部分CSS属性（如position:fixed）的修复方案。
 - 各浏览器使用的CSS Hack形式。
 
-#### 常见问题
+### 常见问题
 
 - 有使用或制作过reset.css吗？请问该css中要包含哪些内容?
 
@@ -158,20 +332,20 @@ inline-block后的元素创建了一个行级的块容器，该元素内部（�
 - 如何全浏览器兼容地设置某个元素的透明度为30%？
 
 
-### 性能
+## 性能
 
 考察页面重构的知识中与性能有关的各知识点，其考察以点状知识为主。
 
 性能不仅仅是浏览器执行、解析的相关数值，也包括如何让用户更快地看到内容等方面的考量。
 
-#### 知识点
+### 知识点
 
 - CSS选择器的优化。
 - HTML元素层面的优化。
 - 流式布局与table布局之间的区别。
 
 
-#### 常见问题
+### 常见问题
 
 - HTML元素到CSS选择器的匹配过程是如何进行的？
 - 能否谈谈在制作CSS选择器时，要注意一些什么问题，保证性能的最优化？
@@ -205,13 +379,13 @@ inline-block后的元素创建了一个行级的块容器，该元素内部（�
 
 http://jsfiddle.net/starandtina/f7kng0td/
 
-## JavaScript及BOM、DOM
+# JavaScript及BOM、DOM
 
 基础
 
 考核javascript语言相关的基础知识、ECMA262标准相关知识，以及浏览器提供的BOM模型的知识，和w3标准下的DOM相关知识。
 
-#### 知识点
+### 知识点
 
 - javascript中的原生类型、内置类型。
 - javascript提供的基本类型的相关函数。
@@ -226,7 +400,7 @@ http://jsfiddle.net/starandtina/f7kng0td/
 - AJAX的运作过程。
 
 
-#### 常见问题
+### 常见问题
 
 - javascript有哪些原生类型、哪些内置类型？null和undefined有什么区别？
 
@@ -299,7 +473,7 @@ http://jsfiddle.net/starandtina/f7kng0td/
 
 考察各浏览器中脚本编写时的兼容性处理，主要在于DOM相关属性的兼容性等。
 
-#### 知识点
+### 知识点
 
 - DOM元素各属性设置时的兼容性问题。
 - DOM元素事件的兼容性。
@@ -307,7 +481,7 @@ http://jsfiddle.net/starandtina/f7kng0td/
 - 原生数据类型的部分兼容问题，如for...in循环输出的顺序。
 
 
-#### 常见问题
+### 常见问题
 
 - 请问如何给一个元素设置float:left样式？
 - 如何取得一个元素的内联style属性的字符串，如'color:red;font-size:16px;'？
@@ -324,14 +498,14 @@ http://jsfiddle.net/starandtina/f7kng0td/
 
 考察在DOM操作等方面的性能测量、优化等知识，重在考察一个分析的过程，教条主义的结论并不适用。
 
-#### 知识点
+### 知识点
 
 - DOM操作的基本优化原则。
 - reflow和repaint的概念，如何减少这两个操作。
 - Sizzle等框架的选择器的优化。
 
 
-#### 常见问题
+### 常见问题
 
 - 请问我们经常听到的“javascript”执行很慢通常是因为什么引起的？如何能进行针对性的优化？
 - 能谈谈reflow和repaint这两个概念吗？
@@ -395,11 +569,11 @@ function jsonp(url, callback) { }
 
 其他部分
 
-## HTTP协议
+# HTTP协议
 
 考查HTTP协议的认知程度和基本知识。
 
-#### 知识点
+### 知识点
 
 - HTTP协议的概念，HTTP请求、响应的组成。
 - 常见HTTP Method表达的意思，不仅仅是GET和POST。
@@ -409,7 +583,7 @@ function jsonp(url, callback) { }
 - 基于资源瀑布图的分析和优化。
 
 
-#### 常见问题
+### 常见问题
 
 - 请说说HTTP协议中的请求及响应的组成部分。
 - 请简单阐述一下，当使用一个input type="file"进行文件上传时，怎么从请求流中找出该文件的内容和相关信息？
@@ -422,11 +596,11 @@ function jsonp(url, callback) { }
 - 为什么要将样式放在关部，而将脚本放在页面底部呢？
 - 将一个外部样式表通过link元素引入，则该元素在“页面的head的底部”与“页面的body的头部”有什么区别？
 
-## 安全相关
+# 安全相关
 
 考查前端及系统安全方面的知识，需要对各种攻击手段和防范措施有基本的了解。
 
-#### 知识点
+### 知识点
 
 - HTML转义符号、脚本转义符号。
 - 常见的XSS漏洞，及其避免方式。
@@ -434,7 +608,7 @@ function jsonp(url, callback) { }
 - 与flash交互过程中的安全事项。
 
 
-#### 常见问题
+### 常见问题
 
 - 有一段用户输入的文字，现在要通过一定的方法显示在一个id为output的div元素中，请问如何做？
 - 请问什么是XSS漏洞？从你的角度看，HTML片段中有哪些关键字可能导致输出后会执行一段javascript脚本？
@@ -445,7 +619,7 @@ function jsonp(url, callback) { }
 
 考核对HTML5及CSS3、Javascript 1.6的相关知识的吸收程度，借以考察对前端技术的关注度及兴趣。
 
-#### 知识点
+### 知识点
 
 - HTML5新增元素的语义。
 - HTML5表单的增加。
@@ -457,7 +631,7 @@ function jsonp(url, callback) { }
 - javascript 1.6的新增功能。
 
 
-#### 常见问题
+### 常见问题
 
 - 对HTML5有所了解吗？能说说HTML5新增加的元素有哪一些吗？
 - 能谈谈就你来看，HTML5的意义以及其设计的原则吗？
