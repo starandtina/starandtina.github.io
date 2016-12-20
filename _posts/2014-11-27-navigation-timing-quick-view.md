@@ -122,7 +122,7 @@ Navigation Timing 2目前还是工作草案，它是做为第一版的一个补�
 
 [HTML 5.1 8.2.6](http://www.w3.org/html/wg/drafts/html/master/syntax.html#the-end)中第4步。
 
-DOMContentLoad和 DOMInteractive 之间差了以下两个步骤。
+DOMContentLoad和 DOMInteractive 之间插入了以下两个步骤。
 
   * 先确保所有[open elements](http://www.w3.org/html/wg/drafts/html/master/syntax.html#stack-of-open-elements)出栈
   * 然后去看看[文档结束解析后待运行的script list](http://www.w3.org/html/wg/drafts/html/master/scripting-1。html#list-of-scripts-that-will-execute-when-the-document-has-finished-parsing)中是否有需要运行的脚本，如果有则执行，一直到这个列表为空了。再触发`DOMContentLoad`事件。
