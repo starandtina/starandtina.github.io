@@ -106,6 +106,8 @@ const Signin = asyncComponent(
 export default Signin
 ```
 
+> 从Webpack@2.4.0开始，它引入一个叫[**magic comments**](https://webpack.js.org/api/module-methods/#import-)的新Feature，它让你可以为每个异步Chunk命名，大大简化了资源的管理和SSR。
+
 ### shared
 
 **shared**目录主要包含公共的**components**, **containers**, **modules(redux)**，**middlewares**，以及一些工具函数。
@@ -170,4 +172,4 @@ if (module.hot) {
 
 ## 总结
 
-目前来说这种结构对于我们来说是一种最好的解决方案，但是这种结构并不是满足所有的情况，但是它已经相当的灵活。
+目前来说这种结构对于我们来说是一种最好的解决方案，但是这种结构并不能满足所有的情况（比如SSR），但是它已经足够灵活，同时支持水平扩展，新增功能并不会侵入已有的逻辑。
