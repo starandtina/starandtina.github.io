@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "How We Normalize State"
-description: "How We Normalize State"
+title: "How Do We Normalize State"
+description: "How Do We Normalize State"
 category: ['React', 'Redux', 'Normalize']
 tags: ['React', 'Redux', 'Normalize', 'Normalizr']
 ---
