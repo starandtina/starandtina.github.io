@@ -215,67 +215,8 @@ TLDR:
 
 最近，我们也集成了[Prettier](https://github.com/prettier/prettier)来作为代码格式化工具，之后，**Prettier**会主要负责代码风格一致，而**ESLint**会确保我们的代码质量，是满足最佳实践的。
 
-```
-{
-  "extends": [
-    "airbnb",
-    "plugin:jest/recommended",
-    "prettier",
-    "prettier/flowtype",
-    "prettier/react"
-  ],
-  "plugins": ["react", "babel", "jest", "prettier"],
-  "parser": "babel-eslint",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
-  "env": {
-    "es6": true,
-    "browser": true,
-    "node": true,
-    "jest": true
-  },
-  "rules": {
-    "prettier/prettier": [
-      "error",
-      {
-        "printWidth": 80,
-        "singleQuote": true,
-        "trailingComma": "all",
-        "bracketSpacing": true,
-        "jsxBracketSameLine": false,
-        "parser": "babylon",
-        "semi": false
-      }
-    ],
-    "no-underscore-dangle": "off",
-    "no-unused-expressions": "off",
-    "react/prefer-stateless-function": [
-      "error",
-      {
-        "ignorePureComponents": true
-      }
-    ],
-    "react/jsx-filename-extension": [
-      "error",
-      {
-        "extensions": [".jsx", ".js"]
-      }
-    ],
-    "jsx-a11y/no-static-element-interactions": "off",
-    "jsx-a11y/label-has-for": ["warn", ["label"]]
-  },
-  "settings": {
-    "import/resolver": {
-      "webpack": {
-        "config": "./build/webpack.eslint.config"
-      }
-    }
-  }
-}
-```
+![.eslintrc](/assets/images/eslintrc.png)
+{: class='image-wrapper'}
 
 ### 测试
 
@@ -283,7 +224,10 @@ TLDR:
 
 基本上，我们会要求单元测试的代码覆盖率至少是要达到**90%**的，它表示的是*Statements*，*Branches*，*Functions*，*Lines*这四个维度的平均值。有了这些测试后，在之后的开发，重构或是修复Bug中，我们就可以依据需求任意的做出相应的修改，同时，我们也有足够的信心不会破坏已有的代码。
 
-### CI/CD
+![jest.config.js](/assets/images/jest.config.js.png)
+{: class='image-wrapper'}
+
+### 自动化 - CI/CD
 
 **CI**也就是我们经常说的持续集成，指的是频繁地（或者是一天多次）将代码集成到主干分支，它现在是我们开发流程中必不可少的一环。它主要可以帮助我们：
 
