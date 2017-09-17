@@ -241,41 +241,9 @@ TLDR:
 
 在ACTIVE Network，工程师在自己的分支上完成代码开发后，会先提交一个Gitlab Merge Request(MR，类似GitHub的PR)，以供团队其它成员做Code Review。代码仓库都会预先设置好[Webhook](https://docs.gitlab.com/ce/user/project/integrations/webhooks.html)，所以只要有创建，更新或是合并MR时，都会自动运行仓库的[Jenkins Pipeline](https://jenkins.io/doc/book/pipeline/getting-started/)，下面是一个典型的**Jenkinsfile**：
 
-```groovy
-#!groovy
+![Jenkinsfile](/assets/images/Jenkinsfile.png)
+{: class='image-wrapper'}
 
-node {
-  currentBuild.displayName = sh(returnStdout: true, script: 'cat package.json | grep version | sed \'s/"//g\' | awk -F \': \' \'{print $2}\' | sed s/,//g').trim() // the name of the current Jenkins job
-
-  gitlabCommitStatus {
-    currentBuild.result = "SUCCESS"
-
-    stage('Checkout') {
-      checkout scm
-    }
-
-    stage('Install') {
-      sh 'yarn'
-    }
-
-    stage('Lint') {
-      sh 'npm run lint'
-    }
-
-    stage('Test') {
-      try {
-        sh 'npm test'
-      } catch (err) {
-        currentBuild.result = "FAILURE"
-        error 'Testing failed'
-        throw err
-      } finally {
-        publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: false, reportDir: 'coverage/lcov-report/', reportFiles: 'index.html', reportName: 'LCOV Report'])
-      }
-    }
-  }
-}
-```
 
 一般来说，它会执行如下的步骤：
 
