@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Ideal React Redux Project Stucture"
-description: "Ideal React Redux Project Stucture"
+title: "React + Redux 最佳项目结构"
+description: "React + Redux 最佳项目结构"
 category: ['React', 'Redux', 'Project Structure']
 tags: ['React', 'Redux', 'Project Structure']
 ---

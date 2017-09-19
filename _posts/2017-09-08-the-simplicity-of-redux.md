@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "The Simplicity of Redux"
-description: "The Simplicity of Redux"
+title: "Redux的简单性"
+description: "Redux的简单性"
 category: ['Redux']
 tags: ['Redux']
 ---

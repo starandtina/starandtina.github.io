@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "How Do We Normalize State"
-description: "How Do We Normalize State"
+title: "我们如何范式化Redux状态的"
+description: "我们如何范式化Redux状态的"
 category: ['React', 'Redux', 'Normalize']
 tags: ['React', 'Redux', 'Normalize', 'Normalizr']
 ---

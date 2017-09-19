@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Checklist for Job Offer"
+title: "工作机会的检查清单"
 description: ""
 category: ['Offer']
 tags: ['Offer']
